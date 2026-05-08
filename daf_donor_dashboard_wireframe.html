@@ -1,0 +1,151 @@
+
+<style>
+  .wf { font-family: var(--font-sans); color: var(--color-text-primary); padding: 1rem 0; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--color-border-tertiary); margin-bottom: 1.5rem; }
+  .fund-name { font-size: 22px; font-weight: 500; }
+  .fund-sub { font-size: 13px; color: var(--color-text-secondary); margin-top: 3px; }
+  .nav-links { display: flex; gap: 20px; font-size: 13px; color: var(--color-text-secondary); }
+  .nav-links span { cursor: default; }
+  .nav-links span.active { color: var(--color-text-primary); font-weight: 500; border-bottom: 1.5px solid var(--color-text-primary); padding-bottom: 2px; }
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+  .metric { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem; }
+  .metric-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .metric-value { font-size: 22px; font-weight: 500; }
+  .metric-value.hero { font-size: 28px; color: #0C447C; }
+  .metric-delta { font-size: 12px; color: var(--color-text-success); margin-top: 4px; }
+  .charts-row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 1.5rem; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem; }
+  .card-title { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .chart-area { height: 140px; position: relative; display: flex; align-items: flex-end; gap: 2px; }
+  .bar { background: #B5D4F4; border-radius: 3px 3px 0 0; flex: 1; }
+  .bar.accent { background: #185FA5; }
+  .area-chart { width: 100%; height: 140px; }
+  .donut-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 140px; gap: 12px; }
+  .donut-legend { font-size: 12px; color: var(--color-text-secondary); display: flex; flex-direction: column; gap: 6px; width: 100%; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .table-card { }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; font-size: 11px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; padding: 0 0 8px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  td { padding: 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-primary); }
+  td:last-child, th:last-child { text-align: right; }
+  .status { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; }
+  .status.approved { background: var(--color-background-success); color: var(--color-text-success); }
+  .status.pending { background: var(--color-background-warning); color: var(--color-text-warning); }
+  .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+  .section-title { font-size: 15px; font-weight: 500; }
+  .view-all { font-size: 12px; color: var(--color-text-secondary); cursor: default; }
+</style>
+
+<div class="wf">
+  <div class="topbar">
+    <div>
+      <div class="fund-name">The Williams Family Fund</div>
+      <div class="fund-sub">Established 2021 · Community Foundation of Kansas City</div>
+    </div>
+    <div class="nav-links">
+      <span class="active">Overview</span>
+      <span>Contributions</span>
+      <span>Grants</span>
+      <span>Documents</span>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-label">Fund balance</div>
+      <div class="metric-value hero">$142,500</div>
+      <div class="metric-delta">↑ $12,000 this year</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Available to grant</div>
+      <div class="metric-value">$138,200</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Total contributed</div>
+      <div class="metric-value">$180,000</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Grants awarded</div>
+      <div class="metric-value">$41,800</div>
+    </div>
+  </div>
+
+  <div class="charts-row">
+    <div class="card">
+      <div class="card-title">Fund balance over time</div>
+      <svg class="area-chart" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#378ADD" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#378ADD" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,120 C40,115 60,100 100,90 C140,80 160,75 200,65 C240,55 270,50 300,40 C330,30 360,25 400,20 L400,140 L0,140 Z" fill="url(#areaGrad)"/>
+        <path d="M0,120 C40,115 60,100 100,90 C140,80 160,75 200,65 C240,55 270,50 300,40 C330,30 360,25 400,20" fill="none" stroke="#185FA5" stroke-width="2"/>
+        <text x="0" y="135" font-size="10" fill="#888780">2021</text>
+        <text x="90" y="135" font-size="10" fill="#888780">2022</text>
+        <text x="188" y="135" font-size="10" fill="#888780">2023</text>
+        <text x="286" y="135" font-size="10" fill="#888780">2024</text>
+        <text x="374" y="135" font-size="10" fill="#888780">2025</text>
+      </svg>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Grants by cause area</div>
+      <div class="donut-wrap">
+        <svg width="80" height="80" viewBox="0 0 80 80" aria-hidden="true">
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#B5D4F4" stroke-width="16"/>
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#185FA5" stroke-width="16" stroke-dasharray="75 113" stroke-dashoffset="28"/>
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#9FE1CB" stroke-width="16" stroke-dasharray="38 150" stroke-dashoffset="-47"/>
+        </svg>
+        <div class="donut-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#185FA5"></div><span>Education — 40%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#9FE1CB"></div><span>Arts &amp; culture — 20%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#B5D4F4"></div><span>Human services — 40%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card table-card">
+    <div class="section-header">
+      <div class="section-title">Recent grant recommendations</div>
+      <div class="view-all">View all →</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Organization</th>
+          <th>Cause area</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lawrence Arts Center</td>
+          <td style="color: var(--color-text-secondary);">Arts &amp; culture</td>
+          <td style="color: var(--color-text-secondary);">Nov 14, 2025</td>
+          <td><span class="status approved">Approved</span></td>
+          <td>$5,000</td>
+        </tr>
+        <tr>
+          <td>United Way of Douglas County</td>
+          <td style="color: var(--color-text-secondary);">Human services</td>
+          <td style="color: var(--color-text-secondary);">Oct 28, 2025</td>
+          <td><span class="status approved">Approved</span></td>
+          <td>$10,000</td>
+        </tr>
+        <tr>
+          <td>KU Endowment — STEM scholarships</td>
+          <td style="color: var(--color-text-secondary);">Education</td>
+          <td style="color: var(--color-text-secondary);">Dec 1, 2025</td>
+          <td><span class="status pending">Pending</span></td>
+          <td>$15,000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
