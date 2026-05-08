@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Steward{% endblock %}
+
+{% block content %}
+<h1>Welcome, {{ user.username }}!</h1>
+
+{% if is_admin %}
+    <div class="info-box admin">
+        <h2>Staff Dashboard</h2>
+        <p>You have admin access to manage all funds, contributions, and grant recommendations.</p>
+        <ul>
+            <li><a href="/admin/">Django Admin</a> - Full system access</li>
+        </ul>
+    </div>
+{% endif %}
+
+{% if is_donor %}
+    <div class="info-box donor">
+        <h2>Your Funds</h2>
+        {% if funds %}
+            <ul class="fund-list">
+                {% for fund in funds %}
+                    <li>
+                        <strong>{{ fund.name }}</strong> - Balance: ${{ fund.balance }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You don't have any funds yet. Contact staff to create a fund.</p>
+        {% endif %}
+    </div>
+{% endif %}
+
+{% if not is_admin and not is_donor %}
+    <div class="info-box no-role">
+        <h2>No Role Assigned</h2>
+        <p>Your account does not have donor or admin privileges. Please contact an administrator.</p>
+    </div>
+{% endif %}
+{% endblock %}

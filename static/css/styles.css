@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+nav {
+    background: #2c3e50;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    font-size: 1.5rem;
+}
+
+nav .user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+nav .user-info span {
+    font-size: 0.9rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background: #34495e;
+}
+
+nav a:hover {
+    background: #1abc9c;
+}
+
+nav form {
+    display: inline;
+}
+
+nav button {
+    color: white;
+    background: #e74c3c;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+nav button:hover {
+    background: #c0392b;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.badge {
+    background: #3498db;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.badge.admin {
+    background: #e67e22;
+}
+
+.badge.donor {
+    background: #27ae60;
+}
+
+/* Dashboard styles */
+.container h1 {
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.info-box {
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 2rem 0;
+}
+
+.info-box h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-box.admin {
+    background: #fff3cd;
+}
+
+.info-box.donor {
+    background: #d1ecf1;
+}
+
+.info-box.no-role {
+    background: #f8d7da;
+}
+
+.info-box ul {
+    margin-top: 1rem;
+}
+
+.fund-list {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.fund-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.fund-list li:last-child {
+    border-bottom: none;
+}
