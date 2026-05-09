@@ -5,10 +5,12 @@
 **Date:** 2026-05-08
 
 **Decision:**
+
 - **Django templates** (login, staff admin views) use **external CSS file** (`static/css/styles.css`) for styling
 - **React dashboard component** uses **Tailwind CSS** bundled with the React build
 
 **Rationale:**
+
 - All Django template styles are in a single external CSS file for maintainability
 - No inline `<style>` tags or `style=""` attributes in HTML templates
 - Django auth pages are internal/staff-facing and don't require a full design system
@@ -17,6 +19,7 @@
 - Keeps concerns separated: simple CSS for Django, modern design system for React
 
 **Static Files Structure:**
+
 ```
 static/
   css/
@@ -26,7 +29,12 @@ static/
 ```
 
 **Trade-offs:**
+
 - Django templates use basic CSS, not a modern utility framework (acceptable for internal tools)
 - Avoids setup complexity of compiling Tailwind for server-rendered pages
 - React dashboard gets full Tailwind features without affecting Django page load times
 - Simple CSS file is easy to maintain without build tooling
+
+## Using HSL for all colors
+
+## Using Radix primitives + my design system for JS side of the app

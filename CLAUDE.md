@@ -15,6 +15,7 @@ All detailed planning documents live in [.claude/docs/](.claude/docs/):
 - **[PRD.md](.claude/docs/PRD.md)** — Full product requirements: data models, user roles, feature scope, constraints
 - **[backend-planning.md](.claude/docs/backend-planning.md)** — Django architecture, views, forms, admin customization
 - **[frontend-planning.md](.claude/docs/frontend-planning.md)** — React dashboard component, charts, DRF API integration
+- **[design-system.md](.claude/context/design-system.md)** — Visual tokens, color palette, typography, component specifications
 
 ## Commands
 

@@ -7,10 +7,28 @@
     <title>{% block title %}Steward{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% block extra_styles %}{% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav>
-        <h1>Steward</h1>
+        <div class="nav-left">
+            <h1><a href="{% url 'core:dashboard' %}">Steward</a></h1>
+            {% if user.is_authenticated %}
+                <ul class="nav-links">
+                    {% if user.is_donor %}
+                        <li><a href="{% url 'core:dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' %}class="active"{% endif %}>Dashboard</a></li>
+                        {# TODO: Uncomment when views are implemented #}
+                        {# <li><a href="{% url 'core:fund-list' %}" {% if 'fund' in request.resolver_match.url_name %}class="active"{% endif %}>My Funds</a></li> #}
+                        {# <li><a href="{% url 'core:grant-list' %}" {% if 'grant' in request.resolver_match.url_name and request.resolver_match.url_name != 'grant-create' %}class="active"{% endif %}>My Grants</a></li> #}
+                        {# <li><a href="{% url 'core:grant-create' %}" {% if request.resolver_match.url_name == 'grant-create' %}class="active"{% endif %} class="btn-recommend">Recommend Grant</a></li> #}
+                    {% elif user.is_admin %}
+                        <li><a href="{% url 'admin:index' %}">Admin Panel</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
         <div class="user-info">
             {% if user.is_authenticated %}
                 <span>
