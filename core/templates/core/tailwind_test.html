@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block title %}Tailwind CSS Test{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto py-8">
+    <h1 class="text-3xl font-bold text-neutral-900 mb-8">Tailwind CSS Configuration Test</h1>
+
+    <!-- Test Custom Colors -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-neutral-800 mb-4">Custom Brand Colors</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-brand-primary text-white p-4 rounded-md shadow-md">
+                <p class="font-medium">Brand Primary</p>
+                <p class="text-sm">bg-brand-primary</p>
+            </div>
+            <div class="bg-brand-primary-hover text-white p-4 rounded-md shadow-md">
+                <p class="font-medium">Brand Primary Hover</p>
+                <p class="text-sm">bg-brand-primary-hover</p>
+            </div>
+            <div class="bg-brand-primary-light p-4 rounded-md shadow-md">
+                <p class="font-medium text-brand-primary-dark">Brand Primary Light</p>
+                <p class="text-sm text-brand-primary-dark">bg-brand-primary-light</p>
+            </div>
+            <div class="bg-brand-primary-dark text-white p-4 rounded-md shadow-md">
+                <p class="font-medium">Brand Primary Dark</p>
+                <p class="text-sm">bg-brand-primary-dark</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Semantic Colors -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-neutral-800 mb-4">Semantic Colors (Badges)</h2>
+        <div class="flex gap-3">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-success-light text-success">
+                Approved
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-warning-light text-warning">
+                Pending
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-error-light text-error">
+                Denied
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-info-light text-info">
+                Info
+            </span>
+        </div>
+    </section>
+
+    <!-- Test Buttons -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-neutral-800 mb-4">Buttons</h2>
+        <div class="flex flex-wrap gap-3">
+            <button class="bg-brand-primary hover:bg-brand-primary-hover text-white font-medium py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 transition-colors duration-200">
+                Primary Button
+            </button>
+            <button class="bg-neutral-100 hover:bg-neutral-200 text-neutral-900 font-medium py-2 px-4 rounded-md border border-neutral-200 transition-colors duration-200">
+                Secondary Button
+            </button>
+            <button class="bg-transparent hover:bg-neutral-50 text-brand-primary font-medium py-2 px-4 rounded-md transition-colors duration-200">
+                Ghost Button
+            </button>
+            <button class="bg-error hover:bg-error text-white font-medium py-2 px-4 rounded-md shadow-sm transition-colors duration-200">
+                Destructive Button
+            </button>
+        </div>
+    </section>
+
+    <!-- Test Card -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-neutral-800 mb-4">Cards</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white border border-neutral-200 rounded-md p-4 shadow-sm">
+                <h3 class="text-xl font-semibold text-neutral-900 mb-2">Community Impact Fund</h3>
+                <p class="text-sm text-neutral-600">Balance: <span class="font-mono font-semibold text-brand-primary">$25,000</span></p>
+            </div>
+            <div class="bg-white border border-neutral-200 rounded-md p-4 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 cursor-pointer">
+                <h3 class="text-xl font-semibold text-neutral-900 mb-2">Interactive Card</h3>
+                <p class="text-sm text-neutral-600">Hover me!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Form Input -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-neutral-800 mb-4">Form Input</h2>
+        <div class="max-w-md space-y-4">
+            <div class="space-y-1">
+                <label for="amount" class="block text-sm font-medium text-neutral-600">Amount</label>
+                <input
+                    type="number"
+                    id="amount"
+                    class="w-full px-3 py-2 border border-neutral-200 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary"
+                    placeholder="Enter amount"
+                />
+            </div>
+            <div class="space-y-1">
+                <label for="error-input" class="block text-sm font-medium text-neutral-600">Input with Error</label>
+                <input
+                    type="text"
+                    id="error-input"
+                    class="w-full px-3 py-2 border border-error rounded-md text-base focus:outline-none focus:ring-2 focus:ring-error"
+                    value="Invalid value"
+                />
+                <p class="text-error text-xs mt-1">This field has an error</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Typography -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-neutral-800 mb-4">Typography</h2>
+        <div class="space-y-2">
+            <p class="text-3xl font-bold text-neutral-900">3xl Bold - Hero Heading</p>
+            <p class="text-2xl font-bold text-neutral-900">2xl Bold - Page Title</p>
+            <p class="text-xl font-semibold text-neutral-900">xl Semibold - Card Heading</p>
+            <p class="text-lg font-medium text-neutral-800">lg Medium - Section Subheading</p>
+            <p class="text-base font-normal text-neutral-700">base Normal - Body Text</p>
+            <p class="text-sm font-normal text-neutral-600">sm Normal - Secondary Labels</p>
+            <p class="text-xs font-normal text-neutral-500">xs Normal - Captions</p>
+            <p class="font-mono text-base text-neutral-900">Monospace - $1,234.56</p>
+        </div>
+    </section>
+
+    <!-- Test Spacing -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-neutral-800 mb-4">Spacing (8px Grid)</h2>
+        <div class="space-y-2">
+            <div class="p-1 bg-brand-primary-light"><span class="text-xs">p-1 (8px)</span></div>
+            <div class="p-2 bg-brand-primary-light"><span class="text-xs">p-2 (16px)</span></div>
+            <div class="p-3 bg-brand-primary-light"><span class="text-xs">p-3 (24px)</span></div>
+            <div class="p-4 bg-brand-primary-light"><span class="text-xs">p-4 (32px)</span></div>
+        </div>
+    </section>
+
+    <!-- Test Shadows -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-neutral-800 mb-4">Shadows</h2>
+        <div class="grid grid-cols-3 gap-4">
+            <div class="bg-white p-4 rounded-md shadow-sm">
+                <p class="text-sm font-medium">shadow-sm</p>
+            </div>
+            <div class="bg-white p-4 rounded-md shadow-md">
+                <p class="text-sm font-medium">shadow-md</p>
+            </div>
+            <div class="bg-white p-4 rounded-md shadow-lg">
+                <p class="text-sm font-medium">shadow-lg</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Message -->
+    <div class="bg-success-light border-l-4 border-success p-4 rounded-md">
+        <p class="text-success font-medium">✓ Tailwind CSS is properly configured!</p>
+        <p class="text-success text-sm mt-1">All custom design tokens are working correctly.</p>
+    </div>
+</div>
+{% endblock %}
