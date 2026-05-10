@@ -18,41 +18,83 @@ Steward's visual identity is warm, trustworthy, and community-focused. The desig
 
 ## Color Tokens
 
-All colors use HSL format for easier manipulation and consistency. Access via Tailwind utility classes.
+Steward uses Material Design 3's adaptive color system. All colors use HSL format for easier manipulation. The palette creates a warm, earthy aesthetic with green tones symbolizing growth and sustainability.
 
-### Brand
-| Token | Value | Tailwind Class Example |
-|-------|-------|------------------------|
-| Primary | `hsl(142, 76%, 36%)` | `bg-brand-primary`, `text-brand-primary`, `border-brand-primary` |
-| Primary Hover | `hsl(142, 70%, 31%)` | `hover:bg-brand-primary-hover` |
-| Primary Light | `hsl(142, 76%, 85%)` | `bg-brand-primary-light` |
-| Primary Dark | `hsl(142, 76%, 20%)` | `text-brand-primary-dark` |
+### Surface Colors
+Used for backgrounds and containers to create visual hierarchy through tonal layering.
 
-### Neutral
-| Token | Value | Tailwind Class Example |
-|-------|-------|------------------------|
-| 50 | `hsl(0, 0%, 98%)` | `bg-neutral-50` |
-| 100 | `hsl(0, 0%, 96%)` | `bg-neutral-100` |
-| 200 | `hsl(0, 0%, 90%)` | `bg-neutral-200` |
-| 300 | `hsl(0, 0%, 83%)` | `bg-neutral-300` |
-| 400 | `hsl(0, 0%, 64%)` | `text-neutral-400` |
-| 500 | `hsl(0, 0%, 45%)` | `text-neutral-500` |
-| 600 | `hsl(0, 0%, 32%)` | `text-neutral-600` |
-| 700 | `hsl(0, 0%, 25%)` | `text-neutral-700` |
-| 800 | `hsl(0, 0%, 15%)` | `text-neutral-800` |
-| 900 | `hsl(0, 0%, 9%)` | `text-neutral-900` |
+| Token | Value | Tailwind Class | Usage |
+|-------|-------|----------------|-------|
+| background | `hsl(93, 53%, 97%)` | `bg-background` | Main page background (cream-green tint) |
+| surface | `hsl(93, 53%, 97%)` | `bg-surface` | Header, footer surfaces |
+| surface-container-lowest | `hsl(0, 0%, 100%)` | `bg-surface-container-lowest` | Highest elevation cards (pure white) |
+| surface-container-low | `hsl(93, 31%, 94%)` | `bg-surface-container-low` | Subtle raised surfaces |
+| surface-container | `hsl(93, 22%, 92%)` | `bg-surface-container` | Standard container elevation |
+| surface-container-high | `hsl(100, 18%, 90%)` | `bg-surface-container-high` | Higher emphasis containers |
+| surface-container-highest | `hsl(93, 14%, 88%)` | `bg-surface-container-highest` | Highest container emphasis |
 
-### Semantic
-| Token | Value | Tailwind Class Example |
-|-------|-------|------------------------|
-| Success | `hsl(142, 76%, 36%)` | `bg-success`, `text-success` |
-| Success Light | `hsl(142, 76%, 93%)` | `bg-success-light` |
-| Error | `hsl(0, 72%, 51%)` | `bg-error`, `text-error` |
-| Error Light | `hsl(0, 93%, 94%)` | `bg-error-light` |
-| Warning | `hsl(38, 92%, 50%)` | `bg-warning`, `text-warning` |
-| Warning Light | `hsl(48, 96%, 89%)` | `bg-warning-light` |
-| Info | `hsl(217, 91%, 60%)` | `bg-info`, `text-info` |
-| Info Light | `hsl(214, 95%, 93%)` | `bg-info-light` |
+### Primary Colors
+Earthy green representing growth, sustainability, and the evergreen nature of donor-advised funds.
+
+| Token | Value | Tailwind Class | Usage |
+|-------|-------|----------------|-------|
+| primary | `hsl(146, 100%, 20%)` | `bg-primary`, `text-primary` | Primary buttons, active nav, brand text |
+| on-primary | `hsl(0, 0%, 100%)` | `text-on-primary` | Text on primary-colored backgrounds |
+| primary-container | `hsl(142, 72%, 29%)` | `bg-primary-container` | Less prominent primary elements |
+| on-primary-container | `hsl(123, 100%, 91%)` | `text-on-primary-container` | Text on primary containers |
+
+### Secondary Colors
+Complementary green tones for secondary actions and accents.
+
+| Token | Value | Tailwind Class | Usage |
+|-------|-------|----------------|-------|
+| secondary | `hsl(129, 21%, 33%)` | `bg-secondary`, `text-secondary` | Secondary buttons and actions |
+| on-secondary | `hsl(0, 0%, 100%)` | `text-on-secondary` | Text on secondary backgrounds |
+| secondary-container | `hsl(123, 53%, 85%)` | `bg-secondary-container` | Soft secondary surfaces, info boxes |
+| on-secondary-container | `hsl(127, 20%, 36%)` | `text-on-secondary-container` | Text on secondary containers |
+
+### Text & Outline Colors
+
+| Token | Value | Tailwind Class | Usage |
+|-------|-------|----------------|-------|
+| on-surface | `hsl(110, 12%, 10%)` | `text-on-surface` | Primary text (dark green-tinted) |
+| on-surface-variant | `hsl(120, 7%, 27%)` | `text-on-surface-variant` | Secondary text, labels |
+| on-background | `hsl(110, 12%, 10%)` | `text-on-background` | Text on background surfaces |
+| outline | `hsl(115, 5%, 45%)` | `border-outline` | Standard borders (stronger) |
+| outline-variant | `hsl(111, 12%, 76%)` | `border-outline-variant` | Subtle borders (most common) |
+
+### Error Colors
+
+| Token | Value | Tailwind Class | Usage |
+|-------|-------|----------------|-------|
+| error | `hsl(0, 75%, 42%)` | `bg-error`, `text-error` | Error states, destructive actions |
+| on-error | `hsl(0, 0%, 100%)` | `text-on-error` | Text on error backgrounds |
+| error-container | `hsl(6, 100%, 92%)` | `bg-error-container` | Error message backgrounds |
+| on-error-container | `hsl(356, 100%, 29%)` | `text-on-error-container` | Error message text |
+
+### Color Usage Examples
+
+**Surface Layering:**
+```html
+<body class="bg-background">
+  <div class="bg-surface-container-lowest"> <!-- White card -->
+    <div class="bg-surface-container-high"> <!-- Nested element -->
+    </div>
+  </div>
+</body>
+```
+
+**Primary Actions:**
+```html
+<button class="bg-primary text-on-primary">Submit</button>
+<button class="bg-primary-container text-on-primary-container">Secondary Action</button>
+```
+
+**Text Hierarchy:**
+```html
+<h1 class="text-on-surface">Heading</h1>
+<p class="text-on-surface-variant">Secondary text</p>
+```
 
 ## Typography
 
@@ -149,10 +191,10 @@ Combine with transition type: `transition-colors duration-200 ease-in-out`
 **Purpose:** Primary interaction element for actions (submit forms, approve grants, create funds).
 
 **Variants:**
-- **Primary** — `class="bg-brand-primary hover:bg-brand-primary-hover text-white font-medium py-2 px-4 rounded-md shadow-sm transition-colors duration-200"`
-- **Secondary** — `class="bg-neutral-100 hover:bg-neutral-200 text-neutral-900 font-medium py-2 px-4 rounded-md border border-neutral-200 transition-colors duration-200"`
-- **Ghost** — `class="bg-transparent hover:bg-neutral-50 text-brand-primary font-medium py-2 px-4 rounded-md transition-colors duration-200"`
-- **Destructive** — `class="bg-error hover:bg-error-dark text-white font-medium py-2 px-4 rounded-md shadow-sm transition-colors duration-200"`
+- **Primary** — `class="bg-primary hover:bg-primary-container text-on-primary font-medium py-2 px-4 rounded-lg shadow-sm transition-all"`
+- **Secondary** — `class="bg-surface-container hover:bg-surface-container-high text-on-surface font-medium py-2 px-4 rounded-lg border border-outline-variant transition-all"`
+- **Ghost** — `class="bg-transparent hover:bg-surface-container text-primary font-medium py-2 px-4 rounded-lg transition-all"`
+- **Destructive** — `class="bg-error hover:bg-error-container text-on-error font-medium py-2 px-4 rounded-lg shadow-sm transition-all"`
 
 **Sizes:**
 - **Small** — `py-1 px-2 text-sm`
@@ -160,13 +202,13 @@ Combine with transition type: `transition-colors duration-200 ease-in-out`
 - **Large** — `py-3 px-6 text-lg`
 
 **States:**
-- **Hover** — Use `hover:` prefix: `hover:bg-brand-primary-hover`, `hover:shadow-md`
-- **Focus** — `focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2`
+- **Hover** — Use `hover:` prefix: `hover:bg-primary-container`, `hover:shadow-md`
+- **Focus** — `focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`
 - **Disabled** — `disabled:opacity-50 disabled:cursor-not-allowed`
 
 **Full Example:**
 ```html
-<button class="bg-brand-primary hover:bg-brand-primary-hover text-white font-medium py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
+<button class="bg-primary hover:bg-primary-container text-on-primary font-medium py-2 px-4 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
   Submit Grant
 </button>
 ```
@@ -182,29 +224,29 @@ Use primary for form submissions and critical actions. Use destructive only for 
 
 **Base Style:**
 ```html
-<input class="w-full px-3 py-2 border border-neutral-200 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary disabled:bg-neutral-100 disabled:text-neutral-400" />
+<input class="w-full px-3 py-3 border border-outline-variant rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary disabled:bg-surface-container disabled:text-on-surface-variant" />
 ```
 
 **States:**
-- **Focus** — `focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary`
+- **Focus** — `focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary`
 - **Error** — `border-error focus:ring-error` + error text `class="text-error text-xs mt-1"`
-- **Disabled** — `disabled:bg-neutral-100 disabled:text-neutral-400 disabled:cursor-not-allowed`
+- **Disabled** — `disabled:bg-surface-container disabled:text-on-surface-variant disabled:cursor-not-allowed`
 
 **Full Form Example:**
 ```html
-<div class="space-y-1">
-  <label for="amount" class="block text-sm font-medium text-neutral-600">Amount</label>
+<div class="space-y-2">
+  <label for="amount" class="block text-sm font-semibold text-on-surface-variant">Amount</label>
   <input
     type="number"
     id="amount"
-    class="w-full px-3 py-2 border border-neutral-200 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary"
+    class="w-full px-3 py-3 border border-outline-variant rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
   />
   <p class="text-error text-xs mt-1">Amount must be greater than $0</p>
 </div>
 ```
 
 **Usage Notes:**
-Always pair with a `<label>` (`text-sm font-medium text-neutral-600`). Display validation errors below input (`text-error text-xs mt-1`).
+Always pair with a `<label>` (`text-sm font-semibold text-on-surface-variant`). Display validation errors below input (`text-error text-xs mt-1`).
 
 ---
 
@@ -214,20 +256,20 @@ Always pair with a `<label>` (`text-sm font-medium text-neutral-600`). Display v
 
 **Base Style:**
 ```html
-<div class="bg-white border border-neutral-200 rounded-md p-4 shadow-sm">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
   <!-- Card content -->
 </div>
 ```
 
 **Variants:**
-- **Raised** — `bg-neutral-50 shadow-md`
-- **Interactive** — `hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 cursor-pointer`
+- **Raised** — `bg-surface-container-low shadow-md`
+- **Interactive** — `hover:shadow-lg transition-all cursor-pointer`
 
 **Full Example:**
 ```html
-<div class="bg-white border border-neutral-200 rounded-md p-4 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 cursor-pointer">
-  <h3 class="text-xl font-semibold text-neutral-900 mb-2">Community Impact Fund</h3>
-  <p class="text-sm text-neutral-600">Balance: <span class="font-mono font-semibold text-brand-primary">$25,000</span></p>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer">
+  <h3 class="text-xl font-semibold text-on-surface mb-2">Community Impact Fund</h3>
+  <p class="text-sm text-on-surface-variant">Balance: <span class="font-mono font-semibold text-primary">$25,000</span></p>
 </div>
 ```
 
@@ -243,12 +285,12 @@ Use for grouping related information (fund name + balance, grant details). Inter
 **Base Style:**
 - `width: 100%`
 - `border-collapse: collapse`
-- **Header** — `background: --color-neutral-50`, `font-weight: --font-weight-semibold`, `font-size: --font-size-sm`, `padding: --spacing-2`
-- **Row** — `border-bottom: 1px solid --color-surface-border`, `padding: --spacing-2`
-- **Hover** — `background: --color-neutral-50`
+- **Header** — `bg-surface-container text-on-surface-variant font-semibold text-sm px-6 py-4`
+- **Row** — `border-b border-outline-variant px-6 py-4`
+- **Hover** — `hover:bg-surface-container-low transition-colors`
 
 **Usage Notes:**
-Use monospace font (`--font-family-mono`) for numeric columns (amounts, dates). Right-align currency values.
+Use monospace font (`font-mono`) for numeric columns (amounts, dates). Right-align currency values.
 
 ---
 
@@ -257,23 +299,23 @@ Use monospace font (`--font-family-mono`) for numeric columns (amounts, dates). 
 **Purpose:** Display grant status (pending, approved, denied), fund types, contribution methods.
 
 **Base Classes:**
-`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium`
+`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold`
 
 **Variants:**
-- **Success** (approved) — `bg-success-light text-success`
-- **Warning** (pending) — `bg-warning-light text-warning`
-- **Error** (denied) — `bg-error-light text-error`
-- **Neutral** (default) — `bg-neutral-100 text-neutral-700`
+- **Success** (approved) — `bg-secondary-container/30 text-secondary`
+- **Warning** (pending) — `bg-tertiary-container/20 text-tertiary`
+- **Error** (denied) — `bg-error-container text-on-error-container`
+- **Neutral** (default) — `bg-surface-container-high text-on-surface-variant`
 
 **Examples:**
 ```html
-<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-success-light text-success">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-secondary-container/30 text-secondary">
   Approved
 </span>
-<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-warning-light text-warning">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-tertiary-container/20 text-tertiary">
   Pending
 </span>
-<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-error-light text-error">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-error-container text-on-error-container">
   Denied
 </span>
 ```
@@ -328,12 +370,11 @@ Always include a close button (X icon, top-right). Destructive actions require c
 
 **Base Style:**
 - Inherits input styles
-- `background: --color-surface-base`
-- Dropdown panel: `box-shadow: --shadow-lg`, `border: 1px solid --color-surface-border`, `border-radius: --radius-md`
+- Dropdown panel: `bg-surface-container-lowest shadow-lg border border-outline-variant rounded-lg`
 
 **States:**
-- **Hover (option)** — `background: --color-neutral-50`
-- **Selected** — `background: --color-brand-primary-light`, `color: --color-brand-primary-dark`
+- **Hover (option)** — `bg-surface-container-low`
+- **Selected** — `bg-primary-container/20 text-primary`
 
 **Usage Notes:**
 Use native `<select>` for simple cases. Use custom dropdown component for searchable lists (nonprofit search).
@@ -345,12 +386,12 @@ Use native `<select>` for simple cases. Use custom dropdown component for search
 **Purpose:** Switch between dashboard sections (My Funds, Contributions, Grant Recommendations).
 
 **Base Style:**
-- `border-bottom: 2px solid --color-surface-border`
-- **Tab** — `padding: --spacing-2 --spacing-3`, `font-size: --font-size-base`, `color: --color-text-secondary`
-- **Active** — `border-bottom: 2px solid --color-brand-primary`, `color: --color-brand-primary`, `font-weight: --font-weight-semibold`
+- `border-b border-outline-variant`
+- **Tab** — `px-6 py-2 text-base text-on-surface-variant`
+- **Active** — `border-b-2 border-primary text-primary font-semibold`
 
 **States:**
-- **Hover** — `color: --color-text-primary`
+- **Hover** — `text-on-surface`
 
 **Usage Notes:**
 Do not use more than 5 tabs. For more options, use a dropdown filter instead.
@@ -362,8 +403,8 @@ Do not use more than 5 tabs. For more options, use a dropdown filter instead.
 **Purpose:** Visualize fund balance, grant approval percentage, contribution trends (React dashboard).
 
 **Base Style:**
-- **Bar** — `height: 8px`, `background: --color-neutral-200`, `border-radius: --radius-full`
-- **Fill** — `background: --color-brand-primary`, `border-radius: --radius-full`, `transition: width --duration-base`
+- **Bar** — `h-2 bg-surface-container-highest rounded-full`
+- **Fill** — `h-2 bg-primary rounded-full transition-all`
 
 **Usage Notes:**
 Use Recharts for complex visualizations (bar charts, line charts). Use simple progress bar for single metrics (fund utilization).
@@ -373,38 +414,39 @@ Use Recharts for complex visualizations (bar charts, line charts). Use simple pr
 ## Usage Notes
 
 ### Anti-Patterns
-- **Do not** use `--color-brand-primary` for text on white backgrounds (fails WCAG contrast). Use `--color-brand-primary-dark` instead.
-- **Do not** stack shadows (e.g., card inside modal). Modals use `--shadow-xl`, inner cards use `--shadow-none`.
+- **Do not** use `text-primary` on `bg-surface-container-lowest` (white) without checking contrast - the dark green passes WCAG AA.
+- **Do not** stack shadows (e.g., card inside modal). Modals use `shadow-xl`, inner cards use `shadow-none`.
 - **Do not** use destructive buttons without confirmation modals.
-- **Do not** mix spacing values outside the 8px grid (no `padding: 10px`).
+- **Do not** mix spacing values outside the 8px grid (no `p-[10px]`).
+- **Do not** use pure grays - all surfaces should use the green-tinted surface tokens for brand consistency.
 
 ### Django Template Integration
 - **Tailwind CSS** provides all design tokens via utility classes
-- Configure Tailwind in `tailwind.config.js` with custom theme extending design system tokens
-- Use utility classes directly in templates: `class="bg-brand-primary text-white py-2 px-4 rounded-md"`
-- Component classes use Tailwind `@apply` directive or direct utility classes
-- Form errors use utility classes: `class="text-error text-xs mt-1"`
+- Material Design 3 color tokens configured in `tailwind.config.js`
+- Use utility classes directly in templates: `class="bg-primary text-on-primary py-2 px-4 rounded-lg"`
+- Component classes use Tailwind utility classes directly (no `@apply`)
+- Form errors use: `class="text-error text-xs mt-1"`
+- Surface layering: `bg-background` (page) → `bg-surface-container-lowest` (card) → `bg-surface-container` (nested)
 
 ### React Dashboard
-- **Styling:** Tailwind CSS with custom configuration extending design tokens
-- **Component Library:** Radix UI (headless, accessible primitives) for interactive components
-- **Charts:** Recharts styled with Tailwind classes
-- **Tailwind Configuration:** Custom theme extends default with design system tokens:
-  - Colors: Brand primary/secondary, semantic colors, neutrals mapped to Tailwind palette
-  - Spacing: 8px-based scale (`spacing-1` = `2`, `spacing-2` = `4`, etc.)
-  - Border radius: `radius-sm/md/lg/full`
+- **Styling:** Tailwind CSS with Material Design 3 color tokens
+- **Component Library:** Radix UI (headless, accessible primitives)
+- **Charts:** Recharts styled with primary/secondary colors
+- **Tailwind Configuration:** Extends with MD3 tokens:
+  - Colors: Surface system, primary, secondary, tertiary, error, outline tokens
+  - Spacing: 8px-based scale
+  - Border radius: `rounded-sm/md/lg/xl`
   - Shadows: `shadow-sm/md/lg/xl`
-  - Font families: `font-sans` (Plus Jakarta Sans), `font-mono` (JetBrains Mono)
-  - Font sizes: `text-xs/sm/base/lg/xl/2xl/3xl`
+  - Fonts: `font-sans` (Plus Jakarta Sans), `font-mono` (JetBrains Mono)
 - **Radix Components:**
-  - `@radix-ui/react-dialog` for modals (style with Tailwind classes matching Modal specs)
-  - `@radix-ui/react-dropdown-menu` for dropdowns (style with Tailwind classes)
-- Visual consistency: Tailwind classes should match Django template styles (same colors, spacing, shadows)
+  - `@radix-ui/react-dialog` for modals with `bg-surface-container-lowest` styling
+  - `@radix-ui/react-dropdown-menu` for dropdowns
+- Visual consistency: Use same MD3 tokens as Django templates
 
 ### Accessibility
-- Minimum touch target: `44px × 44px` (buttons, inputs).
-- Color is never the only indicator (use icons + text for status badges).
-- Focus states must be visible (2px outline, `--color-brand-primary`).
+- Minimum touch target: `44px × 44px` (buttons, inputs)
+- Color is never the only indicator (use icons + text for status badges)
+- Focus states must be visible: `focus:ring-2 focus:ring-primary`
 
 ### Decisions Made
 - **Light mode only:** Faster to build, matches nonprofit/financial context.

@@ -8,40 +8,68 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          primary: 'hsl(142, 76%, 36%)',
-          'primary-hover': 'hsl(142, 70%, 31%)',
-          'primary-light': 'hsl(142, 76%, 85%)',
-          'primary-dark': 'hsl(142, 76%, 20%)',
-        },
-        neutral: {
-          50: 'hsl(0, 0%, 98%)',
-          100: 'hsl(0, 0%, 96%)',
-          200: 'hsl(0, 0%, 90%)',
-          300: 'hsl(0, 0%, 83%)',
-          400: 'hsl(0, 0%, 64%)',
-          500: 'hsl(0, 0%, 45%)',
-          600: 'hsl(0, 0%, 32%)',
-          700: 'hsl(0, 0%, 25%)',
-          800: 'hsl(0, 0%, 15%)',
-          900: 'hsl(0, 0%, 9%)',
-        },
-        success: {
-          DEFAULT: 'hsl(142, 76%, 36%)',
-          light: 'hsl(142, 76%, 93%)',
-        },
-        error: {
-          DEFAULT: 'hsl(0, 72%, 51%)',
-          light: 'hsl(0, 93%, 94%)',
-        },
-        warning: {
-          DEFAULT: 'hsl(38, 92%, 50%)',
-          light: 'hsl(48, 96%, 89%)',
-        },
-        info: {
-          DEFAULT: 'hsl(217, 91%, 60%)',
-          light: 'hsl(214, 95%, 93%)',
-        },
+        // Surface colors
+        'surface': 'hsl(93, 53%, 97%)',
+        'surface-dim': 'hsl(100, 11%, 85%)',
+        'surface-bright': 'hsl(93, 53%, 97%)',
+        'surface-container-lowest': 'hsl(0, 0%, 100%)',
+        'surface-container-low': 'hsl(93, 31%, 94%)',
+        'surface-container': 'hsl(93, 22%, 92%)',
+        'surface-container-high': 'hsl(100, 18%, 90%)',
+        'surface-container-highest': 'hsl(93, 14%, 88%)',
+        'surface-variant': 'hsl(93, 14%, 88%)',
+        'surface-tint': 'hsl(146, 100%, 21%)',
+
+        // Primary colors
+        'primary': 'hsl(146, 100%, 20%)',
+        'on-primary': 'hsl(0, 0%, 100%)',
+        'primary-container': 'hsl(142, 72%, 29%)',
+        'on-primary-container': 'hsl(123, 100%, 91%)',
+        'inverse-primary': 'hsl(132, 58%, 67%)',
+        'primary-fixed': 'hsl(131, 88%, 78%)',
+        'primary-fixed-dim': 'hsl(132, 58%, 67%)',
+        'on-primary-fixed': 'hsl(138, 100%, 6%)',
+        'on-primary-fixed-variant': 'hsl(145, 100%, 16%)',
+
+        // Secondary colors
+        'secondary': 'hsl(129, 21%, 33%)',
+        'on-secondary': 'hsl(0, 0%, 100%)',
+        'secondary-container': 'hsl(123, 53%, 85%)',
+        'on-secondary-container': 'hsl(127, 20%, 36%)',
+        'secondary-fixed': 'hsl(123, 53%, 85%)',
+        'secondary-fixed-dim': 'hsl(123, 29%, 74%)',
+        'on-secondary-fixed': 'hsl(138, 100%, 6%)',
+        'on-secondary-fixed-variant': 'hsl(131, 28%, 24%)',
+
+        // Tertiary colors
+        'tertiary': 'hsl(347, 49%, 40%)',
+        'on-tertiary': 'hsl(0, 0%, 100%)',
+        'tertiary-container': 'hsl(348, 42%, 51%)',
+        'on-tertiary-container': 'hsl(0, 100%, 97%)',
+        'tertiary-fixed': 'hsl(354, 100%, 93%)',
+        'tertiary-fixed-dim': 'hsl(351, 100%, 85%)',
+        'on-tertiary-fixed': 'hsl(342, 100%, 13%)',
+        'on-tertiary-fixed-variant': 'hsl(345, 57%, 32%)',
+
+        // Background colors
+        'background': 'hsl(93, 53%, 97%)',
+        'on-background': 'hsl(110, 12%, 10%)',
+
+        // Text/surface colors
+        'on-surface': 'hsl(110, 12%, 10%)',
+        'on-surface-variant': 'hsl(120, 7%, 27%)',
+        'inverse-surface': 'hsl(120, 6%, 18%)',
+        'inverse-on-surface': 'hsl(93, 26%, 93%)',
+
+        // Outline colors
+        'outline': 'hsl(115, 5%, 45%)',
+        'outline-variant': 'hsl(111, 12%, 76%)',
+
+        // Error colors
+        'error': 'hsl(0, 75%, 42%)',
+        'on-error': 'hsl(0, 0%, 100%)',
+        'error-container': 'hsl(6, 100%, 92%)',
+        'on-error-container': 'hsl(356, 100%, 29%)',
       },
       fontFamily: {
         sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],

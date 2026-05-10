@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}Recommend a Grant - Steward{% endblock %}
+
+{% block content %}
+<main class="max-w-[1400px] mx-auto py-8 px-6 min-h-[calc(100vh-64px)]">
+  <div class="mb-6">
+    <h1 class="text-3xl font-semibold text-on-surface">Recommend a Grant</h1>
+    <p class="text-base text-on-surface-variant mt-1">Direct your fund's resources to the causes you care about most.</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    <!-- Left Column: Balance Summary Card -->
+    <div class="lg:col-span-4 space-y-4">
+      <div class="bg-surface-container-low border border-outline-variant rounded-xl p-6 shadow-sm">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="material-symbols-outlined text-primary text-lg">account_balance_wallet</span>
+          <h2 class="text-sm font-semibold text-primary">Available Balance</h2>
+        </div>
+        <div class="space-y-2">
+          <p class="font-mono text-sm text-on-surface-variant">
+            {% if user.funds.first %}{{ user.funds.first.name }} #4402{% else %}Select a fund{% endif %}
+          </p>
+          <p class="text-3xl font-bold text-primary font-mono">
+            {% if user.funds.first %}${{ user.funds.first.balance|floatformat:2 }}{% else %}$0.00{% endif %}
+          </p>
+        </div>
+        <div class="mt-6 pt-6 border-t border-outline-variant">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm text-on-surface-variant">Annual Distribution Goal</span>
+            <span class="text-sm font-semibold text-primary">85% Complete</span>
+          </div>
+          <div class="w-full bg-surface-container-highest rounded-full h-2">
+            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-secondary-container rounded-lg p-3 flex gap-2">
+        <span class="material-symbols-outlined text-on-secondary-container text-xl">info</span>
+        <p class="text-sm text-on-secondary-container">
+          Recommendations are reviewed by the foundation staff within 3–5 business days. You will receive an email notification once approved.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Column: Grant Recommendation Form -->
+    <div class="lg:col-span-8">
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm px-6 py-3">
+        <form method="post" class="space-y-2">
+          {% csrf_token %}
+
+          <!-- Hidden fund field for single fund users -->
+          {% if user.funds.count == 1 %}
+            <input type="hidden" name="fund" value="{{ user.funds.first.id }}">
+          {% else %}
+            <div class="">
+              <label class="text-sm font-semibold text-on-surface-variant">Fund</label>
+              {{ form.fund }}
+            </div>
+          {% endif %}
+
+          <!-- Non-field errors -->
+          {% if form.non_field_errors %}
+          <div class="flex items-center gap-1 text-error">
+            <span class="material-symbols-outlined text-sm">error</span>
+            <span class="text-sm">{{ form.non_field_errors.0 }}</span>
+          </div>
+          {% endif %}
+
+          <!-- Nonprofit Search -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-on-surface-variant" for="{{ form.nonprofit_name.id_for_label }}">Nonprofit Organization</label>
+            <input
+              class="w-full px-3 py-3 border border-outline-variant rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+              id="{{ form.nonprofit_name.id_for_label }}"
+              name="{{ form.nonprofit_name.name }}"
+              placeholder="Search by name or EIN..."
+              type="text"
+              value="{{ form.nonprofit_name.value|default:'' }}"
+            />
+            {% if form.nonprofit_name.errors %}
+            <p class="text-sm text-error">{{ form.nonprofit_name.errors.0 }}</p>
+            {% endif %}
+            <p class="text-sm text-on-surface-variant">Can't find your organization? <a class="text-primary underline" href="#">Add a new one.</a></p>
+          </div>
+
+          <!-- Amount Input -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-on-surface-variant" for="{{ form.amount.id_for_label }}">Grant Amount</label>
+            <input
+              class="w-full px-3 py-3 border {% if form.amount.errors or form.non_field_errors %}border-error{% else %}border-outline-variant{% endif %} rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-{% if form.amount.errors or form.non_field_errors %}error{% else %}primary{% endif %} focus:border-{% if form.amount.errors or form.non_field_errors %}error{% else %}primary{% endif %} transition-all"
+              id="{{ form.amount.id_for_label }}"
+              name="{{ form.amount.name }}"
+              type="text"
+              placeholder="0.00"
+              value="{{ form.amount.value|default:'' }}"
+            />
+            {% if form.amount.errors or form.non_field_errors %}
+            <div class="flex items-center gap-1 text-error">
+              <span class="material-symbols-outlined text-sm">error</span>
+              <span class="text-sm">
+                {% if form.amount.errors %}{{ form.amount.errors.0 }}{% else %}Amount exceeds fund balance (${{ user.funds.first.balance|floatformat:2 }} available){% endif %}
+              </span>
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Memo Textarea -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-on-surface-variant" for="{{ form.memo.id_for_label }}">Grant Memo (Optional)</label>
+            <textarea
+              class="w-full px-3 py-3 border border-outline-variant rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all resize-none"
+              id="{{ form.memo.id_for_label }}"
+              name="{{ form.memo.name }}"
+              placeholder="Purpose of this grant (e.g., General Operating Support, Summer Literacy Program...)"
+              rows="4"
+              maxlength="250"
+            >{{ form.memo.value|default:'' }}</textarea>
+            <div class="flex justify-between items-center">
+              <p class="text-xs text-on-surface-variant italic">This memo will be included in the letter sent to the nonprofit.</p>
+              <span class="text-xs text-on-surface-variant" id="char-count">0 / 250</span>
+            </div>
+          </div>
+
+          <!-- Visibility Options -->
+          <div class="p-4 border border-outline-variant rounded-lg">
+            <div class="flex items-start gap-3">
+              <input class="mt-0.5 w-4 h-4 text-primary border-outline-variant rounded focus:ring-2 focus:ring-primary" id="anonymous" name="anonymous" type="checkbox"/>
+              <div>
+                <label class="block font-semibold text-on-surface cursor-pointer" for="anonymous">Recommend Anonymously</label>
+                <p class="text-sm text-on-surface-variant mt-1">The foundation will not share your fund name or donor information with the recipient.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Actions -->
+          <div class="flex justify-end items-center gap-3 pt-6 border-t border-outline-variant">
+            <a href="{% url 'core:dashboard' %}" class="bg-transparent text-on-surface font-medium py-2 px-4 rounded-lg hover:bg-surface-container transition-all">
+              Cancel
+            </a>
+            <button class="bg-primary text-on-primary font-medium py-3 px-6 rounded-lg shadow-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all" type="submit">
+              Submit Recommendation
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+// Character counter
+document.addEventListener('DOMContentLoaded', function() {
+  const memoField = document.getElementById('{{ form.memo.id_for_label }}');
+  const charCount = document.getElementById('char-count');
+
+  if (memoField && charCount) {
+    memoField.addEventListener('input', function() {
+      charCount.textContent = this.value.length + ' / 250';
+    });
+
+    if (memoField.value) {
+      charCount.textContent = memoField.value.length + ' / 250';
+    }
+  }
+});
+</script>
+{% endblock %}

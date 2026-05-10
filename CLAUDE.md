@@ -12,36 +12,52 @@
 
 All detailed planning documents live in [.claude/docs/](.claude/docs/):
 
-- **[PRD.md](.claude/docs/PRD.md)** — Full product requirements: data models, user roles, feature scope, constraints
-- **[backend-planning.md](.claude/docs/backend-planning.md)** — Django architecture, views, forms, admin customization
-- **[frontend-planning.md](.claude/docs/frontend-planning.md)** — React dashboard component, charts, DRF API integration
+- **[PRD.md](.claude/context/PRD.md)** — Full product requirements: data models, user roles, feature scope, constraints
+- **[backend-planning.md](.claude/backend-planning.md)** — Django architecture, views, forms, admin customization
+- **[frontend-planning.md](.claude/frontend-planning.md)** — React dashboard component, charts, DRF API integration
 - **[design-system.md](.claude/context/design-system.md)** — Visual tokens, color palette, typography, component specifications
+
+## Git Workflow
+
+- Never commit all changes in a single commit
+- Group changes into logical commits before pushing
+- Follow Conventional Commits format: `type: short description`
+- Example sequence for a new feature:
+  - `feat: add grant approval model`
+  - `feat: add grant approval views`
+  - `test: add grant approval tests`
+  - `chore: update grant approval routes`
 
 ## Commands
 
 ### Development
+
 ```bash
 python manage.py runserver
 ```
 
 ### Tailwind CSS Build
+
 ```bash
 npm run build:css    # Build Tailwind CSS once
 npm run watch:css    # Watch for changes and rebuild
 ```
 
 ### Database
+
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
 ### Testing
+
 ```bash
 python manage.py test
 ```
 
 ### Create Superuser
+
 ```bash
 python manage.py createsuperuser
 ```
@@ -65,9 +81,9 @@ See [PRD.md → Data Models](.claude/docs/PRD.md#data-models) for full schema.
 
 ## User Roles
 
-| Role | Access |
-|---|---|
-| **Donor** | Own funds, contributions, grant recommendations only |
+| Role      | Access                                                    |
+| --------- | --------------------------------------------------------- |
+| **Donor** | Own funds, contributions, grant recommendations only      |
 | **Staff** | All data; approve/deny grants; create funds/contributions |
 
 No donor ever sees another donor's data.
@@ -75,6 +91,7 @@ No donor ever sees another donor's data.
 ## Development Conventions
 
 ### Backend (Django)
+
 - Use Django Class-Based Views (CBVs) for all views
 - Enforce permissions with `LoginRequiredMixin` + `UserPassesTestMixin`
 - Keep business logic in model methods/properties where possible
@@ -82,6 +99,7 @@ No donor ever sees another donor's data.
 - API endpoints live under `/api/` prefix, served by DRF
 
 ### Frontend (Styling)
+
 - **Tailwind CSS** for all styling (both Django templates and React components)
 - Use utility classes directly in templates: `class="bg-brand-primary text-white py-2 px-4 rounded-md"`
 - Design tokens configured in `tailwind.config.js` (colors, spacing, typography, shadows)
@@ -90,6 +108,7 @@ No donor ever sees another donor's data.
 - Compiled CSS outputs to `static/css/styles.css`
 
 ### React Components
+
 - Use Tailwind utility classes for styling: `className="bg-white border border-neutral-200 rounded-md p-4"`
 - Radix UI for accessible headless components (dialogs, dropdowns, etc.)
 - Style Radix primitives with Tailwind classes
