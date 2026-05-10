@@ -1,7 +1,9 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import TemplateView, CreateView
 from django.db.models import Sum
 from django.utils import timezone
+from django.urls import reverse_lazy
+from django.contrib import messages
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -10,6 +12,8 @@ from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from decimal import Decimal
 from .serializers import DashboardSerializer, RecentGrantSerializer
+from .models import GrantRecommendation
+from .forms import GrantRecommendationForm
 
 
 class TailwindTestView(TemplateView):
@@ -191,3 +195,34 @@ class DashboardAPIView(APIView):
             })
 
         return balance_data
+
+
+class GrantRecommendationCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    """
+    Create a new grant recommendation.
+    Only accessible to donors.
+    """
+    model = GrantRecommendation
+    form_class = GrantRecommendationForm
+    template_name = 'core/grant_form.html'
+    # TODO: Change to 'core:grant-list' when Phase 4 is implemented
+    success_url = reverse_lazy('core:dashboard')
+
+    def test_func(self):
+        """Only donors can access this view."""
+        return self.request.user.is_donor
+
+    def get_form_kwargs(self):
+        """Pass current user to form for fund filtering."""
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        """Set status to pending on creation."""
+        form.instance.status = 'pending'
+        messages.success(
+            self.request,
+            f'Grant recommendation for {form.instance.nonprofit_name} submitted successfully.'
+        )
+        return super().form_valid(form)

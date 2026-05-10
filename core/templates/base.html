@@ -1,49 +1,79 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Steward{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
     </style>
     {% block extra_styles %}{% endblock %}
-</head>
-<body class="bg-neutral-50 text-neutral-900 font-sans min-h-screen">
+  </head>
+  <body class="bg-background text-on-background font-sans min-h-screen">
     {% if user.is_authenticated and user.is_donor %}
     <!-- Top Navigation Bar -->
-    <header class="bg-white sticky top-0 z-50 flex justify-between items-center w-full px-6 h-16 max-w-full shadow-sm border-b border-neutral-200">
-        <div class="flex items-center gap-4">
-            <a href="{% url 'core:dashboard' %}" class="text-2xl font-semibold text-brand-primary">Steward</a>
-        </div>
-        <nav class="hidden md:flex items-center gap-4 h-full">
-            <a class="{% if request.resolver_match.url_name == 'dashboard' %}text-brand-primary border-b-2 border-brand-primary font-semibold{% else %}text-neutral-600 hover:text-brand-primary{% endif %} transition-colors h-full flex items-center px-2" href="{% url 'core:dashboard' %}">Dashboard</a>
+    <header class="bg-surface sticky top-0 z-50 w-full shadow-sm border-b border-outline-variant">
+      <div class="flex justify-between items-center px-6 h-16">
+        <!-- Logo and Navigation -->
+        <div class="flex items-center h-full">
+          <a href="{% url 'core:dashboard' %}" class="text-2xl font-semibold text-primary mr-12">Steward</a>
+          <nav class="hidden md:flex items-center h-full">
+            <a class="{% if request.resolver_match.url_name == 'dashboard' %}text-primary border-b-2 border-primary font-semibold{% else %}text-on-surface-variant hover:text-primary{% endif %} transition-colors h-full flex items-center px-6" href="{% url 'core:dashboard' %}">Dashboard</a>
             {# TODO: Uncomment when views are implemented #}
-            {# <a class="{% if 'fund' in request.resolver_match.url_name %}text-brand-primary border-b-2 border-brand-primary font-semibold{% else %}text-neutral-600 hover:text-brand-primary{% endif %} transition-colors h-full flex items-center px-2" href="{% url 'core:fund-list' %}">My Funds</a> #}
-            {# <a class="{% if 'grant' in request.resolver_match.url_name %}text-brand-primary border-b-2 border-brand-primary font-semibold{% else %}text-neutral-600 hover:text-brand-primary{% endif %} transition-colors h-full flex items-center px-2" href="{% url 'core:grant-list' %}">Grants</a> #}
-        </nav>
-        <div class="flex items-center gap-2">
-            <div class="h-8 w-8 rounded-full bg-brand-primary-light flex items-center justify-center text-brand-primary font-semibold text-sm">
-                {{ user.username|slice:":1"|upper }}
-            </div>
-            <form method="post" action="{% url 'logout' %}" class="inline">
-                {% csrf_token %}
-                <button type="submit" class="text-sm text-neutral-600 hover:text-brand-primary transition-colors">Logout</button>
-            </form>
+            {# <a class="{% if 'fund' in request.resolver_match.url_name %}text-primary border-b-2 border-primary font-semibold{% else %}text-on-surface-variant hover:text-primary{% endif %} transition-colors h-full flex items-center px-6" href="{% url 'core:fund-list' %}">My Funds</a> #}
+            <a class="{% if 'grant' in request.resolver_match.url_name %}text-primary border-b-2 border-primary font-semibold{% else %}text-on-surface-variant hover:text-primary{% endif %} transition-colors h-full flex items-center px-6" href="{% url 'core:grant-create' %}">Grants</a>
+            {# <a class="text-on-surface-variant hover:text-primary transition-colors h-full flex items-center px-6" href="#">Impact</a> #}
+          </nav>
         </div>
+
+        <!-- User Menu -->
+        <div class="flex items-center gap-2">
+          <div class="h-8 w-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-semibold text-sm border border-outline-variant">
+            {{ user.username|slice:":1"|upper }}
+          </div>
+          <form method="post" action="{% url 'logout' %}" class="inline">
+            {% csrf_token %}
+            <button type="submit" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Logout</button>
+          </form>
+        </div>
+      </div>
     </header>
+    {% endif %}
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      {% for message in messages %}
+      <div
+        class="mb-4 p-4 rounded-md {% if message.tags == 'success' %}bg-surface-container border border-outline-variant text-on-surface{% elif message.tags == 'error' %}bg-error-container border border-error text-on-error-container{% elif message.tags == 'warning' %}bg-tertiary-container border border-outline-variant text-on-tertiary-container{% else %}bg-surface-container border border-outline-variant text-on-surface{% endif %}"
+        role="alert"
+      >
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
     {% endif %}
 
     {% block content %}{% endblock %}
 
     {% block extra_scripts %}{% endblock %}
-</body>
+  </body>
 </html>
