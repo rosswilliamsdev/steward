@@ -31,9 +31,47 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         context['is_donor'] = user.is_donor
         context['is_admin'] = user.is_admin
 
-        # If donor, get their funds
+        # If donor, get their funds and dashboard data
         if user.is_donor:
-            context['funds'] = user.funds.all()
+            funds = user.funds.all()
+            context['funds'] = funds
+
+            # Calculate total balance across all funds
+            total_balance = sum(fund.balance for fund in funds)
+            context['balance'] = f"{total_balance:,.2f}"
+
+            # Calculate total contributed across all funds
+            total_contributed = Decimal('0.00')
+            for fund in funds:
+                fund_contributions = fund.contributions.aggregate(
+                    total=Sum('amount')
+                )['total'] or Decimal('0.00')
+                total_contributed += fund_contributions
+            context['total_contributed'] = f"{total_contributed:,.2f}"
+
+            # Get grants from this year across all funds
+            year_start = timezone.now().replace(month=1, day=1, hour=0, minute=0, second=0, microsecond=0)
+            grants_this_year = []
+            for fund in funds:
+                grants_this_year.extend(
+                    fund.grant_recommendations.filter(
+                        status='approved',
+                        reviewed_at__gte=year_start
+                    )
+                )
+
+            grants_this_year_total = sum(grant.amount for grant in grants_this_year)
+            context['grants_this_year_total'] = f"{grants_this_year_total:,.0f}"
+            context['grants_this_year_count'] = len(grants_this_year)
+
+            # Get recent grants (5 most recent across all funds)
+            all_grants = []
+            for fund in funds:
+                all_grants.extend(fund.grant_recommendations.all())
+
+            # Sort by created_at descending and take first 5
+            recent_grants = sorted(all_grants, key=lambda g: g.created_at, reverse=True)[:5]
+            context['recent_grants'] = recent_grants
 
         return context
 

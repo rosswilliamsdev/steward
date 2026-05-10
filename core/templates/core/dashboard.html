@@ -3,39 +3,123 @@
 {% block title %}Dashboard - Steward{% endblock %}
 
 {% block content %}
-<h1>Welcome, {{ user.username }}!</h1>
+<main class="max-w-[1440px] mx-auto p-6 lg:p-4 space-y-6">
+    <!-- Metric Cards -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1: Current Balance -->
+        <div class="bg-white p-6 rounded-md border border-neutral-200 shadow-sm hover:shadow-md transition-all">
+            <div class="flex justify-between items-start mb-2">
+                <p class="text-sm text-neutral-600 font-medium">Current Balance</p>
+                <span class="material-symbols-outlined text-brand-primary">account_balance_wallet</span>
+            </div>
+            <h2 class="font-mono text-3xl text-neutral-900 tracking-tight font-semibold">${{ balance|default:"0.00" }}</h2>
+            <div class="mt-1 flex items-center gap-1">
+                <p class="text-sm text-neutral-500">Across {{ funds.count }} fund{{ funds.count|pluralize }}</p>
+            </div>
+        </div>
 
-{% if is_admin %}
-    <div class="info-box admin">
-        <h2>Staff Dashboard</h2>
-        <p>You have admin access to manage all funds, contributions, and grant recommendations.</p>
-        <ul>
-            <li><a href="/admin/">Django Admin</a> - Full system access</li>
-        </ul>
-    </div>
-{% endif %}
+        <!-- Card 2: Total Contributed -->
+        <div class="bg-white p-6 rounded-md border border-neutral-200 shadow-sm hover:shadow-md transition-all">
+            <div class="flex justify-between items-start mb-2">
+                <p class="text-sm text-neutral-600 font-medium">Total Contributed</p>
+                <span class="material-symbols-outlined text-brand-primary">volunteer_activism</span>
+            </div>
+            <h2 class="font-mono text-3xl text-neutral-900 tracking-tight font-semibold">${{ total_contributed|default:"0.00" }}</h2>
+            <div class="mt-1 flex items-center gap-1 text-brand-primary">
+                <span class="material-symbols-outlined text-base">trending_up</span>
+                <p class="text-sm text-neutral-500">LIFETIME IMPACT</p>
+            </div>
+        </div>
 
-{% if is_donor %}
-    <div class="info-box donor">
-        <h2>Your Funds</h2>
-        {% if funds %}
-            <ul class="fund-list">
-                {% for fund in funds %}
-                    <li>
-                        <strong>{{ fund.name }}</strong> - Balance: ${{ fund.balance }}
-                    </li>
-                {% endfor %}
-            </ul>
+        <!-- Card 3: Grants This Year -->
+        <div class="bg-white p-6 rounded-md border border-neutral-200 shadow-sm hover:shadow-md transition-all">
+            <div class="flex justify-between items-start mb-2">
+                <p class="text-sm text-neutral-600 font-medium">Grants This Year</p>
+                <span class="material-symbols-outlined text-brand-primary">send_money</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+                <h2 class="font-mono text-3xl text-neutral-900 tracking-tight font-semibold">${{ grants_this_year_total|default:"0" }}</h2>
+                <span class="text-sm text-neutral-500">/ {{ grants_this_year_count|default:"0" }} Grant{{ grants_this_year_count|pluralize }}</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Section: Recent Grant Recommendations Table -->
+    <section class="bg-white rounded-md border border-neutral-200 shadow-sm overflow-hidden">
+        <div class="px-6 py-3 border-b border-neutral-200 flex justify-between items-center bg-neutral-50">
+            <h3 class="text-2xl font-semibold text-neutral-900">Recent Grant Recommendations</h3>
+            {# TODO: Uncomment when grant create view is implemented
+            <a href="URL_HERE" class="bg-brand-primary text-white px-6 py-2 rounded-md text-sm font-medium flex items-center gap-1 hover:bg-brand-primary-hover transition-colors duration-200">
+                <span class="material-symbols-outlined text-xl">add</span>
+                New Recommendation
+            </a>
+            #}
+        </div>
+
+        {% if recent_grants %}
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-neutral-100 text-neutral-600 text-xs uppercase tracking-wider font-semibold">
+                        <th class="px-6 py-3">Date</th>
+                        <th class="px-6 py-3">Nonprofit</th>
+                        <th class="px-6 py-3">Amount</th>
+                        <th class="px-6 py-3">Status</th>
+                        <th class="px-6 py-3">Staff Note</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-neutral-200">
+                    {% for grant in recent_grants %}
+                    <tr class="hover:bg-neutral-50 transition-colors">
+                        <td class="px-6 py-4 font-mono text-sm text-neutral-900">{{ grant.created_at|date:"Y-m-d" }}</td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2">
+                                <div class="h-8 w-8 rounded bg-neutral-100 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-brand-primary text-lg">volunteer_activism</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-semibold text-neutral-900">{{ grant.nonprofit_name }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 font-mono text-sm text-neutral-900">${{ grant.amount }}</td>
+                        <td class="px-6 py-4">
+                            {% if grant.status == 'approved' %}
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-success-light text-success">Approved</span>
+                            {% elif grant.status == 'denied' %}
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-error-light text-error">Denied</span>
+                            {% else %}
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-warning-light text-warning">Pending Review</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 text-sm text-neutral-500 italic">
+                            {{ grant.staff_note|default:"—" }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
         {% else %}
-            <p>You don't have any funds yet. Contact staff to create a fund.</p>
+        <div class="px-6 py-8 text-center">
+            <span class="material-symbols-outlined text-6xl text-neutral-300 mb-2">volunteer_activism</span>
+            <p class="text-neutral-600 mb-4">No grant recommendations yet</p>
+            {# TODO: Uncomment when grant create view is implemented
+            <a href="URL_HERE" class="inline-flex items-center px-6 py-2 bg-brand-primary text-white rounded-md text-sm font-medium hover:bg-brand-primary-hover transition-colors duration-200">
+                <span class="material-symbols-outlined text-xl mr-1">add</span>
+                Create Your First Recommendation
+            </a>
+            #}
+        </div>
         {% endif %}
-    </div>
-{% endif %}
 
-{% if not is_admin and not is_donor %}
-    <div class="info-box no-role">
-        <h2>No Role Assigned</h2>
-        <p>Your account does not have donor or admin privileges. Please contact an administrator.</p>
-    </div>
-{% endif %}
+        {% if recent_grants %}
+        <div class="px-6 py-3 bg-neutral-50 flex justify-center">
+            {# TODO: Uncomment when grant list view is implemented
+            <a href="URL_HERE" class="text-brand-primary text-sm font-semibold hover:underline transition-all">View All Recommendations</a>
+            #}
+        </div>
+        {% endif %}
+    </section>
+</main>
 {% endblock %}

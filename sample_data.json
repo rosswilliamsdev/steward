@@ -1,0 +1,261 @@
+[
+  {
+    "model": "core.user",
+    "pk": 1,
+    "fields": {
+      "username": "donor1",
+      "password": "pbkdf2_sha256$870000$z8fQ8YvZ9wX6nH5L7mJ8cK$qYvZxWvZ8mH5L7nJ8cK6fQ8YvZ9wX6nH5L7mJ8cK=",
+      "is_donor": true,
+      "is_admin": false,
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "first_name": "Sarah",
+      "last_name": "Chen",
+      "email": "sarah.chen@example.com",
+      "date_joined": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 2,
+    "fields": {
+      "username": "donor2",
+      "password": "pbkdf2_sha256$870000$z8fQ8YvZ9wX6nH5L7mJ8cK$qYvZxWvZ8mH5L7nJ8cK6fQ8YvZ9wX6nH5L7mJ8cK=",
+      "is_donor": true,
+      "is_admin": false,
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "first_name": "Michael",
+      "last_name": "Rodriguez",
+      "email": "michael.r@example.com",
+      "date_joined": "2024-02-20T14:30:00Z"
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 3,
+    "fields": {
+      "username": "staff1",
+      "password": "pbkdf2_sha256$870000$z8fQ8YvZ9wX6nH5L7mJ8cK$qYvZxWvZ8mH5L7nJ8cK6fQ8YvZ9wX6nH5L7mJ8cK=",
+      "is_donor": false,
+      "is_admin": true,
+      "is_staff": true,
+      "is_superuser": true,
+      "is_active": true,
+      "first_name": "Admin",
+      "last_name": "User",
+      "email": "admin@steward.org",
+      "date_joined": "2023-12-01T09:00:00Z"
+    }
+  },
+  {
+    "model": "core.fund",
+    "pk": 1,
+    "fields": {
+      "name": "Chen Family Foundation",
+      "donor": 1,
+      "created_at": "2024-01-15T10:30:00Z"
+    }
+  },
+  {
+    "model": "core.fund",
+    "pk": 2,
+    "fields": {
+      "name": "Rodriguez Community Fund",
+      "donor": 2,
+      "created_at": "2024-02-20T15:00:00Z"
+    }
+  },
+  {
+    "model": "core.contribution",
+    "pk": 1,
+    "fields": {
+      "fund": 1,
+      "amount": "100000.00",
+      "date": "2024-01-15",
+      "created_by": 3,
+      "created_at": "2024-01-15T11:00:00Z"
+    }
+  },
+  {
+    "model": "core.contribution",
+    "pk": 2,
+    "fields": {
+      "fund": 1,
+      "amount": "50000.00",
+      "date": "2024-07-10",
+      "created_by": 3,
+      "created_at": "2024-07-10T14:20:00Z"
+    }
+  },
+  {
+    "model": "core.contribution",
+    "pk": 3,
+    "fields": {
+      "fund": 1,
+      "amount": "25000.00",
+      "date": "2024-12-15",
+      "created_by": 3,
+      "created_at": "2024-12-15T09:30:00Z"
+    }
+  },
+  {
+    "model": "core.contribution",
+    "pk": 4,
+    "fields": {
+      "fund": 2,
+      "amount": "75000.00",
+      "date": "2024-02-20",
+      "created_by": 3,
+      "created_at": "2024-02-20T15:30:00Z"
+    }
+  },
+  {
+    "model": "core.contribution",
+    "pk": 5,
+    "fields": {
+      "fund": 2,
+      "amount": "30000.00",
+      "date": "2024-09-05",
+      "created_by": 3,
+      "created_at": "2024-09-05T16:15:00Z"
+    }
+  },
+  {
+    "model": "core.grantrecommendation",
+    "pk": 1,
+    "fields": {
+      "fund": 1,
+      "nonprofit_name": "Green Valley Land Trust",
+      "amount": "25000.00",
+      "purpose": "Environmental conservation and habitat restoration in the Green Valley watershed area.",
+      "status": "approved",
+      "created_at": "2024-10-24T10:00:00Z",
+      "reviewed_by": 3,
+      "reviewed_at": "2024-10-25T14:30:00Z",
+      "staff_note": "Scheduled for release on Nov 1."
+    }
+  },
+  {
+    "model": "core.grantrecommendation",
+    "pk": 2,
+    "fields": {
+      "fund": 1,
+      "nonprofit_name": "Westside Academy Arts",
+      "amount": "12000.00",
+      "purpose": "After-school arts education program for underserved youth.",
+      "status": "pending",
+      "created_at": "2024-10-21T09:15:00Z",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "staff_note": "Staff verifying 501(c)(3) status update."
+    }
+  },
+  {
+    "model": "core.grantrecommendation",
+    "pk": 3,
+    "fields": {
+      "fund": 1,
+      "nonprofit_name": "Community Health Clinic",
+      "amount": "50000.00",
+      "purpose": "Mobile health clinic serving rural communities in the region.",
+      "status": "approved",
+      "created_at": "2024-10-18T11:30:00Z",
+      "reviewed_by": 3,
+      "reviewed_at": "2024-10-19T10:00:00Z",
+      "staff_note": "Acknowledgement letter received."
+    }
+  },
+  {
+    "model": "core.grantrecommendation",
+    "pk": 4,
+    "fields": {
+      "fund": 1,
+      "nonprofit_name": "Local Food Pantry Network",
+      "amount": "8500.00",
+      "purpose": "Emergency food assistance for families experiencing food insecurity.",
+      "status": "approved",
+      "created_at": "2024-09-12T14:45:00Z",
+      "reviewed_by": 3,
+      "reviewed_at": "2024-09-13T09:20:00Z",
+      "staff_note": "Grant distributed via check on 9/20."
+    }
+  },
+  {
+    "model": "core.grantrecommendation",
+    "pk": 5,
+    "fields": {
+      "fund": 1,
+      "nonprofit_name": "Youth Literacy Foundation",
+      "amount": "15000.00",
+      "purpose": "Summer reading program and library expansion for elementary students.",
+      "status": "approved",
+      "created_at": "2024-08-05T10:20:00Z",
+      "reviewed_by": 3,
+      "reviewed_at": "2024-08-06T15:00:00Z",
+      "staff_note": "Impact report expected in December."
+    }
+  },
+  {
+    "model": "core.grantrecommendation",
+    "pk": 6,
+    "fields": {
+      "fund": 1,
+      "nonprofit_name": "Senior Center Renovation Fund",
+      "amount": "20000.00",
+      "purpose": "Accessibility improvements and technology upgrades for community senior center.",
+      "status": "denied",
+      "created_at": "2024-07-22T13:10:00Z",
+      "reviewed_by": 3,
+      "reviewed_at": "2024-07-25T11:30:00Z",
+      "staff_note": "Project budget needs clarification. Donor may resubmit with revised proposal."
+    }
+  },
+  {
+    "model": "core.grantrecommendation",
+    "pk": 7,
+    "fields": {
+      "fund": 2,
+      "nonprofit_name": "Neighborhood Parks Alliance",
+      "amount": "18000.00",
+      "purpose": "Community garden expansion and youth engagement programming.",
+      "status": "approved",
+      "created_at": "2024-10-15T08:45:00Z",
+      "reviewed_by": 3,
+      "reviewed_at": "2024-10-16T13:15:00Z",
+      "staff_note": "Grant approved. Check prepared for November disbursement."
+    }
+  },
+  {
+    "model": "core.grantrecommendation",
+    "pk": 8,
+    "fields": {
+      "fund": 2,
+      "nonprofit_name": "Immigrant Resource Center",
+      "amount": "22000.00",
+      "purpose": "Legal aid services and citizenship application assistance.",
+      "status": "pending",
+      "created_at": "2024-10-20T12:00:00Z",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "staff_note": "Under review. Additional documentation requested from nonprofit."
+    }
+  },
+  {
+    "model": "core.grantrecommendation",
+    "pk": 9,
+    "fields": {
+      "fund": 2,
+      "nonprofit_name": "Women's Business Incubator",
+      "amount": "30000.00",
+      "purpose": "Entrepreneurship training and micro-loan program for women-owned startups.",
+      "status": "approved",
+      "created_at": "2024-09-28T15:30:00Z",
+      "reviewed_by": 3,
+      "reviewed_at": "2024-09-30T10:45:00Z",
+      "staff_note": "Approved. Quarterly impact reports requested."
+    }
+  }
+]
