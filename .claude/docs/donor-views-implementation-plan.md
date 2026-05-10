@@ -27,23 +27,27 @@ This document outlines the step-by-step implementation plan for building all don
 
 ---
 
-### 1.2 Expand CSS Design System ✓
+### 1.2 Tailwind CSS Design System ✓
 
-**File:** `static/css/styles.css`
+**Files:** `tailwind.config.js`, `static/css/styles.css`, `.claude/context/design-system.md`
 
 **Status: COMPLETE**
 
-- ✓ Design system created and documented in `.claude/context/design-system.md`
-- ✓ CSS custom properties implemented in `static/css/styles.css` with HSL color format
-- ✓ Plus Jakarta Sans font integrated in `core/templates/base.html`
-- ✓ Full component specifications documented (Button, Input, Card, Table, Badge, Alert, Modal, Dropdown, Tabs, Progress)
+- ✓ Design system created and documented with Tailwind utility class examples
+- ✓ Tailwind CSS configured with custom theme extending design tokens
+- ✓ `static/css/styles.css` updated with `@tailwind` directives
+- ✓ Plus Jakarta Sans font integrated via Tailwind config
+- ✓ Full component specifications with Tailwind classes (Button, Input, Card, Table, Badge, Alert, Modal)
 - ✓ 8px spacing grid, warm earthy green color palette, light mode only
+- ✓ Build process configured: `npm run build:css` and `npm run watch:css`
 
 ---
 
 ## Phase 2: Dashboard View (React Component)
 
 ### 2.1 Create DRF API Endpoint
+
+**Status: COMPLETE**
 
 **Files:**
 
@@ -108,6 +112,7 @@ This document outlines the step-by-step implementation plan for building all don
 **Component Library:** Radix UI (headless components for accessibility)
 
 **Dependencies:**
+
 - `react`, `react-dom`
 - `@radix-ui/react-dialog` (for future modals)
 - `@radix-ui/react-dropdown-menu` (for future dropdowns)
@@ -136,10 +141,11 @@ DonorDashboard
 
 **Styling Approach:**
 
-- Use CSS custom properties from design system (`var(--color-brand-primary)`, etc.)
-- Apply design tokens directly to Radix UI primitives
-- BEM class names for custom components (`.fund-hero`, `.balance-chart`, etc.)
-- No CSS-in-JS, pure CSS with design system tokens
+- **Tailwind CSS** for all styling via utility classes
+- Apply Tailwind classes directly to Radix UI primitives: `<Dialog.Content className="bg-white rounded-lg shadow-lg p-6">`
+- Use design system tokens: `bg-brand-primary`, `text-neutral-600`, `shadow-md`, etc.
+- Recharts styled with Tailwind color values: `stroke="hsl(142, 76%, 36%)"`
+- No custom CSS classes needed for layout/styling
 
 **Accessibility:**
 

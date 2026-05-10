@@ -18,129 +18,129 @@ Steward's visual identity is warm, trustworthy, and community-focused. The desig
 
 ## Color Tokens
 
-All colors use HSL format for easier manipulation and consistency.
+All colors use HSL format for easier manipulation and consistency. Access via Tailwind utility classes.
 
 ### Brand
-```css
---color-brand-primary: hsl(142, 76%, 36%);        /* Earthy green — primary actions, links */
---color-brand-primary-hover: hsl(142, 70%, 31%);  /* Darker on hover */
---color-brand-primary-light: hsl(142, 76%, 85%);  /* Backgrounds, badges */
---color-brand-primary-dark: hsl(142, 76%, 20%);   /* Text on light backgrounds */
-```
+| Token | Value | Tailwind Class Example |
+|-------|-------|------------------------|
+| Primary | `hsl(142, 76%, 36%)` | `bg-brand-primary`, `text-brand-primary`, `border-brand-primary` |
+| Primary Hover | `hsl(142, 70%, 31%)` | `hover:bg-brand-primary-hover` |
+| Primary Light | `hsl(142, 76%, 85%)` | `bg-brand-primary-light` |
+| Primary Dark | `hsl(142, 76%, 20%)` | `text-brand-primary-dark` |
 
 ### Neutral
-```css
---color-neutral-50: hsl(0, 0%, 98%);
---color-neutral-100: hsl(0, 0%, 96%);
---color-neutral-200: hsl(0, 0%, 90%);
---color-neutral-300: hsl(0, 0%, 83%);
---color-neutral-400: hsl(0, 0%, 64%);
---color-neutral-500: hsl(0, 0%, 45%);
---color-neutral-600: hsl(0, 0%, 32%);
---color-neutral-700: hsl(0, 0%, 25%);
---color-neutral-800: hsl(0, 0%, 15%);
---color-neutral-900: hsl(0, 0%, 9%);
-```
+| Token | Value | Tailwind Class Example |
+|-------|-------|------------------------|
+| 50 | `hsl(0, 0%, 98%)` | `bg-neutral-50` |
+| 100 | `hsl(0, 0%, 96%)` | `bg-neutral-100` |
+| 200 | `hsl(0, 0%, 90%)` | `bg-neutral-200` |
+| 300 | `hsl(0, 0%, 83%)` | `bg-neutral-300` |
+| 400 | `hsl(0, 0%, 64%)` | `text-neutral-400` |
+| 500 | `hsl(0, 0%, 45%)` | `text-neutral-500` |
+| 600 | `hsl(0, 0%, 32%)` | `text-neutral-600` |
+| 700 | `hsl(0, 0%, 25%)` | `text-neutral-700` |
+| 800 | `hsl(0, 0%, 15%)` | `text-neutral-800` |
+| 900 | `hsl(0, 0%, 9%)` | `text-neutral-900` |
 
 ### Semantic
-```css
---color-success: hsl(142, 76%, 36%);              /* Approved grants, confirmations */
---color-success-light: hsl(142, 76%, 93%);
---color-error: hsl(0, 72%, 51%);                  /* Denied grants, validation errors */
---color-error-light: hsl(0, 93%, 94%);
---color-warning: hsl(38, 92%, 50%);               /* Pending grants, alerts */
---color-warning-light: hsl(48, 96%, 89%);
---color-info: hsl(217, 91%, 60%);                 /* Informational messages */
---color-info-light: hsl(214, 95%, 93%);
-```
-
-### Surface
-```css
---color-surface-base: hsl(0, 0%, 100%);         /* Page background */
---color-surface-raised: hsl(0, 0%, 98%);        /* Cards, modals */
---color-surface-border: hsl(0, 0%, 90%);        /* Dividers, input borders */
---color-text-primary: hsl(0, 0%, 9%);           /* Headings, body text */
---color-text-secondary: hsl(0, 0%, 32%);        /* Labels, captions */
---color-text-tertiary: hsl(0, 0%, 64%);         /* Placeholders, disabled */
-```
+| Token | Value | Tailwind Class Example |
+|-------|-------|------------------------|
+| Success | `hsl(142, 76%, 36%)` | `bg-success`, `text-success` |
+| Success Light | `hsl(142, 76%, 93%)` | `bg-success-light` |
+| Error | `hsl(0, 72%, 51%)` | `bg-error`, `text-error` |
+| Error Light | `hsl(0, 93%, 94%)` | `bg-error-light` |
+| Warning | `hsl(38, 92%, 50%)` | `bg-warning`, `text-warning` |
+| Warning Light | `hsl(48, 96%, 89%)` | `bg-warning-light` |
+| Info | `hsl(217, 91%, 60%)` | `bg-info`, `text-info` |
+| Info Light | `hsl(214, 95%, 93%)` | `bg-info-light` |
 
 ## Typography
 
 ### Font Families
-```css
---font-family-base: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
---font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-```
+| Family | Tailwind Class | Value |
+|--------|----------------|-------|
+| Sans (default) | `font-sans` | Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif |
+| Monospace | `font-mono` | JetBrains Mono, Fira Code, Courier New, monospace |
 
 ### Scale
 
-| Token | Size | Line Height | Weight | Use Case |
-|-------|------|-------------|--------|----------|
-| `--font-size-xs` | 12px | 16px | 400 | Captions, helper text |
-| `--font-size-sm` | 14px | 20px | 400 | Table data, secondary labels |
-| `--font-size-base` | 16px | 24px | 400 | Body text, form inputs |
-| `--font-size-lg` | 18px | 28px | 500 | Section subheadings |
-| `--font-size-xl` | 20px | 28px | 600 | Card headings |
-| `--font-size-2xl` | 24px | 32px | 700 | Page titles |
-| `--font-size-3xl` | 30px | 36px | 700 | Hero headings |
+| Token | Size | Line Height | Tailwind Class | Use Case |
+|-------|------|-------------|----------------|----------|
+| xs | 12px | 16px | `text-xs` | Captions, helper text |
+| sm | 14px | 20px | `text-sm` | Table data, secondary labels |
+| base | 16px | 24px | `text-base` | Body text, form inputs |
+| lg | 18px | 28px | `text-lg` | Section subheadings |
+| xl | 20px | 28px | `text-xl` | Card headings |
+| 2xl | 24px | 32px | `text-2xl` | Page titles |
+| 3xl | 30px | 36px | `text-3xl` | Hero headings |
 
 ### Weights
-```css
---font-weight-normal: 400;
---font-weight-medium: 500;
---font-weight-semibold: 600;
---font-weight-bold: 700;
-```
+| Weight | Tailwind Class |
+|--------|----------------|
+| 400 (normal) | `font-normal` |
+| 500 (medium) | `font-medium` |
+| 600 (semibold) | `font-semibold` |
+| 700 (bold) | `font-bold` |
 
 ## Spacing Scale
 
-| Token | Value |
-|-------|-------|
-| `--spacing-0` | 0px |
-| `--spacing-1` | 8px |
-| `--spacing-2` | 16px |
-| `--spacing-3` | 24px |
-| `--spacing-4` | 32px |
-| `--spacing-5` | 40px |
-| `--spacing-6` | 48px |
-| `--spacing-8` | 64px |
-| `--spacing-10` | 80px |
+8px-based grid for consistent spacing.
+
+| Value | Tailwind Class (padding) | Tailwind Class (margin) | Tailwind Class (gap) |
+|-------|--------------------------|-------------------------|----------------------|
+| 0px | `p-0` | `m-0` | `gap-0` |
+| 8px | `p-1` | `m-1` | `gap-1` |
+| 16px | `p-2` | `m-2` | `gap-2` |
+| 24px | `p-3` | `m-3` | `gap-3` |
+| 32px | `p-4` | `m-4` | `gap-4` |
+| 40px | `p-5` | `m-5` | `gap-5` |
+| 48px | `p-6` | `m-6` | `gap-6` |
+| 64px | `p-7` | `m-7` | `gap-7` |
+| 80px | `p-8` | `m-8` | `gap-8` |
 
 ## Border Radius
 
-| Token | Value |
-|-------|-------|
-| `--radius-none` | 0px |
-| `--radius-sm` | 4px |
-| `--radius-md` | 8px |
-| `--radius-lg` | 12px |
-| `--radius-full` | 9999px |
+| Value | Tailwind Class | Use Case |
+|-------|----------------|----------|
+| 0px | `rounded-none` | Flush edges |
+| 4px | `rounded-sm` | Subtle rounding (inputs, badges) |
+| 8px | `rounded-md` | Standard rounding (buttons, cards) |
+| 12px | `rounded-lg` | Prominent rounding (modals) |
+| 9999px | `rounded-full` | Pills, circles |
 
 ## Shadows
 
-| Token | Value |
-|-------|-------|
-| `--shadow-none` | none |
-| `--shadow-sm` | 0 1px 2px rgba(0, 0, 0, 0.05) |
-| `--shadow-md` | 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05) |
-| `--shadow-lg` | 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05) |
-| `--shadow-xl` | 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04) |
+| Token | Tailwind Class | Use Case |
+|-------|----------------|----------|
+| None | `shadow-none` | Flat elements |
+| Small | `shadow-sm` | Subtle elevation (inputs on focus) |
+| Medium | `shadow-md` | Cards, dropdowns |
+| Large | `shadow-lg` | Modals, popovers |
 
 ## Breakpoints
 
-| Token | Value |
-|-------|-------|
-| `--breakpoint-mobile` | 640px |
-| `--breakpoint-tablet` | 768px |
-| `--breakpoint-desktop` | 1024px |
+Tailwind's default responsive prefixes:
+
+| Breakpoint | Prefix | Min Width |
+|------------|--------|-----------|
+| Mobile (default) | (none) | 0px |
+| Tablet | `sm:` | 640px |
+| Desktop | `md:` | 768px |
+| Large Desktop | `lg:` | 1024px |
+
+Example: `class="text-sm md:text-base lg:text-lg"`
 
 ## Motion
 
-| Token | Value |
-|-------|-------|
-| `--duration-fast` | 150ms |
-| `--duration-base` | 200ms |
-| `--easing-base` | ease |
+Use Tailwind's transition utilities:
+
+| Duration | Tailwind Class |
+|----------|----------------|
+| 150ms (fast) | `duration-150` |
+| 200ms (base) | `duration-200` |
+| 300ms (slow) | `duration-300` |
+
+Combine with transition type: `transition-colors duration-200 ease-in-out`
 
 ## Components
 
@@ -149,20 +149,27 @@ All colors use HSL format for easier manipulation and consistency.
 **Purpose:** Primary interaction element for actions (submit forms, approve grants, create funds).
 
 **Variants:**
-- **Primary** — `background: --color-brand-primary`, `color: white`, `--shadow-sm`, `--radius-md`
-- **Secondary** — `background: --color-neutral-100`, `color: --color-text-primary`, `border: 1px solid --color-surface-border`
-- **Ghost** — `background: transparent`, `color: --color-brand-primary`, no border
-- **Destructive** — `background: --color-error`, `color: white`
+- **Primary** — `class="bg-brand-primary hover:bg-brand-primary-hover text-white font-medium py-2 px-4 rounded-md shadow-sm transition-colors duration-200"`
+- **Secondary** — `class="bg-neutral-100 hover:bg-neutral-200 text-neutral-900 font-medium py-2 px-4 rounded-md border border-neutral-200 transition-colors duration-200"`
+- **Ghost** — `class="bg-transparent hover:bg-neutral-50 text-brand-primary font-medium py-2 px-4 rounded-md transition-colors duration-200"`
+- **Destructive** — `class="bg-error hover:bg-error-dark text-white font-medium py-2 px-4 rounded-md shadow-sm transition-colors duration-200"`
 
 **Sizes:**
-- **Small** — `padding: --spacing-1 --spacing-2`, `font-size: --font-size-sm`
-- **Medium** — `padding: --spacing-1 --spacing-3`, `font-size: --font-size-base`
-- **Large** — `padding: --spacing-2 --spacing-4`, `font-size: --font-size-lg`
+- **Small** — `py-1 px-2 text-sm`
+- **Medium** — `py-2 px-4 text-base` (default)
+- **Large** — `py-3 px-6 text-lg`
 
 **States:**
-- **Hover** — Darken background by 10%, apply `--shadow-md`
-- **Focus** — `outline: 2px solid --color-brand-primary`, `outline-offset: 2px`
-- **Disabled** — `opacity: 0.5`, `cursor: not-allowed`
+- **Hover** — Use `hover:` prefix: `hover:bg-brand-primary-hover`, `hover:shadow-md`
+- **Focus** — `focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2`
+- **Disabled** — `disabled:opacity-50 disabled:cursor-not-allowed`
+
+**Full Example:**
+```html
+<button class="bg-brand-primary hover:bg-brand-primary-hover text-white font-medium py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200">
+  Submit Grant
+</button>
+```
 
 **Usage Notes:**
 Use primary for form submissions and critical actions. Use destructive only for irreversible actions (deny grant, delete fund). Ghost buttons for tertiary actions (cancel, view details).
@@ -174,19 +181,30 @@ Use primary for form submissions and critical actions. Use destructive only for 
 **Purpose:** Form fields for contributions, grant recommendations, fund creation.
 
 **Base Style:**
-- `border: 1px solid --color-surface-border`
-- `background: --color-surface-base`
-- `padding: --spacing-1 --spacing-2`
-- `font-size: --font-size-base`
-- `border-radius: --radius-md`
+```html
+<input class="w-full px-3 py-2 border border-neutral-200 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary disabled:bg-neutral-100 disabled:text-neutral-400" />
+```
 
 **States:**
-- **Focus** — `border-color: --color-brand-primary`, `outline: 2px solid --color-brand-primary-light`
-- **Error** — `border-color: --color-error`, helper text in `--color-error`
-- **Disabled** — `background: --color-neutral-100`, `color: --color-text-tertiary`
+- **Focus** — `focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary`
+- **Error** — `border-error focus:ring-error` + error text `class="text-error text-xs mt-1"`
+- **Disabled** — `disabled:bg-neutral-100 disabled:text-neutral-400 disabled:cursor-not-allowed`
+
+**Full Form Example:**
+```html
+<div class="space-y-1">
+  <label for="amount" class="block text-sm font-medium text-neutral-600">Amount</label>
+  <input
+    type="number"
+    id="amount"
+    class="w-full px-3 py-2 border border-neutral-200 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary"
+  />
+  <p class="text-error text-xs mt-1">Amount must be greater than $0</p>
+</div>
+```
 
 **Usage Notes:**
-Always pair with a `<label>` (font-size: `--font-size-sm`, color: `--color-text-secondary`). Display validation errors below input in `--font-size-xs`.
+Always pair with a `<label>` (`text-sm font-medium text-neutral-600`). Display validation errors below input (`text-error text-xs mt-1`).
 
 ---
 
@@ -195,15 +213,23 @@ Always pair with a `<label>` (font-size: `--font-size-sm`, color: `--color-text-
 **Purpose:** Container for fund summaries, grant recommendation cards, contribution history.
 
 **Base Style:**
-- `background: --color-surface-base`
-- `border: 1px solid --color-surface-border`
-- `border-radius: --radius-md`
-- `padding: --spacing-3`
-- `box-shadow: --shadow-sm`
+```html
+<div class="bg-white border border-neutral-200 rounded-md p-4 shadow-sm">
+  <!-- Card content -->
+</div>
+```
 
 **Variants:**
-- **Raised** — `background: --color-surface-raised`, `box-shadow: --shadow-md`
-- **Interactive** — Hover: `box-shadow: --shadow-lg`, `transform: translateY(-2px)`, `transition: --duration-fast`
+- **Raised** — `bg-neutral-50 shadow-md`
+- **Interactive** — `hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 cursor-pointer`
+
+**Full Example:**
+```html
+<div class="bg-white border border-neutral-200 rounded-md p-4 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-150 cursor-pointer">
+  <h3 class="text-xl font-semibold text-neutral-900 mb-2">Community Impact Fund</h3>
+  <p class="text-sm text-neutral-600">Balance: <span class="font-mono font-semibold text-brand-primary">$25,000</span></p>
+</div>
+```
 
 **Usage Notes:**
 Use for grouping related information (fund name + balance, grant details). Interactive variant for clickable cards linking to detail views.
@@ -230,18 +256,27 @@ Use monospace font (`--font-family-mono`) for numeric columns (amounts, dates). 
 
 **Purpose:** Display grant status (pending, approved, denied), fund types, contribution methods.
 
-**Base Style:**
-- `display: inline-flex`
-- `padding: 4px 12px`
-- `border-radius: --radius-full`
-- `font-size: --font-size-xs`
-- `font-weight: --font-weight-medium`
+**Base Classes:**
+`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium`
 
 **Variants:**
-- **Success** (approved) — `background: --color-success-light`, `color: --color-success`
-- **Warning** (pending) — `background: --color-warning-light`, `color: --color-warning`
-- **Error** (denied) — `background: --color-error-light`, `color: --color-error`
-- **Neutral** (default) — `background: --color-neutral-100`, `color: --color-neutral-700`
+- **Success** (approved) — `bg-success-light text-success`
+- **Warning** (pending) — `bg-warning-light text-warning`
+- **Error** (denied) — `bg-error-light text-error`
+- **Neutral** (default) — `bg-neutral-100 text-neutral-700`
+
+**Examples:**
+```html
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-success-light text-success">
+  Approved
+</span>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-warning-light text-warning">
+  Pending
+</span>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-error-light text-error">
+  Denied
+</span>
+```
 
 **Usage Notes:**
 Do not use for interactive elements. For clickable tags, use ghost button variant instead.
@@ -344,20 +379,27 @@ Use Recharts for complex visualizations (bar charts, line charts). Use simple pr
 - **Do not** mix spacing values outside the 8px grid (no `padding: 10px`).
 
 ### Django Template Integration
-- Apply base styles via `static/css/styles.css` using CSS custom properties.
-- Component classes follow BEM naming: `.btn`, `.btn--primary`, `.btn--large`.
-- Form errors rendered with `.form-error` class (color: `--color-error`, font-size: `--font-size-xs`).
+- **Tailwind CSS** provides all design tokens via utility classes
+- Configure Tailwind in `tailwind.config.js` with custom theme extending design system tokens
+- Use utility classes directly in templates: `class="bg-brand-primary text-white py-2 px-4 rounded-md"`
+- Component classes use Tailwind `@apply` directive or direct utility classes
+- Form errors use utility classes: `class="text-error text-xs mt-1"`
 
 ### React Dashboard
-- **Component Library:** Radix UI (headless, accessible primitives)
-- **Styling:** CSS custom properties from design system (no CSS-in-JS)
-- **BEM Naming:** `.dashboard-card`, `.dashboard-card__header`, etc.
-- **Charts:** Recharts with design tokens (`--color-brand-primary`, `--color-neutral-200`)
+- **Styling:** Tailwind CSS with custom configuration extending design tokens
+- **Component Library:** Radix UI (headless, accessible primitives) for interactive components
+- **Charts:** Recharts styled with Tailwind classes
+- **Tailwind Configuration:** Custom theme extends default with design system tokens:
+  - Colors: Brand primary/secondary, semantic colors, neutrals mapped to Tailwind palette
+  - Spacing: 8px-based scale (`spacing-1` = `2`, `spacing-2` = `4`, etc.)
+  - Border radius: `radius-sm/md/lg/full`
+  - Shadows: `shadow-sm/md/lg/xl`
+  - Font families: `font-sans` (Plus Jakarta Sans), `font-mono` (JetBrains Mono)
+  - Font sizes: `text-xs/sm/base/lg/xl/2xl/3xl`
 - **Radix Components:**
-  - `@radix-ui/react-dialog` for modals (match Modal component specs)
-  - `@radix-ui/react-dropdown-menu` for dropdowns (match Dropdown component specs)
-  - Apply design tokens directly: `background: var(--color-surface-base)`, `border-radius: var(--radius-md)`
-- Match card, button, and table styles to Django templates for visual consistency across app
+  - `@radix-ui/react-dialog` for modals (style with Tailwind classes matching Modal specs)
+  - `@radix-ui/react-dropdown-menu` for dropdowns (style with Tailwind classes)
+- Visual consistency: Tailwind classes should match Django template styles (same colors, spacing, shadows)
 
 ### Accessibility
 - Minimum touch target: `44px × 44px` (buttons, inputs).

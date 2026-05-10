@@ -24,17 +24,17 @@
 
 ## Tasks
 
-### 1. Update Design System Documentation
+### 1. Update Design System Documentation ✅
 **File:** `.claude/context/design-system.md`
 
-- [ ] Replace CSS custom properties approach with Tailwind utility class examples
-- [ ] Update component specifications to show Tailwind classes instead of custom properties
-- [ ] Update "Django Template Integration" section for Tailwind usage
-- [ ] Update "React Dashboard" section for Tailwind + Radix UI integration
-- [ ] Add Tailwind config reference section
+- [x] Replace CSS custom properties approach with Tailwind utility class examples
+- [x] Update component specifications to show Tailwind classes instead of custom properties
+- [x] Update "Django Template Integration" section for Tailwind usage
+- [x] Update "React Dashboard" section for Tailwind + Radix UI integration
+- [x] Color tokens, typography, spacing, borders, shadows all show Tailwind class examples
 
-### 2. Create Tailwind Configuration
-**File:** `tailwind.config.js` (new file)
+### 2. Create Tailwind Configuration ✅
+**File:** `tailwind.config.js` (completed)
 
 Convert design tokens from `.claude/context/design-system.md` to Tailwind config:
 
@@ -92,38 +92,40 @@ module.exports = {
 }
 ```
 
-### 3. Setup Tailwind Build Process
+### 3. Setup Tailwind Build Process ✅
 **Files:** `package.json`, PostCSS config
 
-- [ ] Install Tailwind: `npm install -D tailwindcss postcss autoprefixer`
-- [ ] Create `postcss.config.js`
-- [ ] Create CSS entry point that imports Tailwind directives
-- [ ] Update build scripts in `package.json`
-- [ ] Configure Django to serve the compiled Tailwind CSS
+- [x] Install Tailwind: `npm install -D tailwindcss postcss autoprefixer`
+- [x] Create `postcss.config.js`
+- [x] Create CSS entry point that imports Tailwind directives (`src/input.css`)
+- [x] Update build scripts in `package.json` (`build:css`, `watch:css`)
+- [x] Configure Django to serve the compiled Tailwind CSS (`core/static/core/css/styles.css`)
 
-### 4. Update Static CSS File
+### 4. Update Static CSS File ✅
 **File:** `static/css/styles.css`
 
-- [ ] Replace CSS custom properties (lines 1-87) with Tailwind imports:
+- [x] Replace CSS custom properties (lines 1-87) with Tailwind imports:
   ```css
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
   ```
-- [ ] Move any custom non-Tailwind styles below the imports
-- [ ] Keep base.html styles for layout if needed
+- [x] Move custom non-Tailwind styles below the imports (nav, badges, login page)
+- [x] Legacy styles preserved with comments for gradual migration to Tailwind classes
 
-### 5. Update Implementation Plan
+### 5. Update Implementation Plan ✅
 **File:** `.claude/docs/donor-views-implementation-plan.md`
 
-- [ ] Update section 1.2 to reflect Tailwind approach instead of CSS custom properties
-- [ ] Update section 2.2 React dashboard implementation to use Tailwind + Radix UI
+- [x] Update section 1.2 to reflect Tailwind approach instead of CSS custom properties
+- [x] Update section 2.2 React dashboard implementation to use Tailwind + Radix UI
 
-### 6. Update CLAUDE.md (Optional)
+### 6. Update CLAUDE.md ✅
 **File:** `CLAUDE.md`
 
-- [ ] Add note about Tailwind CSS usage in project conventions
-- [ ] Document that both Django templates and React use Tailwind
+- [x] Added Tailwind CSS to tech stack
+- [x] Added Tailwind build commands section
+- [x] Documented Tailwind CSS usage in project conventions
+- [x] Documented that both Django templates and React use Tailwind
 
 ## Design Token Reference
 

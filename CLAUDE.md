@@ -4,7 +4,7 @@
 
 **Steward** is a portfolio-grade Django web application for managing donor-advised funds at a nonprofit community foundation. It demonstrates production-level backend engineering: modeling a real-world domain (named funds, contributions, grant recommendations, staff approval workflows), implementing role-based permissions, and integrating a minimal React component for an interactive donor dashboard.
 
-**Tech Stack:** Django 5.x · PostgreSQL · Django REST Framework · React 18 · Recharts
+**Tech Stack:** Django 5.x · PostgreSQL · Django REST Framework · React 18 · Tailwind CSS · Recharts · Radix UI
 **Timeline:** 1 week solo build
 **Deployment:** Railway or Render (free tier)
 
@@ -22,6 +22,12 @@ All detailed planning documents live in [.claude/docs/](.claude/docs/):
 ### Development
 ```bash
 python manage.py runserver
+```
+
+### Tailwind CSS Build
+```bash
+npm run build:css    # Build Tailwind CSS once
+npm run watch:css    # Watch for changes and rebuild
 ```
 
 ### Database
@@ -68,8 +74,23 @@ No donor ever sees another donor's data.
 
 ## Development Conventions
 
+### Backend (Django)
 - Use Django Class-Based Views (CBVs) for all views
 - Enforce permissions with `LoginRequiredMixin` + `UserPassesTestMixin`
 - Keep business logic in model methods/properties where possible
 - Follow Django's naming conventions for templates: `app_name/model_list.html`, `app_name/model_form.html`
 - API endpoints live under `/api/` prefix, served by DRF
+
+### Frontend (Styling)
+- **Tailwind CSS** for all styling (both Django templates and React components)
+- Use utility classes directly in templates: `class="bg-brand-primary text-white py-2 px-4 rounded-md"`
+- Design tokens configured in `tailwind.config.js` (colors, spacing, typography, shadows)
+- Custom theme extends Tailwind defaults with design system tokens
+- Run `npm run watch:css` during development to rebuild CSS on changes
+- Compiled CSS outputs to `static/css/styles.css`
+
+### React Components
+- Use Tailwind utility classes for styling: `className="bg-white border border-neutral-200 rounded-md p-4"`
+- Radix UI for accessible headless components (dialogs, dropdowns, etc.)
+- Style Radix primitives with Tailwind classes
+- Recharts for data visualization, styled with design system color values
