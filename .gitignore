@@ -26,3 +26,12 @@ media/
 
 # OS
 .DS_Store
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Compiled CSS (generated from src/input.css)
+core/static/core/css/styles.css

@@ -1,0 +1,27 @@
+{
+  "name": "steward",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./static/css/styles.css",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./static/css/styles.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rosswilliamsdev/steward.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rosswilliamsdev/steward/issues"
+  },
+  "homepage": "https://github.com/rosswilliamsdev/steward#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^3.4.16"
+  }
+}
