@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Steward - Staff Grant Review Queue</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#c4edc6",
+                    "secondary-fixed-dim": "#a9d0ab",
+                    "on-surface-variant": "#3f493f",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#c4edc6",
+                    "surface": "#f6fbf2",
+                    "surface-tint": "#006d30",
+                    "on-primary-fixed": "#00210a",
+                    "surface-container-highest": "#dfe4db",
+                    "outline-variant": "#becabc",
+                    "primary-container": "#15803d",
+                    "on-secondary-container": "#496d4d",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#005323",
+                    "inverse-surface": "#2c322c",
+                    "tertiary": "#97344a",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#f6fbf2",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#95f8a7",
+                    "primary": "#00652c",
+                    "inverse-on-surface": "#edf2e9",
+                    "tertiary-fixed-dim": "#ffb2bd",
+                    "on-tertiary-fixed-variant": "#81233b",
+                    "primary-fixed-dim": "#79db8d",
+                    "surface-container": "#eaefe6",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f6fbf2",
+                    "on-secondary-fixed": "#00210a",
+                    "on-tertiary-fixed": "#400013",
+                    "background": "#f6fbf2",
+                    "inverse-primary": "#79db8d",
+                    "on-background": "#181d17",
+                    "surface-dim": "#d6dcd3",
+                    "outline": "#6f7a6e",
+                    "tertiary-fixed": "#ffd9dd",
+                    "on-tertiary-container": "#fff1f1",
+                    "on-surface": "#181d17",
+                    "secondary": "#436648",
+                    "on-primary-container": "#d3ffd5",
+                    "on-secondary-fixed-variant": "#2c4e32",
+                    "surface-container-low": "#f0f5ec"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "3xl": "64px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "md": "16px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "data-md": ["JetBrains Mono"],
+                    "data-sm": ["JetBrains Mono"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "data-lg": ["JetBrains Mono"],
+                    "display-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["30px", {"lineHeight": "38px", "fontWeight": "600"}],
+                    "data-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "data-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "data-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f6fbf2;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-lg py-md">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">menu</span>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">Steward</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">account_circle</span>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-md md:px-lg py-lg mb-2xl">
+<section class="mb-xl">
+<h2 class="font-headline-sm text-headline-sm mb-md text-on-surface">Staff Grant Review Queue</h2>
+<div class="flex flex-col md:flex-row gap-md items-start md:items-center">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-3xl pr-md py-sm font-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Search recommendations..." type="text"/>
+</div>
+<div class="flex items-center gap-sm w-full md:w-auto">
+<div class="relative w-full md:w-48">
+<select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-md py-sm font-body-sm text-on-surface appearance-none focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+<option>All Statuses</option>
+<option selected="">Pending Review</option>
+<option>In Progress</option>
+<option>Completed</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<div class="space-y-md">
+<!-- Grant Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-md flex flex-col gap-sm md:flex-row md:items-center md:justify-between">
+<div class="flex-1 space-y-xs">
+<div class="flex items-center gap-sm">
+<h3 class="font-body-lg font-bold text-on-surface">Arthur &amp; Martha Henderson</h3>
+<span class="inline-flex items-center px-sm py-xs rounded-full text-[12px] font-medium bg-secondary-container text-on-secondary-container">
+                                Pending
+                            </span>
+</div>
+<p class="font-body-sm text-on-surface-variant">The Henderson Family Legacy Fund</p>
+<div class="flex items-center gap-xs mt-sm text-primary">
+<span class="material-symbols-outlined text-[18px]">volunteer_activism</span>
+<span class="font-body-sm font-semibold">St. Jude Children's Research Hospital</span>
+</div>
+</div>
+<div class="flex md:flex-col items-end justify-between md:justify-center gap-sm mt-md md:mt-0">
+<div class="font-data-lg text-data-lg font-bold text-on-surface">
+                            $25,000.00
+                        </div>
+<button class="bg-primary text-on-primary font-body-sm font-bold px-lg py-sm rounded-lg hover:opacity-90 transition-opacity flex items-center gap-sm">
+                            Review
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Grant Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-md flex flex-col gap-sm md:flex-row md:items-center md:justify-between">
+<div class="flex-1 space-y-xs">
+<div class="flex items-center gap-sm">
+<h3 class="font-body-lg font-bold text-on-surface">Global Eco Initiatives Corp</h3>
+<span class="inline-flex items-center px-sm py-xs rounded-full text-[12px] font-medium bg-secondary-container text-on-secondary-container">
+                                Pending
+                            </span>
+</div>
+<p class="font-body-sm text-on-surface-variant">Corporate Sustainability Fund</p>
+<div class="flex items-center gap-xs mt-sm text-primary">
+<span class="material-symbols-outlined text-[18px]">volunteer_activism</span>
+<span class="font-body-sm font-semibold">Ocean Conservancy</span>
+</div>
+</div>
+<div class="flex md:flex-col items-end justify-between md:justify-center gap-sm mt-md md:mt-0">
+<div class="font-data-lg text-data-lg font-bold text-on-surface">
+                            $5,250.00
+                        </div>
+<button class="bg-primary text-on-primary font-body-sm font-bold px-lg py-sm rounded-lg hover:opacity-90 transition-opacity flex items-center gap-sm">
+                            Review
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Grant Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-md flex flex-col gap-sm md:flex-row md:items-center md:justify-between">
+<div class="flex-1 space-y-xs">
+<div class="flex items-center gap-sm">
+<h3 class="font-body-lg font-bold text-on-surface">Dr. Sarah Jenkins</h3>
+<span class="inline-flex items-center px-sm py-xs rounded-full text-[12px] font-medium bg-secondary-container text-on-secondary-container">
+                                Pending
+                            </span>
+</div>
+<p class="font-body-sm text-on-surface-variant">Medical Education Endowment</p>
+<div class="flex items-center gap-xs mt-sm text-primary">
+<span class="material-symbols-outlined text-[18px]">volunteer_activism</span>
+<span class="font-body-sm font-semibold">Mayo Clinic Research</span>
+</div>
+</div>
+<div class="flex md:flex-col items-end justify-between md:justify-center gap-sm mt-md md:mt-0">
+<div class="font-data-lg text-data-lg font-bold text-on-surface">
+                            $1,200.00
+                        </div>
+<button class="bg-primary text-on-primary font-body-sm font-bold px-lg py-sm rounded-lg hover:opacity-90 transition-opacity flex items-center gap-sm">
+                            Review
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Empty State Illustration (Hidden for demo purpose, visible if list were empty) -->
+<div class="hidden flex flex-col items-center justify-center py-3xl px-xl text-center">
+<div class="w-64 h-64 mb-xl overflow-hidden rounded-full border-4 border-surface-container-highest">
+<img alt="Empty queue" class="w-full h-full object-cover" data-alt="A tranquil, minimalist workspace with a single succulent plant and a clean ceramic coffee mug on a white oak desk. Sunlight filters through a large window, creating soft shadows across the organized, empty desktop. The atmosphere is calm and productive, reflecting a serene light-mode aesthetic with soft green and neutral tones consistent with a modern corporate management interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVLhtRkkT8gdLTpSC8MxDEn9c8gCTw2jT0w2RHiTgteL7OnWDlq9jKzFcfQbKradORKTqQIePmHnhrSoh_S_ReTOjUfPcpYPAKiuxoS_y_afrQO0pFz9gazM0c5wSPjn2emvCJDyBI9P0SrtT9qyxlmDnC96sNr7J0_2IshsTTfixtji5Ex4Hwpi5XDuAhHGUZd9M0_kvUyh0U3hwwSBUv30Vpo2nlDt0fmXsdWpZOR5mZOF7XlsnZiqmz_4DRBr-VRksNO6NwoTon"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-sm">No pending recommendations</h3>
+<p class="font-body-md text-on-surface-variant max-w-md">Your queue is currently empty. New grant recommendations from donors will appear here for your review.</p>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline shadow-sm flex justify-around items-center px-md pb-md pt-sm rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-md py-xs hover:bg-secondary-fixed-dim dark:hover:bg-secondary-fixed transition-colors cursor-pointer group">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-sm text-body-sm">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-md py-xs transition-transform duration-150 active:scale-95 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-body-sm text-body-sm">Grants</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-md py-xs hover:bg-secondary-fixed-dim dark:hover:bg-secondary-fixed transition-colors cursor-pointer">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-sm text-body-sm">Activity</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-md py-xs hover:bg-secondary-fixed-dim dark:hover:bg-secondary-fixed transition-colors cursor-pointer">
+<span class="material-symbols-outlined">person</span>
+<span class="font-body-sm text-body-sm">Profile</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Steward Admin - Fund Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#b64c62",
+                    "surface": "#f6fbf2",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#fff1f1",
+                    "primary-fixed": "#95f8a7",
+                    "surface-container-highest": "#dfe4db",
+                    "inverse-primary": "#79db8d",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#97344a",
+                    "surface-dim": "#d6dcd3",
+                    "surface-bright": "#f6fbf2",
+                    "surface-tint": "#006d30",
+                    "on-tertiary-fixed": "#400013",
+                    "surface-container": "#eaefe6",
+                    "secondary": "#436648",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#c4edc6",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#becabc",
+                    "outline": "#6f7a6e",
+                    "primary-container": "#15803d",
+                    "surface-variant": "#dfe4db",
+                    "secondary-fixed-dim": "#a9d0ab",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#005323",
+                    "surface-container-low": "#f0f5ec",
+                    "on-secondary-container": "#496d4d",
+                    "tertiary-fixed": "#ffd9dd",
+                    "tertiary-fixed-dim": "#ffb2bd",
+                    "inverse-on-surface": "#edf2e9",
+                    "secondary-container": "#c4edc6",
+                    "on-background": "#181d17",
+                    "on-surface": "#181d17",
+                    "on-secondary-fixed-variant": "#2c4e32",
+                    "surface-container-high": "#e4eae1",
+                    "primary": "#00652c",
+                    "background": "#f6fbf2",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2c322c",
+                    "primary-fixed-dim": "#79db8d",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#00210a",
+                    "on-primary-fixed": "#00210a",
+                    "on-primary-container": "#d3ffd5",
+                    "on-surface-variant": "#3f493f",
+                    "on-tertiary-fixed-variant": "#81233b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "3xl": "64px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "unit": "8px",
+                    "sm": "8px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "data-sm": ["JetBrains Mono"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "data-lg": ["JetBrains Mono"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "data-md": ["JetBrains Mono"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "data-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "data-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "data-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["30px", {"lineHeight": "38px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<div class="flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="flex flex-col h-screen left-0 w-64 bg-surface-container-low p-md border-r border-outline-variant fixed">
+<div class="flex flex-col h-full">
+<div class="mb-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Steward Admin</span>
+<div class="flex items-center gap-sm mt-md">
+<img alt="Staff Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a friendly community foundation staff member. The lighting is warm and natural, suggesting a high-trust corporate environment. The background is a blurred office space with soft green plants, maintaining the brand's 'Nurtured Stability' aesthetic and earthy color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7AA6pUmPPTaV3EHXXtpGv3M6Vy-_I8D82UzXHFyZzbk8lNYic0HTqRqmqNhpHbYtszdXU3wf739Pv6VyvM-Z9_wf_dNtuK85x42S0JEKcibCYoVZ6YrymSfAmBw4CR_zVOOYQfjnSnV4s7RMjyr-EeS_lOSPRywAWk4kZZpY2-X-elY1MsYMmnBm3I-XUOLU-wQxCzmr4lNkCvnpGjUzF9iRjCtEe_U3iJuy5VSQZlkRvqxQyp7Y-PKIO1gaInIKKY2BQnXf8SX0u"/>
+<div>
+<p class="font-body-sm text-body-sm font-bold text-on-surface">Staff Member</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Foundation Staff</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-sm">
+<a class="flex items-center gap-md p-md bg-secondary-container text-on-secondary-container font-bold rounded-lg duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-sm text-body-sm">Overview</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-highest transition-all duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-body-sm text-body-sm">Fund Management</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-highest transition-all duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">send_money</span>
+<span class="font-body-sm text-body-sm">Grant Requests</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-highest transition-all duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-sm text-body-sm">Analytics</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-highest transition-all duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+</nav>
+<div class="mt-lg mb-md">
+<button class="w-full bg-primary text-on-primary font-bold py-md px-lg rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all">
+                        New Grant
+                    </button>
+</div>
+<div class="pt-md border-t border-outline-variant space-y-sm">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-highest transition-all duration-150" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-body-sm text-body-sm">Support</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-highest transition-all duration-150" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-sm text-body-sm">Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 p-3xl overflow-y-auto">
+<!-- Header Section -->
+<header class="mb-3xl">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary mb-xs">Fund Overview</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Real-time performance and allocation monitoring.</p>
+</div>
+</div>
+<!-- Bento-style Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-surface-container-high p-lg rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm text-primary mb-sm">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-sm text-body-sm font-bold uppercase tracking-wider">Total Managed Assets</span>
+</div>
+<p class="font-data-lg text-display-lg text-on-surface">$12,482,900.50</p>
+<div class="mt-md flex items-center gap-xs text-primary">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="font-data-sm text-data-sm">+4.2% from last month</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-lg rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm text-primary mb-sm">
+<span class="material-symbols-outlined">diversity_3</span>
+<span class="font-body-sm text-body-sm font-bold uppercase tracking-wider">Active Funds</span>
+</div>
+<p class="font-data-lg text-display-lg text-on-surface">142</p>
+<div class="mt-md flex items-center gap-xs text-on-surface-variant">
+<span class="font-data-sm text-data-sm">12 New funds this year</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-lg rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm text-primary mb-sm">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-body-sm text-body-sm font-bold uppercase tracking-wider">Grants This Quarter</span>
+</div>
+<p class="font-data-lg text-display-lg text-on-surface">86</p>
+<div class="mt-md flex items-center gap-xs text-tertiary">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="font-data-sm text-data-sm">14 Pending approval</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Fund Grid -->
+<section>
+<div class="flex justify-between items-center mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">Active Portfolios</h2>
+<div class="flex gap-md">
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container-highest border border-outline-variant rounded-lg font-body-sm text-body-sm hover:bg-outline-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container-highest border border-outline-variant rounded-lg font-body-sm text-body-sm hover:bg-outline-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">sort</span>
+                            Sort
+                        </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Fund Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Green Valley Initiative</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Donor: Sarah Jenkins</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded font-data-sm text-data-sm">Active</span>
+</div>
+<div class="my-xl">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Current Balance</p>
+<p class="font-data-lg text-headline-md font-bold text-primary">$450,230.00</p>
+</div>
+<div class="grid grid-cols-2 gap-md border-t border-outline-variant pt-lg mb-lg">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Contributions</p>
+<p class="font-data-md text-data-md font-bold">24</p>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Grants Approved</p>
+<p class="font-data-md text-data-md font-bold text-secondary">8</p>
+</div>
+</div>
+<button class="w-full font-body-sm text-body-sm font-bold text-primary py-sm rounded-lg hover:bg-primary-container/10 transition-colors">
+                            View Details
+                        </button>
+</div>
+<!-- Fund Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Urban Arts Endowment</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Donor: Marcus Thorne</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded font-data-sm text-data-sm">Active</span>
+</div>
+<div class="my-xl">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Current Balance</p>
+<p class="font-data-lg text-headline-md font-bold text-primary">$1,204,500.80</p>
+</div>
+<div class="grid grid-cols-2 gap-md border-t border-outline-variant pt-lg mb-lg">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Contributions</p>
+<p class="font-data-md text-data-md font-bold">112</p>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Grants Approved</p>
+<p class="font-data-md text-data-md font-bold text-secondary">42</p>
+</div>
+</div>
+<button class="w-full font-body-sm text-body-sm font-bold text-primary py-sm rounded-lg hover:bg-primary-container/10 transition-colors">
+                            View Details
+                        </button>
+</div>
+<!-- Fund Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Education First Fund</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Donor: Li Wei Foundation</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded font-data-sm text-data-sm">Active</span>
+</div>
+<div class="my-xl">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Current Balance</p>
+<p class="font-data-lg text-headline-md font-bold text-primary">$892,100.00</p>
+</div>
+<div class="grid grid-cols-2 gap-md border-t border-outline-variant pt-lg mb-lg">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Contributions</p>
+<p class="font-data-md text-data-md font-bold">56</p>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Grants Approved</p>
+<p class="font-data-md text-data-md font-bold text-secondary">15</p>
+</div>
+</div>
+<button class="w-full font-body-sm text-body-sm font-bold text-primary py-sm rounded-lg hover:bg-primary-container/10 transition-colors">
+                            View Details
+                        </button>
+</div>
+<!-- Fund Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Wildlife Restoration</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Donor: Patterson Trust</p>
+</div>
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-xs rounded font-data-sm text-data-sm">Pending</span>
+</div>
+<div class="my-xl">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Current Balance</p>
+<p class="font-data-lg text-headline-md font-bold text-primary">$0.00</p>
+</div>
+<div class="grid grid-cols-2 gap-md border-t border-outline-variant pt-lg mb-lg">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Contributions</p>
+<p class="font-data-md text-data-md font-bold">0</p>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Grants Approved</p>
+<p class="font-data-md text-data-md font-bold text-secondary">0</p>
+</div>
+</div>
+<button class="w-full font-body-sm text-body-sm font-bold text-primary py-sm rounded-lg hover:bg-primary-container/10 transition-colors">
+                            View Details
+                        </button>
+</div>
+<!-- Fund Card 5 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Community Health Hub</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Donor: Riverside Group</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded font-data-sm text-data-sm">Active</span>
+</div>
+<div class="my-xl">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Current Balance</p>
+<p class="font-data-lg text-headline-md font-bold text-primary">$2,560,000.00</p>
+</div>
+<div class="grid grid-cols-2 gap-md border-t border-outline-variant pt-lg mb-lg">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Contributions</p>
+<p class="font-data-md text-data-md font-bold">12</p>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Grants Approved</p>
+<p class="font-data-md text-data-md font-bold text-secondary">3</p>
+</div>
+</div>
+<button class="w-full font-body-sm text-body-sm font-bold text-primary py-sm rounded-lg hover:bg-primary-container/10 transition-colors">
+                            View Details
+                        </button>
+</div>
+<!-- Fund Card 6 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">STEM Scholarship</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Donor: Dr. Elena Vance</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded font-data-sm text-data-sm">Active</span>
+</div>
+<div class="my-xl">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Current Balance</p>
+<p class="font-data-lg text-headline-md font-bold text-primary">$315,750.40</p>
+</div>
+<div class="grid grid-cols-2 gap-md border-t border-outline-variant pt-lg mb-lg">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Contributions</p>
+<p class="font-data-md text-data-md font-bold">88</p>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Grants Approved</p>
+<p class="font-data-md text-data-md font-bold text-secondary">32</p>
+</div>
+</div>
+<button class="w-full font-body-sm text-body-sm font-bold text-primary py-sm rounded-lg hover:bg-primary-container/10 transition-colors">
+                            View Details
+                        </button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed bottom-xl right-xl flex items-center gap-md bg-primary text-on-primary p-lg rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 600;">add</span>
+<span class="font-body-md text-body-md font-bold pr-sm">Create Fund</span>
+</button>
+</body></html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Review Grant Recommendation | Steward Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#b64c62",
+                    "surface": "#f6fbf2",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#fff1f1",
+                    "primary-fixed": "#95f8a7",
+                    "surface-container-highest": "#dfe4db",
+                    "inverse-primary": "#79db8d",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#97344a",
+                    "surface-dim": "#d6dcd3",
+                    "surface-bright": "#f6fbf2",
+                    "surface-tint": "#006d30",
+                    "on-tertiary-fixed": "#400013",
+                    "surface-container": "#eaefe6",
+                    "secondary": "#436648",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#c4edc6",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#becabc",
+                    "outline": "#6f7a6e",
+                    "primary-container": "#15803d",
+                    "surface-variant": "#dfe4db",
+                    "secondary-fixed-dim": "#a9d0ab",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#005323",
+                    "surface-container-low": "#f0f5ec",
+                    "on-secondary-container": "#496d4d",
+                    "tertiary-fixed": "#ffd9dd",
+                    "tertiary-fixed-dim": "#ffb2bd",
+                    "inverse-on-surface": "#edf2e9",
+                    "secondary-container": "#c4edc6",
+                    "on-background": "#181d17",
+                    "on-surface": "#181d17",
+                    "on-secondary-fixed-variant": "#2c4e32",
+                    "surface-container-high": "#e4eae1",
+                    "primary": "#00652c",
+                    "background": "#f6fbf2",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2c322c",
+                    "primary-fixed-dim": "#79db8d",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#00210a",
+                    "on-primary-fixed": "#00210a",
+                    "on-primary-container": "#d3ffd5",
+                    "on-surface-variant": "#3f493f",
+                    "on-tertiary-fixed-variant": "#81233b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "3xl": "64px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "unit": "8px",
+                    "sm": "8px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "data-sm": ["JetBrains Mono"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "data-lg": ["JetBrains Mono"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "data-md": ["JetBrains Mono"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "data-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "data-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "data-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["30px", {"lineHeight": "38px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-active {
+            background-color: #c4edc6; /* secondary-container */
+            color: #496d4d; /* on-secondary-container */
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface h-screen overflow-hidden flex">
+<!-- Sidebar Navigation -->
+<aside class="flex flex-col h-full p-md border-r border-outline-variant bg-surface-container dark:bg-surface-container-low docked h-screen left-0 w-64 flex-shrink-0">
+<div class="font-headline-sm text-headline-sm font-bold text-primary mb-xl">Steward Admin</div>
+<div class="flex items-center gap-md mb-xl p-sm">
+<img alt="Staff Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="A professional portrait of a foundation administrator, a woman in her late 30s with a confident and kind expression, wearing a navy blazer. The background is a blurred modern office with soft sunlight filtering through glass. The lighting is bright and airy, emphasizing a professional yet approachable philanthropic atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUcPameFI5b9U1dJvMztzQhSL7vqnRqQJC4eEe4aYDfFNLg9zpKUnnlxuVcDaQU8QaGi4MPPtnKMn4NAySbmgjtrdFKIXdz0B0HyneAcuaUvhQro6OVBOEcRQlFRWzTwH0XcpYxiZVkAgQ2kZinXL9oQ4VR6aEv0CM809SFp7mO3C4BPKZEcumH-Gmh_OjTooPZbI7yArlNElbUWk_QSSGSjt9DBipcVSTSmulkq6pko-95wGwB1pZxpL-_tEaY-vzCgYyrIqOHQc8"/>
+<div>
+<p class="font-body-sm font-bold text-on-surface">Foundation Staff</p>
+<p class="text-[12px] text-on-surface-variant">Steward Admin</p>
+</div>
+</div>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-sm">Overview</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-body-sm">Fund Management</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg bg-secondary-container text-on-secondary-container font-bold transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">send_money</span>
+<span class="font-body-sm">Grant Requests</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-sm">Analytics</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-sm">Settings</span>
+</a>
+</nav>
+<div class="mt-auto space-y-xs pt-md border-t border-outline-variant">
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-body-sm">Support</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-sm">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full bg-background relative overflow-hidden">
+<!-- Header -->
+<header class="h-16 flex items-center justify-between px-xl border-b border-outline-variant bg-surface shrink-0">
+<div class="flex items-center gap-md">
+<button class="p-xs hover:bg-surface-container-highest rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Review Grant Recommendation</h1>
+</div>
+<div class="flex items-center gap-lg">
+<span class="flex items-center gap-sm px-md py-xs bg-error-container text-on-error-container rounded-full font-body-sm font-bold">
+<span class="material-symbols-outlined text-[18px]">priority_high</span>
+                    Pending Review
+                </span>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant">help</span>
+</div>
+</div>
+</header>
+<!-- Split Screen Content -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Left Side: Recommendation Details -->
+<section class="w-1/2 overflow-y-auto p-xl border-r border-outline-variant bg-surface">
+<div class="max-w-2xl mx-auto space-y-xl">
+<div>
+<span class="font-data-sm text-on-surface-variant uppercase tracking-wider">Reference ID: GR-2024-8842</span>
+<h2 class="font-headline-md text-headline-md text-primary mt-sm">Grant Recommendation</h2>
+</div>
+<div class="grid grid-cols-2 gap-lg">
+<div class="space-y-xs">
+<label class="font-body-sm text-on-surface-variant">Donor</label>
+<div class="font-body-lg font-bold flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">person</span>
+                                Jane Doe
+                            </div>
+</div>
+<div class="space-y-xs">
+<label class="font-body-sm text-on-surface-variant">Fund Name</label>
+<div class="font-body-lg font-bold flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+                                Williams Family Fund
+                            </div>
+</div>
+</div>
+<div class="p-lg bg-surface-container rounded-xl border border-outline-variant space-y-md">
+<div class="flex justify-between items-end">
+<div class="space-y-xs">
+<label class="font-body-sm text-on-surface-variant">Recommended Recipient</label>
+<div class="font-headline-sm text-on-surface">Local Food Bank</div>
+<div class="font-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                                    San Francisco, CA • EIN: 12-3456789
+                                </div>
+</div>
+<div class="text-right">
+<label class="font-body-sm text-on-surface-variant">Amount</label>
+<div class="font-data-lg text-display-lg-mobile text-primary">$5,000.00</div>
+</div>
+</div>
+</div>
+<div class="space-y-sm">
+<label class="font-body-sm text-on-surface-variant">Donor Memo</label>
+<div class="p-lg bg-surface-container-low border border-outline-variant rounded-lg italic text-body-md text-on-surface-variant relative overflow-hidden">
+<span class="material-symbols-outlined absolute -top-2 -right-2 text-[64px] opacity-5 text-primary">format_quote</span>
+                            "This grant is intended to support the upcoming winter meal program. We are particularly interested in seeing these funds used for the purchase of fresh produce and protein sources for local families in need."
+                        </div>
+</div>
+<div class="pt-lg">
+<label class="font-body-sm text-on-surface-variant mb-md block">Historical Activity</label>
+<div class="space-y-md">
+<div class="flex gap-md">
+<div class="w-1 bg-outline-variant rounded-full h-auto"></div>
+<div class="py-sm">
+<p class="font-body-sm font-bold">Recommendation Submitted</p>
+<p class="font-data-sm text-on-surface-variant">Oct 24, 2024 • 10:14 AM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Side: Staff Internal Review -->
+<section class="w-1/2 overflow-y-auto p-xl bg-surface-container-low">
+<div class="max-w-xl mx-auto space-y-xl">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Internal Compliance Review</h2>
+<p class="font-body-sm text-on-surface-variant mt-xs">Verify the eligibility and balance before processing this distribution.</p>
+</div>
+<div class="space-y-md">
+<label class="font-body-sm font-bold text-on-surface uppercase tracking-wide">Compliance Check</label>
+<div class="space-y-sm">
+<div class="flex items-start gap-md p-md bg-surface border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer group">
+<div class="mt-xs">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+</div>
+<div>
+<p class="font-body-md font-bold text-on-surface group-hover:text-primary transition-colors">501(c)(3) Status Verified</p>
+<p class="font-body-sm text-on-surface-variant">Organization is in good standing with the IRS and matches the master database.</p>
+</div>
+</div>
+<div class="flex items-start gap-md p-md bg-surface border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer group">
+<div class="mt-xs">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+</div>
+<div>
+<p class="font-body-md font-bold text-on-surface group-hover:text-primary transition-colors">Available Balance Confirmed</p>
+<p class="font-body-sm text-on-surface-variant">The Williams Family Fund has sufficient uncommitted assets to cover this grant.</p>
+<div class="mt-sm font-data-sm bg-secondary-container px-sm py-xs rounded inline-block text-on-secondary-container">
+                                        Current Balance: $42,390.12
+                                    </div>
+</div>
+</div>
+<div class="flex items-start gap-md p-md bg-surface border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer group">
+<div class="mt-xs">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+</div>
+<div>
+<p class="font-body-md font-bold text-on-surface group-hover:text-primary transition-colors">Anti-Terrorist Financing Search</p>
+<p class="font-body-sm text-on-surface-variant">Entity cleared against SDN and consolidated sanction lists.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-sm">
+<label class="font-body-sm font-bold text-on-surface uppercase tracking-wide">Internal Review Note</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg p-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="Add notes for the processing team or record your review findings here..." rows="6"></textarea>
+</div>
+<div class="p-md bg-tertiary-container/10 rounded-lg border border-tertiary-container/20 flex gap-md">
+<span class="material-symbols-outlined text-tertiary">info</span>
+<p class="font-body-sm text-on-tertiary-fixed-variant">
+<strong>Policy Reminder:</strong> Grants exceeding $2,500.00 require a double-blind compliance check. This is your primary review.
+                        </p>
+</div>
+</div>
+</section>
+</div>
+<!-- Action Footer -->
+<footer class="h-20 flex items-center justify-end px-xl gap-md border-t border-outline-variant bg-surface shrink-0 z-10 shadow-lg">
+<button class="px-xl py-md rounded-lg font-body-md font-bold text-error border border-error hover:bg-error-container transition-all active:scale-95">
+                Deny Recommendation
+            </button>
+<button class="px-xl py-md bg-primary text-on-primary rounded-lg font-body-md font-bold shadow-sm hover:bg-primary-container transition-all active:scale-95 flex items-center gap-sm">
+                Approve &amp; Process
+                <span class="material-symbols-outlined text-[20px]">check_circle</span>
+</button>
+</footer>
+</main>
+</body></html>

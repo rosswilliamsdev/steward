@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#b64c62",
+                        "surface": "#f6fbf2",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#fff1f1",
+                        "primary-fixed": "#95f8a7",
+                        "surface-container-highest": "#dfe4db",
+                        "inverse-primary": "#79db8d",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#97344a",
+                        "surface-dim": "#d6dcd3",
+                        "surface-bright": "#f6fbf2",
+                        "surface-tint": "#006d30",
+                        "on-tertiary-fixed": "#400013",
+                        "surface-container": "#eaefe6",
+                        "secondary": "#436648",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#c4edc6",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#becabc",
+                        "outline": "#6f7a6e",
+                        "primary-container": "#15803d",
+                        "surface-variant": "#dfe4db",
+                        "secondary-fixed-dim": "#a9d0ab",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#005323",
+                        "surface-container-low": "#f0f5ec",
+                        "on-secondary-container": "#496d4d",
+                        "tertiary-fixed": "#ffd9dd",
+                        "tertiary-fixed-dim": "#ffb2bd",
+                        "inverse-on-surface": "#edf2e9",
+                        "secondary-container": "#c4edc6",
+                        "on-background": "#181d17",
+                        "on-surface": "#181d17",
+                        "on-secondary-fixed-variant": "#2c4e32",
+                        "surface-container-high": "#e4eae1",
+                        "primary": "#00652c",
+                        "background": "#f6fbf2",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2c322c",
+                        "primary-fixed-dim": "#79db8d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#00210a",
+                        "on-primary-fixed": "#00210a",
+                        "on-primary-container": "#d3ffd5",
+                        "on-surface-variant": "#3f493f",
+                        "on-tertiary-fixed-variant": "#81233b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "3xl": "64px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "unit": "8px",
+                        "sm": "8px",
+                        "2xl": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "data-sm": ["JetBrains Mono"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "data-lg": ["JetBrains Mono"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "data-md": ["JetBrains Mono"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "data-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-md": ["30px", {"lineHeight": "38px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f6fbf2;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar Component -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center w-full px-lg h-16 max-w-full sticky top-0 z-50">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">Steward</span>
+<nav class="hidden md:flex items-center gap-lg h-full">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors active:opacity-80" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors active:opacity-80" href="#">My Funds</a>
+<a class="font-body-md text-body-md text-primary dark:text-inverse-primary border-b-2 border-primary font-bold pb-1 transition-all" href="#">Grants</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors active:opacity-80" href="#">Impact</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container" data-icon="help">help</button>
+<div class="w-10 h-10 rounded-full bg-secondary-container overflow-hidden border border-outline-variant">
+<img alt="Donor Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a mature philanthropist in a well-lit modern office setting. The lighting is soft and natural, emphasizing a warm and approachable professional demeanor. The background is slightly blurred, showing clean lines of architectural elements in a light-mode corporate environment. The palette is dominated by neutral tones and soft greens, reflecting a stable and successful individual committed to community growth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARXHF6zgRtjO30HB4cfh5-AKK4wkoDweXG1754tFQe8R6PtjOx-XjdwYSo6wOCZ0eC2Sbgjew_SFcT-wAjNLZeRREcDWTianUGec7ddIjfTSJmYXQve-ZCpw3rEH1hQKVs_hF1QhcF9yskZiZVrBR8YDSjtmAPYaj7dziNHVCGwnaHbgo77YLMo67pljH2j-nO_t7DUTpitV2BlzjnCOARV44IVYwW1HCNjMNTBb-p0qin5S42WZq_7R66WyYTQDBrhE0CgukGNAvy"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto py-3xl px-md min-h-[calc(100vh-64px)]">
+<div class="mb-xl">
+<h1 class="font-headline-md text-headline-md text-on-surface">Recommend a Grant</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Direct your fund’s resources to the causes you care about most.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+<!-- Left Column: Balance Summary Card -->
+<div class="lg:col-span-4 space-y-lg">
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-lg shadow-sm">
+<div class="flex items-center gap-sm mb-md text-primary">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<h2 class="font-headline-sm text-headline-sm">Available Balance</h2>
+</div>
+<div class="space-y-sm">
+<p class="font-data-lg text-data-lg text-on-surface-variant">Community Impact Fund #4402</p>
+<p class="font-data-lg text-[40px] leading-tight text-primary font-bold tracking-tight">
+                            $10,000.00
+                        </p>
+</div>
+<div class="mt-xl pt-lg border-t border-outline-variant">
+<div class="flex justify-between items-center mb-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Annual Distribution Goal</span>
+<span class="font-data-sm text-data-sm text-primary">85% Complete</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</div>
+<div class="bg-secondary-container/30 border border-secondary-container rounded-xl p-md">
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-secondary" data-icon="info">info</span>
+<p class="font-body-sm text-body-sm text-on-secondary-container">
+                            Recommendations are reviewed by the foundation staff within 3-5 business days. You will receive an email notification once approved.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Right Column: Grant Recommendation Form -->
+<div class="lg:col-span-8">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-xl">
+<form class="space-y-xl">
+<!-- Nonprofit Search -->
+<div class="space-y-sm">
+<label class="font-body-sm text-body-sm text-on-surface-variant font-semibold" for="nonprofit">Nonprofit Organization</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md text-body-md" id="nonprofit" placeholder="Search by name or EIN..." type="text"/>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Can't find your organization? <a class="text-primary hover:underline" href="#">Add a new one.</a></p>
+</div>
+<!-- Amount Input with Error -->
+<div class="space-y-sm">
+<label class="font-body-sm text-body-sm text-on-surface-variant font-semibold" for="amount">Grant Amount</label>
+<div class="relative group">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-data-md text-data-md text-on-surface-variant">$</span>
+<input class="w-full pl-8 pr-4 py-3 bg-surface border border-error rounded-lg focus:ring-2 focus:ring-error focus:border-error transition-all outline-none font-data-md text-data-md" id="amount" type="text" value="12,500.00"/>
+</div>
+<div class="flex items-center gap-xs text-error">
+<span class="material-symbols-outlined text-sm" data-icon="error">error</span>
+<span class="font-body-sm text-body-sm">Amount exceeds fund balance ($10,000.00 available)</span>
+</div>
+</div>
+<!-- Memo Textarea -->
+<div class="space-y-sm">
+<label class="font-body-sm text-body-sm text-on-surface-variant font-semibold" for="memo">Grant Memo (Optional)</label>
+<textarea class="w-full px-4 py-3 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md text-body-md resize-none" id="memo" placeholder="Purpose of this grant (e.g., General Operating Support, Summer Literacy Program...)" rows="4"></textarea>
+<div class="flex justify-between items-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">This memo will be included in the letter sent to the nonprofit.</p>
+<span class="font-body-sm text-body-sm text-on-surface-variant">0 / 250</span>
+</div>
+</div>
+<!-- Visibility Options -->
+<div class="p-md bg-surface border border-outline-variant rounded-lg space-y-md">
+<div class="flex items-start gap-md">
+<input class="mt-1 w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary" id="anonymous" type="checkbox"/>
+<div>
+<label class="font-body-md text-body-md text-on-surface font-semibold" for="anonymous">Recommend Anonymously</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The foundation will not share your fund name or donor information with the recipient.</p>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="flex justify-end items-center gap-md pt-lg border-t border-outline-variant">
+<button class="px-xl py-2 font-body-md text-body-md text-primary font-semibold hover:bg-surface-container rounded-lg transition-all active:scale-95" type="button">
+                                Cancel
+                            </button>
+<button class="px-xl py-2 font-body-md text-body-md bg-primary text-on-primary font-bold rounded-lg shadow-sm hover:shadow-md transition-all active:scale-95" type="submit">
+                                Submit Recommendation
+                            </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+<!-- Decorative Bottom Gradient -->
+<div class="h-1 bg-gradient-to-r from-primary via-secondary to-tertiary opacity-20 mt-auto"></div>
+</body></html>

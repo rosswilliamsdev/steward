@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Steward Donor Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#b64c62",
+                        "surface": "#f6fbf2",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#fff1f1",
+                        "primary-fixed": "#95f8a7",
+                        "surface-container-highest": "#dfe4db",
+                        "inverse-primary": "#79db8d",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#97344a",
+                        "surface-dim": "#d6dcd3",
+                        "surface-bright": "#f6fbf2",
+                        "surface-tint": "#006d30",
+                        "on-tertiary-fixed": "#400013",
+                        "surface-container": "#eaefe6",
+                        "secondary": "#436648",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#c4edc6",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#becabc",
+                        "outline": "#6f7a6e",
+                        "primary-container": "#15803d",
+                        "surface-variant": "#dfe4db",
+                        "secondary-fixed-dim": "#a9d0ab",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#005323",
+                        "surface-container-low": "#f0f5ec",
+                        "on-secondary-container": "#496d4d",
+                        "tertiary-fixed": "#ffd9dd",
+                        "tertiary-fixed-dim": "#ffb2bd",
+                        "inverse-on-surface": "#edf2e9",
+                        "secondary-container": "#c4edc6",
+                        "on-background": "#181d17",
+                        "on-surface": "#181d17",
+                        "on-secondary-fixed-variant": "#2c4e32",
+                        "surface-container-high": "#e4eae1",
+                        "primary": "#00652c",
+                        "background": "#f6fbf2",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2c322c",
+                        "primary-fixed-dim": "#79db8d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#00210a",
+                        "on-primary-fixed": "#00210a",
+                        "on-primary-container": "#d3ffd5",
+                        "on-surface-variant": "#3f493f",
+                        "on-tertiary-fixed-variant": "#81233b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "3xl": "64px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "unit": "8px",
+                        "sm": "8px",
+                        "2xl": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "data-sm": ["JetBrains Mono"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "data-lg": ["JetBrains Mono"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "data-md": ["JetBrains Mono"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "data-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-md": ["30px", {"lineHeight": "38px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(0, 101, 44, 0.1) 0%, rgba(246, 251, 242, 0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-lg h-16 max-w-full shadow-sm border-b border-outline-variant">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Steward</span>
+<div class="hidden md:flex items-center gap-md relative">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-body-sm w-64 focus:ring-2 focus:ring-primary" placeholder="Search funds or grants..." type="text"/>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-xl h-full">
+<a class="text-primary border-b-2 border-primary font-bold pb-1 h-full flex items-center transition-all" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors h-full flex items-center" href="#">My Funds</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors h-full flex items-center" href="#">Grants</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors h-full flex items-center" href="#">Impact</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container transition-all rounded-full active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container transition-all rounded-full active:opacity-80">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="Donor Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a mature philanthropist man with a warm and trustworthy expression. He is wearing a dark navy suit against a clean, light-colored background. The lighting is soft and high-key, conveying a sense of modern stability and professional integrity consistent with a corporate management platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh_rf70WmTiF9VKZ3Z4aC7opqgtcjdifmu66GZvc65CmTUWpgHkNE1IEKAxpWJFmh3ExFlYj1EBBRolf_cgJQQ3s96EzdBI-jagX6B2FJ6q5CB9gVinr_0K1XTj-5gwl2IWgtaXdPTaN1jjKLWNw6BT_h4yo2ljJkJgR2k0N9od9KkmzbBsYEeckGgJ3M6CakJJaN04vt05tgSJegvo9aRYF5Rnp5-TGYQQgQ-l03ofB2KzJL82kOdttGeAsque9Im9Wu8vI_Aix-x"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto p-lg lg:p-xl space-y-lg">
+<!-- Metric Cards -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Card 1: Current Balance -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-md">
+<p class="text-body-sm text-on-surface-variant font-medium">Current Balance</p>
+<span class="material-symbols-outlined text-primary" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<h2 class="font-data-lg text-headline-md text-on-surface tracking-tight">$1,245,890.00</h2>
+<div class="mt-sm flex items-center gap-xs">
+<span class="text-primary text-xs font-bold">+2.4%</span>
+<p class="text-body-sm text-on-surface-variant">from last month</p>
+</div>
+</div>
+<!-- Card 2: Total Contributed -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-md">
+<p class="text-body-sm text-on-surface-variant font-medium">Total Contributed</p>
+<span class="material-symbols-outlined text-primary" data-icon="volunteer_activism">volunteer_activism</span>
+</div>
+<h2 class="font-data-lg text-headline-md text-on-surface tracking-tight">$4,500,000.00</h2>
+<div class="mt-sm flex items-center gap-xs text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+<p class="text-body-sm text-on-surface-variant">LIFETIME IMPACT</p>
+</div>
+</div>
+<!-- Card 3: Grants This Year -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-md">
+<p class="text-body-sm text-on-surface-variant font-medium">Grants This Year</p>
+<span class="material-symbols-outlined text-primary" data-icon="send_money">send_money</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<h2 class="font-data-lg text-headline-md text-on-surface tracking-tight">$158,200</h2>
+<span class="text-body-sm text-on-surface-variant">/ 12 Grants</span>
+</div>
+<div class="mt-md bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%] rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- Middle Section: Chart & Sidebar -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Balance Over Time Chart Container -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-xl">
+<div>
+<h3 class="font-headline-sm text-on-surface">Balance Over Time</h3>
+<p class="text-body-sm text-on-surface-variant">A summary of your fund's growth and distributions</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm rounded-lg bg-surface-container-high text-body-sm font-medium hover:bg-outline-variant transition-colors">6M</button>
+<button class="px-md py-sm rounded-lg bg-primary text-on-primary text-body-sm font-medium">1Y</button>
+<button class="px-md py-sm rounded-lg bg-surface-container-high text-body-sm font-medium hover:bg-outline-variant transition-colors">ALL</button>
+</div>
+</div>
+<!-- Mock Chart Visual -->
+<div class="h-[300px] w-full relative">
+<div class="absolute inset-0 flex items-end gap-1">
+<!-- Simplified visual representation of a line chart using SVG-like divs for illustrative purposes -->
+<div class="flex-1 chart-gradient h-[40%] rounded-t-sm border-t-2 border-primary relative group">
+<div class="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-[10px] px-2 py-1 rounded">Jan</div>
+</div>
+<div class="flex-1 chart-gradient h-[45%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 chart-gradient h-[42%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 chart-gradient h-[55%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 chart-gradient h-[60%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 chart-gradient h-[52%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 chart-gradient h-[70%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 chart-gradient h-[75%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 chart-gradient h-[68%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 chart-gradient h-[85%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 chart-gradient h-[92%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 chart-gradient h-[100%] rounded-t-sm border-t-2 border-primary"></div>
+</div>
+<!-- Y-Axis Labels -->
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-[10px] text-outline opacity-50 font-data-sm -ml-6">
+<span>1.5M</span>
+<span>1.0M</span>
+<span>0.5M</span>
+<span>0</span>
+</div>
+</div>
+<div class="mt-md flex justify-between px-xs text-[10px] text-outline font-data-sm opacity-50">
+<span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span><span>JUL</span><span>AUG</span><span>SEP</span><span>OCT</span><span>NOV</span><span>DEC</span>
+</div>
+</div>
+<!-- Sidebar: Upcoming Events / Fund Tips -->
+<div class="space-y-lg">
+<div class="bg-surface-container-high p-lg rounded-xl border border-outline-variant">
+<h3 class="font-body-lg font-bold text-on-surface mb-md">Upcoming Events</h3>
+<div class="space-y-md">
+<div class="flex gap-md group cursor-pointer">
+<div class="bg-on-primary-container text-primary-container px-sm py-2 rounded-lg flex flex-col items-center justify-center min-w-[48px]">
+<span class="text-[10px] font-bold uppercase">Oct</span>
+<span class="text-lg font-bold">12</span>
+</div>
+<div>
+<p class="text-body-sm font-bold text-on-surface group-hover:text-primary transition-colors">Grant Cycle Q4 Webinar</p>
+<p class="text-[12px] text-on-surface-variant">10:00 AM • Virtual Meeting</p>
+</div>
+</div>
+<div class="flex gap-md group cursor-pointer">
+<div class="bg-secondary-container text-on-secondary-container px-sm py-2 rounded-lg flex flex-col items-center justify-center min-w-[48px]">
+<span class="text-[10px] font-bold uppercase">Nov</span>
+<span class="text-lg font-bold">05</span>
+</div>
+<div>
+<p class="text-body-sm font-bold text-on-surface group-hover:text-primary transition-colors">Annual Impact Gala</p>
+<p class="text-[12px] text-on-surface-variant">06:30 PM • Grand Hall</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary-container text-on-primary-container p-lg rounded-xl relative overflow-hidden shadow-sm">
+<div class="relative z-10">
+<h3 class="font-body-lg font-bold mb-xs">Tax Planning Tip</h3>
+<p class="text-body-sm opacity-90 mb-md">Consider bundling three years of contributions into your DAF this quarter to maximize immediate tax deductions.</p>
+<button class="bg-surface-container-lowest text-primary px-md py-2 rounded-lg text-body-sm font-bold hover:bg-surface transition-all active:scale-95">Read Guide</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-9xl opacity-10" data-icon="lightbulb">lightbulb</span>
+</div>
+</div>
+</section>
+<!-- Bottom Section: Recent Grant Recommendations Table -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-sm text-on-surface">Recent Grant Recommendations</h3>
+<button class="bg-primary text-on-primary px-lg py-2 rounded-lg text-body-sm font-bold flex items-center gap-sm active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                    New Recommendation
+                </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-data-sm text-[12px] uppercase tracking-wider">
+<th class="px-lg py-md font-bold">Date</th>
+<th class="px-lg py-md font-bold">Nonprofit</th>
+<th class="px-lg py-md font-bold">Amount</th>
+<th class="px-lg py-md font-bold">Status</th>
+<th class="px-lg py-md font-bold">Staff Note</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-lg font-data-sm text-on-surface">2023-10-24</td>
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<div class="h-8 w-8 rounded bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="forest">forest</span>
+</div>
+<div>
+<p class="text-body-sm font-bold text-on-surface">Green Valley Land Trust</p>
+<p class="text-[12px] text-on-surface-variant">Environmental Conservation</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg font-data-md text-on-surface">$25,000.00</td>
+<td class="px-lg py-lg">
+<span class="px-sm py-1 rounded-full bg-[#e6f4ea] text-[#1e7e34] text-[12px] font-bold">Approved</span>
+</td>
+<td class="px-lg py-lg text-body-sm text-on-surface-variant italic">Scheduled for release on Nov 1.</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-lg font-data-sm text-on-surface">2023-10-21</td>
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<div class="h-8 w-8 rounded bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="school">school</span>
+</div>
+<div>
+<p class="text-body-sm font-bold text-on-surface">Westside Academy Arts</p>
+<p class="text-[12px] text-on-surface-variant">Education &amp; Youth</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg font-data-md text-on-surface">$12,000.00</td>
+<td class="px-lg py-lg">
+<span class="px-sm py-1 rounded-full bg-[#fff4e5] text-[#b26b00] text-[12px] font-bold">Pending Review</span>
+</td>
+<td class="px-lg py-lg text-body-sm text-on-surface-variant italic">Staff verifying 501(c)(3) status update.</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-lg font-data-sm text-on-surface">2023-10-18</td>
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<div class="h-8 w-8 rounded bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="health_and_safety">health_and_safety</span>
+</div>
+<div>
+<p class="text-body-sm font-bold text-on-surface">Community Health Clinic</p>
+<p class="text-[12px] text-on-surface-variant">Public Health</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg font-data-md text-on-surface">$50,000.00</td>
+<td class="px-lg py-lg">
+<span class="px-sm py-1 rounded-full bg-[#e6f4ea] text-[#1e7e34] text-[12px] font-bold">Completed</span>
+</td>
+<td class="px-lg py-lg text-body-sm text-on-surface-variant italic">Acknowledgement letter received.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-lg py-md bg-surface-container-low flex justify-center">
+<button class="text-primary text-body-sm font-bold hover:underline transition-all">View All Recommendations</button>
+</div>
+</section>
+</main>
+<footer class="mt-3xl border-t border-outline-variant bg-surface-container-lowest py-2xl px-lg">
+<div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-xl">
+<div class="space-y-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Steward</span>
+<p class="text-body-sm text-on-surface-variant">Empowering local philanthropy through nurtured stability and transparent growth.</p>
+</div>
+<div class="space-y-sm">
+<p class="font-bold text-on-surface">Resources</p>
+<ul class="space-y-xs text-body-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Investment Options</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Grantmaking Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Tax Documents</a></li>
+</ul>
+</div>
+<div class="space-y-sm">
+<p class="font-bold text-on-surface">Support</p>
+<ul class="space-y-xs text-body-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Contact Staff</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQs</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">System Status</a></li>
+</ul>
+</div>
+<div class="space-y-sm text-right flex flex-col justify-end">
+<p class="text-[12px] text-outline">© 2023 Steward Foundation. All rights reserved.</p>
+<p class="text-[12px] text-outline">Privacy Policy • Terms of Service</p>
+</div>
+</div>
+</footer>
+</body></html>

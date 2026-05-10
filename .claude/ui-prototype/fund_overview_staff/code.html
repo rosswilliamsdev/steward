@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#c4edc6",
+                    "secondary-fixed-dim": "#a9d0ab",
+                    "on-surface-variant": "#3f493f",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#c4edc6",
+                    "surface": "#f6fbf2",
+                    "surface-tint": "#006d30",
+                    "on-primary-fixed": "#00210a",
+                    "surface-container-highest": "#dfe4db",
+                    "outline-variant": "#becabc",
+                    "primary-container": "#15803d",
+                    "on-secondary-container": "#496d4d",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#005323",
+                    "inverse-surface": "#2c322c",
+                    "tertiary": "#97344a",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#f6fbf2",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#95f8a7",
+                    "primary": "#00652c",
+                    "inverse-on-surface": "#edf2e9",
+                    "tertiary-fixed-dim": "#ffb2bd",
+                    "on-tertiary-fixed-variant": "#81233b",
+                    "primary-fixed-dim": "#79db8d",
+                    "surface-container": "#eaefe6",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f6fbf2",
+                    "surface-dim": "#d6dcd3",
+                    "outline": "#6f7a6e",
+                    "tertiary-fixed": "#ffd9dd",
+                    "on-tertiary-container": "#fff1f1",
+                    "on-surface": "#181d17",
+                    "secondary": "#436648",
+                    "on-primary-container": "#d3ffd5",
+                    "on-secondary-fixed-variant": "#2c4e32",
+                    "surface-container-low": "#f0f5ec"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "3xl": "64px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "md": "16px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "data-md": ["JetBrains Mono"],
+                    "data-sm": ["JetBrains Mono"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "data-lg": ["JetBrains Mono"],
+                    "display-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["30px", {"lineHeight": "38px", "fontWeight": "600"}],
+                    "data-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "data-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "data-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f6fbf2;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-outline-variant fixed top-0 w-full z-50 flex justify-between items-center w-full px-lg py-md">
+<div class="flex items-center gap-md">
+<button class="p-xs hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Steward</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary text-headline-sm">account_circle</span>
+</div>
+</header>
+<div class="flex pt-[72px] pb-[88px] md:pb-0">
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-72px)] w-80 bg-surface border-r border-outline-variant p-md sticky top-[72px]">
+<div class="flex items-center gap-md mb-xl p-sm">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">
+                    FA
+                </div>
+<div>
+<p class="font-body-md font-bold text-on-surface">Foundation Admin</p>
+<p class="text-body-sm text-on-surface-variant">Steward Platform</p>
+</div>
+</div>
+<nav class="flex flex-col gap-sm">
+<a class="flex items-center gap-md bg-primary-container text-on-primary-container font-bold rounded-lg px-md py-sm" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-body-md">Home</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm transition-colors" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-body-md">Grant Recommendations</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm transition-colors" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-body-md">Foundation Staff</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+<div class="mt-auto">
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md">Log Out</span>
+</a>
+</div>
+</nav>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 p-md md:p-xl max-w-6xl mx-auto">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xs">Fund Overview</h2>
+<p class="font-body-md text-on-surface-variant">Manage and monitor community foundation assets.</p>
+</div>
+<button class="hidden md:flex items-center gap-sm bg-primary text-on-primary px-lg py-md rounded-lg font-bold hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+                    Create Fund
+                </button>
+</div>
+<!-- Bento-style Dashboard Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-2xl">
+<div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant shadow-sm">
+<p class="font-body-sm text-on-surface-variant mb-sm uppercase tracking-wider">Total Managed Assets</p>
+<p class="font-data-lg text-data-lg text-primary">$4,280,500.00</p>
+</div>
+<div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant shadow-sm">
+<p class="font-body-sm text-on-surface-variant mb-sm uppercase tracking-wider">Active Funds</p>
+<p class="font-data-lg text-data-lg text-primary">124</p>
+</div>
+<div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant shadow-sm">
+<p class="font-body-sm text-on-surface-variant mb-sm uppercase tracking-wider">Grants This Quarter</p>
+<p class="font-data-lg text-data-lg text-tertiary">42 Approved</p>
+</div>
+</div>
+<!-- Fund Card List (Asymmetric Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Card 1 -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+<div class="p-lg">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-on-surface font-bold">Green Canopy Initiative</h3>
+<p class="font-body-sm text-on-surface-variant">Donor: Elena Rodriguez</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full text-xs font-bold uppercase">Active</span>
+</div>
+<div class="mb-lg">
+<p class="text-body-sm text-on-surface-variant mb-xs">Current Balance</p>
+<p class="font-data-lg text-primary font-bold text-[28px]">$84,200.00</p>
+</div>
+<div class="flex items-center gap-md border-t border-outline-variant pt-md mb-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">payments</span>
+<span class="font-body-sm text-on-surface-variant">3 contributions</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">verified</span>
+<span class="font-body-sm text-on-surface-variant">2 grants approved</span>
+</div>
+</div>
+<div class="flex justify-end">
+<button class="text-primary font-bold font-body-sm hover:bg-primary-container/10 px-md py-sm rounded-lg transition-colors flex items-center gap-xs">
+                                View Details
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="p-lg">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-on-surface font-bold">Oakwood Scholarship Fund</h3>
+<p class="font-body-sm text-on-surface-variant">Donor: Marcus Thorne</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full text-xs font-bold uppercase">Active</span>
+</div>
+<div class="mb-lg">
+<p class="text-body-sm text-on-surface-variant mb-xs">Current Balance</p>
+<p class="font-data-lg text-primary font-bold text-[28px]">$215,750.50</p>
+</div>
+<div class="flex items-center gap-md border-t border-outline-variant pt-md mb-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">payments</span>
+<span class="font-body-sm text-on-surface-variant">12 contributions</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">verified</span>
+<span class="font-body-sm text-on-surface-variant">5 grants approved</span>
+</div>
+</div>
+<div class="flex justify-end">
+<button class="text-primary font-bold font-body-sm hover:bg-primary-container/10 px-md py-sm rounded-lg transition-colors flex items-center gap-xs">
+                                View Details
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="p-lg">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-on-surface font-bold">Riverbend Wildlife Sanctuary</h3>
+<p class="font-body-sm text-on-surface-variant">Donor: Sarah Jenkins</p>
+</div>
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-xs rounded-full text-xs font-bold uppercase">Pending</span>
+</div>
+<div class="mb-lg">
+<p class="text-body-sm text-on-surface-variant mb-xs">Current Balance</p>
+<p class="font-data-lg text-primary font-bold text-[28px]">$12,000.00</p>
+</div>
+<div class="flex items-center gap-md border-t border-outline-variant pt-md mb-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">payments</span>
+<span class="font-body-sm text-on-surface-variant">1 contribution</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">verified</span>
+<span class="font-body-sm text-on-surface-variant">0 grants approved</span>
+</div>
+</div>
+<div class="flex justify-end">
+<button class="text-primary font-bold font-body-sm hover:bg-primary-container/10 px-md py-sm rounded-lg transition-colors flex items-center gap-xs">
+                                View Details
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="p-lg">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-on-surface font-bold">Downtown Arts Endowment</h3>
+<p class="font-body-sm text-on-surface-variant">Donor: David Chen</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full text-xs font-bold uppercase">Active</span>
+</div>
+<div class="mb-lg">
+<p class="text-body-sm text-on-surface-variant mb-xs">Current Balance</p>
+<p class="font-data-lg text-primary font-bold text-[28px]">$56,400.25</p>
+</div>
+<div class="flex items-center gap-md border-t border-outline-variant pt-md mb-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">payments</span>
+<span class="font-body-sm text-on-surface-variant">8 contributions</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">verified</span>
+<span class="font-body-sm text-on-surface-variant">4 grants approved</span>
+</div>
+</div>
+<div class="flex justify-end">
+<button class="text-primary font-bold font-body-sm hover:bg-primary-container/10 px-md py-sm rounded-lg transition-colors flex items-center gap-xs">
+                                View Details
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container-low border-t border-outline-variant shadow-sm flex justify-around items-center px-md pb-md pt-sm rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-md py-xs scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-md py-xs hover:bg-secondary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-sm">Grants</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-md py-xs hover:bg-secondary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-sm">Activity</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-md py-xs hover:bg-secondary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-body-sm">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button (Mobile) -->
+<button class="md:hidden fixed bottom-[100px] right-md bg-primary text-on-primary w-14 h-14 rounded-full shadow-xl flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+</body></html>

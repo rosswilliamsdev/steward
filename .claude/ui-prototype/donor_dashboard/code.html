@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#c4edc6",
+                        "secondary-fixed-dim": "#a9d0ab",
+                        "on-surface-variant": "#3f493f",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#c4edc6",
+                        "surface": "#f6fbf2",
+                        "surface-tint": "#006d30",
+                        "on-primary-fixed": "#00210a",
+                        "surface-container-highest": "#dfe4db",
+                        "outline-variant": "#becabc",
+                        "primary-container": "#15803d",
+                        "on-secondary-container": "#496d4d",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005323",
+                        "inverse-surface": "#2c322c",
+                        "tertiary": "#97344a",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f6fbf2",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#95f8a7",
+                        "primary": "#00652c",
+                        "inverse-on-surface": "#edf2e9",
+                        "tertiary-fixed-dim": "#ffb2bd",
+                        "on-tertiary-fixed-variant": "#81233b",
+                        "primary-fixed-dim": "#79db8d",
+                        "surface-container": "#eaefe6",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#dfe4db",
+                        "tertiary-container": "#b64c62",
+                        "surface-container-high": "#e4eae1",
+                        "on-secondary-fixed": "#00210a",
+                        "on-tertiary-fixed": "#400013",
+                        "background": "#f6fbf2",
+                        "inverse-primary": "#79db8d",
+                        "on-background": "#181d17",
+                        "surface-dim": "#d6dcd3",
+                        "outline": "#6f7a6e",
+                        "tertiary-fixed": "#ffd9dd",
+                        "on-tertiary-container": "#fff1f1",
+                        "on-surface": "#181d17",
+                        "secondary": "#436648",
+                        "on-primary-container": "#d3ffd5",
+                        "on-secondary-fixed-variant": "#2c4e32",
+                        "surface-container-low": "#f0f5ec"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "3xl": "64px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "2xl": "48px",
+                        "md": "16px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "data-md": ["JetBrains Mono"],
+                        "data-sm": ["JetBrains Mono"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "data-lg": ["JetBrains Mono"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["30px", {"lineHeight": "38px", "fontWeight": "600"}],
+                        "data-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "data-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "data-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-lg py-md sticky top-0 z-50">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary p-xs hover:bg-surface-container-high rounded-lg transition-colors">menu</button>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Steward</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="md:flex hidden items-center gap-xs text-on-surface-variant font-body-sm hover:text-primary px-sm py-xs transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+                Support
+            </button>
+<span class="material-symbols-outlined text-primary text-3xl cursor-pointer hover:opacity-80 transition-opacity">account_circle</span>
+</div>
+</header>
+<main class="flex-grow max-w-7xl mx-auto w-full p-md md:p-lg lg:p-xl space-y-lg pb-32">
+<!-- Welcome & Primary Action -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Good Morning, Sarah</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Here is the status of your philanthropic impact.</p>
+</div>
+<button class="bg-primary text-on-primary font-body-md px-lg py-md rounded-lg flex items-center justify-center gap-sm shadow-sm hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined">volunteer_activism</span>
+                Recommend a Grant
+            </button>
+</section>
+<!-- Top Metrics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="bg-surface-container-low border border-outline-variant p-lg rounded-xl shadow-sm">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Current Balance</p>
+<p class="font-data-lg text-3xl font-bold text-primary">$242,500.00</p>
+<div class="mt-md flex items-center gap-xs text-primary text-body-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+2.4% this month</span>
+</div>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-lg rounded-xl shadow-sm">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Total Contributed</p>
+<p class="font-data-lg text-3xl font-bold text-on-surface">$580,000.00</p>
+<p class="mt-md font-body-sm text-on-surface-variant">Lifetime giving history</p>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-lg rounded-xl shadow-sm">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Grants This Year</p>
+<p class="font-data-lg text-3xl font-bold text-on-surface">$45,000.00</p>
+<p class="mt-md font-body-sm text-on-surface-variant">12 nonprofits supported</p>
+</div>
+</section>
+<!-- Chart Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm">
+<div class="flex justify-between items-center mb-lg">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Balance Over Time</h2>
+<select class="bg-surface-container border-none font-body-sm text-on-surface-variant rounded-lg px-md py-xs focus:ring-2 focus:ring-primary">
+<option>Last 12 Months</option>
+<option>Year to Date</option>
+<option>Lifetime</option>
+</select>
+</div>
+<!-- Mock Chart Visualization -->
+<div class="relative h-64 w-full flex items-end justify-between px-md border-b border-outline-variant gap-xs">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+<div class="border-t border-outline"></div>
+<div class="border-t border-outline"></div>
+<div class="border-t border-outline"></div>
+<div class="border-t border-outline"></div>
+<div class="border-t border-outline"></div>
+</div>
+<!-- SVG Line Chart Mock -->
+<svg class="absolute inset-0 h-full w-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<path class="text-primary" d="M 0 80 Q 15 75, 25 65 T 50 45 T 75 55 T 100 20" fill="none" stroke="currentColor" stroke-width="2"></path>
+<path class="text-primary opacity-5" d="M 0 80 Q 15 75, 25 65 T 50 45 T 75 55 T 100 20 L 100 100 L 0 100 Z" fill="currentColor"></path>
+</svg>
+<!-- X-Axis Labels -->
+<div class="absolute -bottom-8 left-0 w-full flex justify-between font-data-sm text-on-surface-variant px-sm">
+<span>JAN</span><span>MAR</span><span>MAY</span><span>JUL</span><span>SEP</span><span>NOV</span>
+</div>
+</div>
+<div class="mt-12"></div>
+</section>
+<!-- Recent Grant Recommendations -->
+<section class="space-y-md">
+<div class="flex justify-between items-center px-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Recent Grant Recommendations</h2>
+<button class="text-primary font-body-sm hover:underline">View All</button>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<!-- List View (Mobile Optimized) -->
+<div class="divide-y divide-outline-variant">
+<!-- Item 1 -->
+<div class="p-md md:p-lg flex flex-col md:flex-row md:items-center justify-between gap-md hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">nature_people</span>
+</div>
+<div>
+<h3 class="font-body-lg font-semibold text-on-surface">The Green Belt Initiative</h3>
+<p class="font-body-sm text-on-surface-variant">Recommended on Oct 24, 2023</p>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-xl">
+<span class="font-data-md text-on-surface">$5,000.00</span>
+<span class="px-md py-xs rounded-full bg-secondary-container text-on-secondary-container font-data-sm text-[10px] uppercase tracking-wider font-bold">Approved</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-md md:p-lg flex flex-col md:flex-row md:items-center justify-between gap-md hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h3 class="font-body-lg font-semibold text-on-surface">Metropolis Library Fund</h3>
+<p class="font-body-sm text-on-surface-variant">Recommended on Oct 12, 2023</p>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-xl">
+<span class="font-data-md text-on-surface">$12,500.00</span>
+<span class="px-md py-xs rounded-full bg-secondary-container text-on-secondary-container font-data-sm text-[10px] uppercase tracking-wider font-bold">Approved</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-md md:p-lg flex flex-col md:flex-row md:items-center justify-between gap-md hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<div>
+<h3 class="font-body-lg font-semibold text-on-surface">Community Health Alliance</h3>
+<p class="font-body-sm text-on-surface-variant">Recommended on Sep 28, 2023</p>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-xl">
+<span class="font-data-md text-on-surface">$2,000.00</span>
+<span class="px-md py-xs rounded-full bg-surface-container-high text-on-surface-variant font-data-sm text-[10px] uppercase tracking-wider font-bold">Processing</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Navigation Drawer (Desktop) / Bottom Bar (Mobile) -->
+<!-- Desktop Nav would go here but for this prompt we'll implement the BottomNavBar as requested for active status -->
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-md pb-md pt-sm bg-surface-container-low border-t border-outline-variant shadow-sm md:hidden">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-md py-xs scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-sm text-[10px]">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-md py-xs hover:bg-secondary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-sm text-[10px]">Grants</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-md py-xs hover:bg-secondary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-sm text-[10px]">Activity</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-md py-xs hover:bg-secondary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-body-sm text-[10px]">Profile</span>
+</a>
+</nav>
+<!-- Desktop Sidebar Overlay Hidden on Mobile -->
+<aside class="hidden md:flex fixed left-0 top-[72px] h-[calc(100vh-72px)] w-64 bg-surface border-r border-outline-variant flex-col p-md space-y-md">
+<a class="bg-primary-container text-on-primary-container font-bold rounded-lg px-md py-sm flex items-center gap-md" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-body-md">Home</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm flex items-center gap-md transition-colors" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-body-md">Grant Recs</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm flex items-center gap-md transition-colors" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-body-md">Foundation Staff</span>
+</a>
+<div class="flex-grow"></div>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm flex items-center gap-md transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm flex items-center gap-md transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md">Log Out</span>
+</a>
+</aside>
+</body></html>

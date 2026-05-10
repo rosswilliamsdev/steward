@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Steward | Staff Grant Review</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#c4edc6",
+                    "secondary-fixed-dim": "#a9d0ab",
+                    "on-surface-variant": "#3f493f",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#c4edc6",
+                    "surface": "#f6fbf2",
+                    "surface-tint": "#006d30",
+                    "on-primary-fixed": "#00210a",
+                    "surface-container-highest": "#dfe4db",
+                    "outline-variant": "#becabc",
+                    "primary-container": "#15803d",
+                    "on-secondary-container": "#496d4d",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#005323",
+                    "inverse-surface": "#2c322c",
+                    "tertiary": "#97344a",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#f6fbf2",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#95f8a7",
+                    "primary": "#00652c",
+                    "inverse-on-surface": "#edf2e9",
+                    "tertiary-fixed-dim": "#ffb2bd",
+                    "on-tertiary-fixed-variant": "#81233b",
+                    "primary-fixed-dim": "#79db8d",
+                    "surface-container": "#eaefe6",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f6fbf2",
+                    "surface-dim": "#d6dcd3",
+                    "outline": "#6f7a6e",
+                    "tertiary-fixed": "#ffd9dd",
+                    "on-tertiary-container": "#fff1f1",
+                    "on-surface": "#181d17",
+                    "secondary": "#436648",
+                    "on-primary-container": "#d3ffd5",
+                    "on-secondary-fixed-variant": "#2c4e32",
+                    "surface-container-low": "#f0f5ec"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "3xl": "64px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "md": "16px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "data-md": ["JetBrains Mono"],
+                    "data-sm": ["JetBrains Mono"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "data-lg": ["JetBrains Mono"],
+                    "display-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["30px", {"lineHeight": "38px", "fontWeight": "600"}],
+                    "data-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "data-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "data-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f6fbf2;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-lg py-md sticky top-0 z-40">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="menu">menu</span>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Steward</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<main class="flex min-h-[calc(100vh-64px)] overflow-hidden">
+<!-- NavigationDrawer (Hidden on Mobile) -->
+<aside class="hidden md:flex flex-col h-full p-md bg-surface border-r border-outline-variant w-80 shrink-0">
+<div class="flex items-center gap-md mb-xl p-md">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container overflow-hidden">
+<img alt="Foundation Admin" class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged man with a friendly expression, wearing a tailored navy suit and glasses. The background is a soft-focus office environment with warm sunlight filtering through high windows. The image has a crisp, professional corporate aesthetic with high-quality lighting and a clean, modern feel to match a philanthropist platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwajYsa-wxndaX6T7cF63GhI7Ap2l1NdPUZYOUgC02y-f4UiKPQ9K-QPPycBxKz7DikBzUVEanaPSAqZIhMSjXVZKFGy93E6pc5reImLe9pDxHIxelK75K5Ki-xbxj9YlDVPIVWW2WHNBPy-fK0Y53X4J0Fh-n2ecBb-3JdXKt8KGVkqq4SDZAipu0svKGcuTlAiLw187bV92J6Bm6utqizYz2Cy4UOEI3223pdOlnoPhBw1fFQ30deNB_6uuc7imYT1Kn-nFlaaAe"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Foundation Admin</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Staff Account</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs flex-grow">
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm flex items-center gap-md" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-body-md text-body-md">Home</span>
+</a>
+<a class="bg-primary-container text-on-primary-container font-bold rounded-lg px-md py-sm flex items-center gap-md" href="#">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+<span class="font-body-md text-body-md">Grant Recommendations</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm flex items-center gap-md" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-body-md text-body-md">Foundation Staff</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm flex items-center gap-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm flex items-center gap-md mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Log Out</span>
+</a>
+</aside>
+<!-- Canvas Area / Backdrop for Modal Simulation -->
+<section class="flex-grow p-lg bg-surface-container-low flex items-center justify-center relative overflow-y-auto">
+<!-- Modal Container (Staff Grant Review) -->
+<div class="w-full max-w-2xl bg-surface-container-lowest rounded-xl shadow-xl overflow-hidden border border-outline-variant z-10 animate-fade-in">
+<!-- Modal Header -->
+<div class="px-xl py-lg border-b border-outline-variant flex justify-between items-center bg-surface">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Review Grant Recommendation</h2>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-xs rounded-full">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Modal Content -->
+<div class="p-xl space-y-xl">
+<!-- Grant Core Details: Asymmetric Bento Style -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<div class="md:col-span-7 space-y-md">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider mb-xs">Recommended By</p>
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-on-secondary font-bold">JD</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Jane Doe</p>
+<p class="font-body-sm text-body-sm text-secondary">The Williams Family Fund</p>
+</div>
+</div>
+</div>
+<div class="pt-sm">
+<p class="font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider mb-xs">Recipient Organization</p>
+<div class="flex items-center gap-md p-md bg-surface-container border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="account_balance">account_balance</span>
+<p class="font-headline-sm text-headline-sm font-semibold text-on-surface">Local Food Bank</p>
+</div>
+</div>
+</div>
+<!-- Amount Highlight -->
+<div class="md:col-span-5 bg-primary-container text-on-primary-container p-xl rounded-xl flex flex-col justify-center items-center text-center shadow-md">
+<p class="font-body-sm text-body-sm opacity-90 mb-xs">Recommended Amount</p>
+<p class="font-data-lg text-[32px] leading-tight font-bold">$5,000.00</p>
+<div class="mt-md px-md py-xs bg-white/20 rounded-full text-body-sm">
+                                One-time Grant
+                            </div>
+</div>
+</div>
+<!-- Memo Box -->
+<div class="space-y-sm">
+<p class="font-body-sm text-body-sm text-on-surface-variant font-bold">Donor's Memo</p>
+<div class="p-md bg-surface border-l-4 border-secondary-fixed-dim italic text-on-surface-variant font-body-md rounded-r-lg">
+                            "Supporting food security initiatives within the metropolitan area for the upcoming winter season. This fund is intended for direct grocery distribution."
+                        </div>
+</div>
+<!-- Staff Review Form -->
+<div class="space-y-md pt-md border-t border-outline-variant">
+<div class="space-y-sm">
+<label class="font-body-sm text-body-sm text-on-surface-variant" for="staff-note">Staff Internal Review Note</label>
+<textarea class="w-full bg-white border border-outline focus:border-primary focus:ring-1 focus:ring-primary rounded-lg p-md font-body-md text-on-surface placeholder:text-outline-variant" id="staff-note" placeholder="Enter compliance checks or due diligence notes..." rows="4"></textarea>
+</div>
+<!-- Compliance Checklist -->
+<div class="flex flex-wrap gap-md">
+<div class="flex items-center gap-sm px-md py-sm bg-surface-container-high rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">501(c)(3) Verified</span>
+</div>
+<div class="flex items-center gap-sm px-md py-sm bg-surface-container-high rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">Available Balance</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Actions -->
+<div class="px-xl py-lg bg-surface border-t border-outline-variant flex flex-col md:flex-row justify-end items-center gap-md">
+<button class="w-full md:w-auto px-xl py-md text-error hover:bg-error-container rounded-lg font-body-md font-semibold transition-colors flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined" data-icon="block">block</span>
+                        Deny Recommendation
+                    </button>
+<button class="w-full md:w-auto px-3xl py-md bg-primary text-on-primary hover:opacity-90 rounded-lg font-body-md font-bold transition-all shadow-md active:scale-95 flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+                        Approve &amp; Process
+                    </button>
+</div>
+</div>
+<!-- Background Decorative Grid (Subtle) -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: radial-gradient(#00652c 0.5px, transparent 0.5px); background-size: 24px 24px;"></div>
+</section>
+</main>
+<!-- BottomNavBar (Visible only on Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container-low border-t border-outline-variant flex justify-around items-center px-md pb-md pt-sm shadow-sm rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-md py-xs">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-sm text-body-sm">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-md py-xs">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body-sm text-body-sm">Grants</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-md py-xs">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-body-sm text-body-sm">Activity</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-md py-xs">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-body-sm text-body-sm">Profile</span>
+</div>
+</nav>
+</body></html>
