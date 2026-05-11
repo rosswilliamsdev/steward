@@ -90,20 +90,20 @@ class DashboardAPIView(APIView):
     def get(self, request):
         """
         GET /api/dashboard/
-        Returns dashboard data for the authenticated donor.
+        Returns dashboard data for the authenticated donor (aggregated across all funds).
         """
         try:
             # Only donors can access this endpoint
             if not request.user.is_donor:
                 return Response(status=status.HTTP_403_FORBIDDEN)
 
-            # Get the donor's first fund (sorted by -created_at)
-            fund = request.user.funds.first()
+            # Get all donor's funds
+            funds = request.user.funds.all()
 
-            if not fund:
-                # No fund exists - return empty but valid structure
+            if not funds.exists():
+                # No funds exist - return empty but valid structure
                 return Response({
-                    'fund_name': '',
+                    'fund_name': 'All Funds',
                     'balance': '0.00',
                     'total_contributed': '0.00',
                     'grants_this_year': {
@@ -114,20 +114,29 @@ class DashboardAPIView(APIView):
                     'recent_grants': []
                 })
 
-            # Calculate total contributed
-            total_contributed = fund.contributions.aggregate(
-                total=Sum('amount')
-            )['total'] or Decimal('0.00')
+            # Calculate total balance across all funds
+            total_balance = sum(fund.balance for fund in funds)
 
-            # Get recent grants (5 most recent)
-            recent_grants = fund.grant_recommendations.all()[:5]
+            # Calculate total contributed across all funds
+            total_contributed = Decimal('0.00')
+            for fund in funds:
+                fund_contributions = fund.contributions.aggregate(
+                    total=Sum('amount')
+                )['total'] or Decimal('0.00')
+                total_contributed += fund_contributions
 
-            # Calculate balance over time (last 12 months)
-            balance_over_time = self._calculate_balance_over_time(fund)
+            # Get recent grants (5 most recent across all funds)
+            all_grants = GrantRecommendation.objects.filter(
+                fund__donor=request.user
+            ).order_by('-created_at')[:5]
 
-            # Calculate grants this year
+            # Calculate balance over time (last 12 months across all funds)
+            balance_over_time = self._calculate_balance_over_time_all_funds(request.user)
+
+            # Calculate grants this year across all funds
             year_start = timezone.now().replace(month=1, day=1, hour=0, minute=0, second=0, microsecond=0)
-            grants_this_year = fund.grant_recommendations.filter(
+            grants_this_year = GrantRecommendation.objects.filter(
+                fund__donor=request.user,
                 status='approved',
                 reviewed_at__gte=year_start
             )
@@ -137,16 +146,17 @@ class DashboardAPIView(APIView):
             grants_this_year_count = grants_this_year.count()
 
             # Prepare response data
+            fund_name = funds.first().name if funds.count() == 1 else 'All Funds'
             data = {
-                'fund_name': fund.name,
-                'balance': str(fund.balance),
+                'fund_name': fund_name,
+                'balance': str(total_balance),
                 'total_contributed': str(total_contributed),
                 'grants_this_year': {
                     'total': str(grants_this_year_total),
                     'count': grants_this_year_count
                 },
                 'balance_over_time': balance_over_time,
-                'recent_grants': RecentGrantSerializer(recent_grants, many=True).data
+                'recent_grants': RecentGrantSerializer(all_grants, many=True).data
             }
 
             # Validate with serializer (but return original data to preserve all fields)
@@ -176,6 +186,67 @@ class DashboardAPIView(APIView):
         # Get all contributions and approved grants for this fund
         contributions = fund.contributions.all().order_by('date')
         approved_grants = fund.grant_recommendations.filter(
+            status='approved'
+        ).order_by('created_at')
+
+        # Process each of the last 12 months
+        for i in range(12):
+            month_start = start_month + relativedelta(months=i)
+            month_end = month_start + relativedelta(months=1) - timedelta(days=1)
+
+            # Convert to timezone-aware datetime for comparison with DateTimeField
+            month_start_dt = timezone.make_aware(
+                datetime.combine(month_start, datetime.min.time())
+            )
+            month_end_dt = timezone.make_aware(
+                datetime.combine(month_end, datetime.max.time())
+            )
+
+            # Add contributions in this month
+            month_contributions = contributions.filter(
+                date__gte=month_start,
+                date__lte=month_end
+            ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+
+            # Subtract approved grants in this month (reviewed_at is DateTimeField)
+            month_grants = approved_grants.filter(
+                reviewed_at__gte=month_start_dt,
+                reviewed_at__lte=month_end_dt
+            ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+
+            # Update running balance
+            running_balance += month_contributions - month_grants
+
+            # Append snapshot
+            balance_data.append({
+                'month': month_start.strftime('%Y-%m'),
+                'balance': str(running_balance)
+            })
+
+        return balance_data
+
+    def _calculate_balance_over_time_all_funds(self, user):
+        """
+        Calculate monthly balance snapshots for the last 12 months across all funds.
+        Returns list of {month: 'YYYY-MM', balance: 'XXX.XX'} dicts.
+        """
+        balance_data = []
+        today = timezone.now().date()
+
+        # Start from 12 months ago
+        start_month = (today - relativedelta(months=11)).replace(day=1)
+
+        # Initialize running balance at zero
+        running_balance = Decimal('0.00')
+
+        # Get all contributions and approved grants across all donor's funds
+        from .models import Contribution
+        contributions = Contribution.objects.filter(
+            fund__donor=user
+        ).order_by('date')
+
+        approved_grants = GrantRecommendation.objects.filter(
+            fund__donor=user,
             status='approved'
         ).order_by('created_at')
 
