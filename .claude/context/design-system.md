@@ -146,6 +146,14 @@ Warm amber/yellow tones for pending states and warnings.
 | 600 (semibold) | `font-semibold` |
 | 700 (bold)     | `font-bold`     |
 
+### Numeric Formatting
+
+| Feature       | Tailwind Class | Use Case                                      |
+| ------------- | -------------- | --------------------------------------------- |
+| Tabular Nums  | `tabular-nums` | Financial data, tables, dashboards (required) |
+
+**Usage:** Apply `tabular-nums` to all monetary amounts, dates, and numeric data to ensure uniform digit widths and proper column alignment.
+
 ## Spacing Scale
 
 8px-based grid for consistent spacing.
@@ -216,6 +224,7 @@ Combine with transition type: `transition-colors duration-200 ease-in-out`
 **Variants:**
 
 - **Primary** — `class="bg-primary hover:bg-primary-container text-on-primary font-medium py-2 px-4 rounded-md shadow-sm transition-all"`
+- **Outline** — `class="border border-primary text-primary hover:bg-primary-container hover:text-on-primary-container font-medium py-2 px-4 rounded-md transition-all"`
 - **Secondary** — `class="bg-surface-container hover:bg-surface-container-high text-on-surface font-medium py-2 px-4 rounded-md border border-outline-variant transition-all"`
 - **Ghost** — `class="bg-transparent hover:bg-surface-container text-primary font-medium py-2 px-4 rounded-md transition-all"`
 - **Destructive** — `class="bg-error hover:bg-error-container text-on-error font-medium py-2 px-4 rounded-md shadow-sm transition-all"`
@@ -247,8 +256,10 @@ Combine with transition type: `transition-colors duration-200 ease-in-out`
 - All button sizes use `rounded-md` (8px). Never use `rounded-lg`, `rounded-xl`, or `rounded-full` on buttons.
 - Ghost buttons have no border and no background — only `bg-transparent`.
 - Use primary for form submissions and critical actions.
+- Use outline for secondary actions that need more visual weight than ghost (e.g., table row actions like "View Details").
 - Use destructive only for irreversible actions (deny grant, delete fund).
-- Ghost buttons for tertiary actions (cancel, view details).
+- Ghost buttons for tertiary actions (cancel, dismiss).
+- Outline buttons maintain visual hierarchy — they won't compete with primary CTAs on the page.
 
 ---
 
