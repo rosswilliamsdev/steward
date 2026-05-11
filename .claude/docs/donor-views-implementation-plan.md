@@ -218,6 +218,8 @@ DonorDashboard
 
 ### 3.1 Create GrantRecommendationForm
 
+**Status: COMPLETE**
+
 **File:** `core/forms.py` (new)
 
 **Form Fields:**
@@ -261,6 +263,8 @@ def clean(self):
 ---
 
 ### 3.2 Build GrantRecommendationCreateView
+
+**Status: COMPLETE**
 
 **File:** `core/views.py`
 
@@ -309,6 +313,8 @@ class GrantRecommendationCreateView(LoginRequiredMixin, UserPassesTestMixin, Cre
 
 ### 3.3 Create Grant Recommendation Form Template
 
+**Status: COMPLETE**
+
 **File:** `core/templates/core/grant_form.html`
 
 **Layout:**
@@ -349,7 +355,11 @@ class GrantRecommendationCreateView(LoginRequiredMixin, UserPassesTestMixin, Cre
 
 ## Phase 4: Grant List & Detail Views
 
+**UI Reference:** `.claude/ui/desktop/fund_overview_desktop/screen.png`
+
 ### 4.1 Build GrantRecommendationListView
+
+**Status: COMPLETE**
 
 **File:** `core/views.py`
 
@@ -407,6 +417,8 @@ class GrantRecommendationListView(LoginRequiredMixin, UserPassesTestMixin, ListV
 
 ### 4.2 Build GrantRecommendationDetailView
 
+**Status: COMPELTE**
+
 **File:** `core/views.py`
 
 **View Class:**
@@ -448,6 +460,261 @@ class GrantRecommendationDetailView(LoginRequiredMixin, UserPassesTestMixin, Det
 - Timeline clear and readable
 - Back navigation works
 - 403 for unauthorized access
+
+---
+
+### 4.3 Create grant_list.html Template
+
+**Status: COMPLETE**
+
+**File:** `core/templates/core/grant_list.html`
+
+**Layout:**
+- Page title: "Grant Recommendations"
+- Primary action: "Recommend a Grant" button (top-right, links to `core:grant-create`)
+- Table displaying all grants
+- Empty state if no grants exist
+
+**Table Structure:**
+
+```html
+<table class="w-full">
+  <thead class="bg-surface-container">
+    <tr>
+      <th class="text-left px-6 py-4 text-sm font-semibold text-on-surface-variant">Nonprofit</th>
+      <th class="text-left px-6 py-4 text-sm font-semibold text-on-surface-variant">Amount</th>
+      <th class="text-left px-6 py-4 text-sm font-semibold text-on-surface-variant">Fund</th>
+      <th class="text-left px-6 py-4 text-sm font-semibold text-on-surface-variant">Status</th>
+      <th class="text-left px-6 py-4 text-sm font-semibold text-on-surface-variant">Date Submitted</th>
+      <th class="text-right px-6 py-4 text-sm font-semibold text-on-surface-variant">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for grant in grants %}
+    <tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+      <td class="px-6 py-4 text-base text-on-surface">{{ grant.nonprofit_name }}</td>
+      <td class="px-6 py-4 text-base font-mono text-on-surface">${{ grant.amount|floatformat:2|intcomma }}</td>
+      <td class="px-6 py-4 text-sm text-on-surface-variant">{{ grant.fund.name }}</td>
+      <td class="px-6 py-4">
+        <!-- Status badge: see below -->
+      </td>
+      <td class="px-6 py-4 text-sm font-mono text-on-surface-variant">{{ grant.created_at|date:"M d, Y" }}</td>
+      <td class="px-6 py-4 text-right">
+        <a href="{% url 'core:grant-detail' grant.pk %}" class="text-primary hover:text-primary-container font-medium text-sm">
+          View Details
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+```
+
+**Status Badge Component:**
+
+```html
+{% if grant.status == 'pending' %}
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-tertiary-container text-on-tertiary-container">
+  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+  </svg>
+  Pending
+</span>
+{% elif grant.status == 'approved' %}
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-secondary-container/30 text-secondary">
+  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+  </svg>
+  Approved
+</span>
+{% elif grant.status == 'denied' %}
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-error-container text-on-error-container">
+  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+  </svg>
+  Denied
+</span>
+{% endif %}
+```
+
+**Empty State:**
+
+```html
+{% if not grants %}
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-8 text-center">
+  <p class="text-on-surface-variant text-base mb-4">You haven't recommended any grants yet.</p>
+  <a href="{% url 'core:grant-create' %}" class="inline-block bg-primary hover:bg-primary-container text-on-primary font-medium py-2 px-4 rounded-md shadow-sm transition-all">
+    Recommend Your First Grant
+  </a>
+</div>
+{% endif %}
+```
+
+**Page Header:**
+
+```html
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-3xl font-bold text-on-surface">Grant Recommendations</h1>
+  <a href="{% url 'core:grant-create' %}" class="bg-primary hover:bg-primary-container text-on-primary font-medium py-2 px-4 rounded-md shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+    Recommend a Grant
+  </a>
+</div>
+```
+
+**Design System Compliance:**
+
+- Table header: `bg-surface-container` with `text-on-surface-variant` text
+- Row hover: `hover:bg-surface-container-low transition-colors`
+- Borders: `border-outline-variant` (subtle)
+- Status badges: Use design system badge variants with icons
+- Monetary values: `font-mono` for tabular numbers
+- Primary button: `bg-primary hover:bg-primary-container text-on-primary py-2 px-4 rounded-md shadow-sm`
+- Links: `text-primary hover:text-primary-container`
+
+**Accessibility:**
+
+- Semantic `<table>` with `<thead>` and `<tbody>`
+- Status badges include both icon and text (not color-only)
+- Focus states on all interactive elements
+- `aria-label` on icon-only elements if needed (though all badges have text)
+
+**Template Extends:**
+
+```html
+{% extends "core/base.html" %}
+{% load humanize %}
+
+{% block title %}Grant Recommendations{% endblock %}
+
+{% block content %}
+<!-- Page header and table here -->
+{% endblock %}
+```
+
+**Acceptance Criteria:**
+
+- Table displays all donor's grants
+- Status badges accessible (icon + text)
+- Hover states on rows
+- Monetary values right-aligned with tabular numbers
+- Empty state displays helpful CTA
+- "Recommend a Grant" button prominent at top
+- Responsive on mobile (consider horizontal scroll or card layout on small screens)
+
+---
+
+### 4.4 Create grant_detail.html Template
+
+**Status: COMPELTE**
+
+**File:** `core/templates/core/grant_detail.html`
+
+**Layout:**
+- Page title: Nonprofit name
+- Back to list link (top-left)
+- Card with grant details
+- All information displayed in definition list format
+
+**Card Structure:**
+
+```html
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm">
+  <div class="mb-6">
+    <h2 class="text-3xl font-bold text-on-surface mb-2">{{ grant.nonprofit_name }}</h2>
+    <p class="text-2xl font-mono font-semibold text-primary">${{ grant.amount|floatformat:2|intcomma }}</p>
+  </div>
+
+  <dl class="space-y-4">
+    <div>
+      <dt class="text-sm font-semibold text-on-surface-variant">Fund</dt>
+      <dd class="text-base text-on-surface">{{ grant.fund.name }}</dd>
+    </div>
+
+    {% if grant.memo %}
+    <div>
+      <dt class="text-sm font-semibold text-on-surface-variant">Memo</dt>
+      <dd class="text-base text-on-surface">{{ grant.memo }}</dd>
+    </div>
+    {% endif %}
+
+    <div>
+      <dt class="text-sm font-semibold text-on-surface-variant">Status</dt>
+      <dd class="mt-1">
+        <!-- Status badge (same as list template) -->
+      </dd>
+    </div>
+
+    <div>
+      <dt class="text-sm font-semibold text-on-surface-variant">Date Submitted</dt>
+      <dd class="text-base font-mono text-on-surface">{{ grant.created_at|date:"F d, Y g:i A" }}</dd>
+    </div>
+
+    {% if grant.reviewed_at %}
+    <div>
+      <dt class="text-sm font-semibold text-on-surface-variant">Date Reviewed</dt>
+      <dd class="text-base font-mono text-on-surface">{{ grant.reviewed_at|date:"F d, Y g:i A" }}</dd>
+    </div>
+    {% endif %}
+
+    {% if grant.staff_note %}
+    <div>
+      <dt class="text-sm font-semibold text-on-surface-variant">Staff Note</dt>
+      <dd class="text-base text-on-surface">{{ grant.staff_note }}</dd>
+    </div>
+    {% endif %}
+  </dl>
+</div>
+```
+
+**Back Navigation:**
+
+```html
+<div class="mb-4">
+  <a href="{% url 'core:grant-list' %}" class="inline-flex items-center gap-2 text-primary hover:text-primary-container font-medium text-sm transition-colors">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+    </svg>
+    Back to Grant Recommendations
+  </a>
+</div>
+```
+
+**Design System Compliance:**
+
+- Card: `bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm`
+- Definition list: `<dl>` with `space-y-4` spacing
+- Labels: `text-sm font-semibold text-on-surface-variant`
+- Values: `text-base text-on-surface` (or `font-mono` for dates/amounts)
+- Amount: Large, prominent, with `text-primary` color
+- Status badge: Same component as list template
+
+**Template Extends:**
+
+```html
+{% extends "core/base.html" %}
+{% load humanize %}
+
+{% block title %}{{ grant.nonprofit_name }} - Grant Detail{% endblock %}
+
+{% block content %}
+<!-- Back link, nonprofit name, and detail card here -->
+{% endblock %}
+```
+
+**Conditional Display:**
+
+- Only show `memo` if present
+- Only show `reviewed_at` if grant has been reviewed (approved or denied)
+- Only show `staff_note` if present
+
+**Acceptance Criteria:**
+
+- All grant information displayed
+- Back navigation works
+- Status badge matches list template
+- Conditional fields only show when data exists
+- Clear visual hierarchy (nonprofit name → amount → details)
+- Responsive on mobile
 
 ---
 
@@ -497,7 +764,88 @@ class FundListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
 
 ---
 
-### 5.2 Build FundDetailView
+### 5.2 Create fund_list.html Template
+
+**File:** `core/templates/core/fund_list.html`
+
+**Layout:**
+- Page title: "My Funds"
+- Primary action: "View All Grants" button (top-right, links to `core:grant-list`)
+- Summary stats card (if multiple funds): total balance, total contributed
+- Table or card layout displaying all funds
+- Empty state if no funds exist
+
+**Table Structure:**
+
+```html
+<table class="w-full">
+  <thead>
+    <tr class="bg-surface-container text-on-surface-variant text-xs uppercase tracking-wider font-semibold">
+      <th class="px-6 py-4">Fund Name</th>
+      <th class="px-6 py-4">Balance</th>
+      <th class="px-6 py-4">Total Contributed</th>
+      <th class="px-6 py-4">Grants</th>
+      <th class="px-6 py-4 text-right">Actions</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y divide-outline-variant">
+    {% for fund in funds %}
+    <tr class="hover:bg-surface-container transition-colors">
+      <td class="px-6 py-4">
+        <p class="text-base font-semibold text-on-surface">{{ fund.name }}</p>
+      </td>
+      <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">
+        ${{ fund.balance|floatformat:2|intcomma }}
+      </td>
+      <td class="px-6 py-4 text-sm text-on-surface-variant" style="font-variant-numeric: tabular-nums;">
+        ${{ fund.total_contributed|floatformat:2|intcomma }}
+      </td>
+      <td class="px-6 py-4 text-sm text-on-surface-variant">
+        {{ fund.grant_recommendations.count }} grant{{ fund.grant_recommendations.count|pluralize }}
+      </td>
+      <td class="px-6 py-4 text-right">
+        <a href="{% url 'core:fund-detail' fund.pk %}" class="text-primary hover:text-primary-container font-medium text-sm transition-colors">
+          View Details
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+```
+
+**Design System Compliance:**
+
+- Table header: `bg-surface-container` with `text-on-surface-variant` text, uppercase
+- Row hover: `hover:bg-surface-container transition-colors`
+- Borders: `divide-y divide-outline-variant`
+- Monetary values: `font-variant-numeric: tabular-nums`
+- Fund name: `text-base font-semibold text-on-surface`
+
+**Template Extends:**
+
+```html
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}My Funds{% endblock %}
+
+{% block content %}
+<!-- Page header, summary stats, and table here -->
+{% endblock %}
+```
+
+**Acceptance Criteria:**
+
+- Table displays all donor's funds
+- Summary stats accurate if multiple funds
+- Monetary values right-aligned with tabular numbers
+- Empty state displays helpful message if no funds
+- "View Details" links work correctly
+
+---
+
+### 5.3 Build FundDetailView
 
 **File:** `core/views.py`
 
@@ -515,8 +863,8 @@ class FundDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['contributions'] = self.object.contributions.all()
-        context['grants'] = self.object.grant_recommendations.all()
+        context['contributions'] = self.object.contributions.order_by('-date')
+        context['grants'] = self.object.grant_recommendations.order_by('-created_at')
         return context
 ```
 
@@ -543,6 +891,247 @@ class FundDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 - All monetary values formatted
 - Navigation links work
 - 403 for unauthorized access
+
+---
+
+### 5.4 Create fund_detail.html Template
+
+**File:** `core/templates/core/fund_detail.html`
+
+**Layout:**
+- Page title: Fund name
+- Back to fund list link (top-left)
+- Fund header card: balance, total contributed
+- Two sections: Contributions and Grants
+- "Recommend a Grant" CTA button
+
+**Fund Header Card:**
+
+```html
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm mb-6">
+  <h1 class="text-3xl font-bold text-on-surface mb-4">{{ fund.name }}</h1>
+  <div class="grid grid-cols-2 gap-6">
+    <div>
+      <p class="text-sm font-semibold text-on-surface-variant mb-1">Current Balance</p>
+      <p class="text-2xl font-mono font-semibold text-primary">${{ fund.balance|floatformat:2|intcomma }}</p>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-on-surface-variant mb-1">Total Contributed</p>
+      <p class="text-2xl font-mono font-semibold text-on-surface">${{ fund.total_contributed|floatformat:2|intcomma }}</p>
+    </div>
+  </div>
+</div>
+```
+
+**Contributions Section:**
+
+```html
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm mb-6">
+  <h2 class="text-xl font-semibold text-on-surface mb-4">Contributions</h2>
+  {% if contributions %}
+  <div class="overflow-x-auto">
+    <table class="w-full">
+      <thead>
+        <tr class="bg-surface-container text-on-surface-variant text-xs uppercase tracking-wider font-semibold">
+          <th class="px-6 py-4">Date</th>
+          <th class="px-6 py-4">Amount</th>
+          <th class="px-6 py-4">Note</th>
+          <th class="px-6 py-4">Added By</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-outline-variant">
+        {% for contribution in contributions %}
+        <tr class="hover:bg-surface-container transition-colors">
+          <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">
+            {{ contribution.date|date:"m/d/Y" }}
+          </td>
+          <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">
+            ${{ contribution.amount|floatformat:2|intcomma }}
+          </td>
+          <td class="px-6 py-4 text-sm text-on-surface-variant">
+            {{ contribution.note|default:"—" }}
+          </td>
+          <td class="px-6 py-4 text-sm text-on-surface-variant">
+            {{ contribution.created_by.get_full_name|default:contribution.created_by.username }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="text-on-surface-variant">No contributions yet.</p>
+  {% endif %}
+</div>
+```
+
+**Grants Section:**
+
+```html
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold text-on-surface">Grant Recommendations</h2>
+    <a href="{% url 'core:grant-create' %}" class="bg-primary hover:bg-primary-container text-on-primary font-medium py-2 px-4 rounded-md shadow-sm transition-all">
+      Recommend a Grant
+    </a>
+  </div>
+  {% if grants %}
+  <!-- Same table structure as grant_list.html -->
+  {% else %}
+  <p class="text-on-surface-variant">No grant recommendations yet.</p>
+  {% endif %}
+</div>
+```
+
+**Back Navigation:**
+
+```html
+<div class="mb-4">
+  <a href="{% url 'core:fund-list' %}" class="inline-flex items-center gap-2 text-primary hover:text-primary-container font-medium text-sm transition-colors">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+    </svg>
+    Back to My Funds
+  </a>
+</div>
+```
+
+**Design System Compliance:**
+
+- Cards: `bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm`
+- Section headers: `text-xl font-semibold text-on-surface`
+- Tables match grant_list.html styling
+- Monetary values: `font-mono` with `font-variant-numeric: tabular-nums`
+- Empty states: `text-on-surface-variant`
+
+**Template Extends:**
+
+```html
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}{{ fund.name }} - Fund Detail{% endblock %}
+
+{% block content %}
+<!-- Back link, fund header, contributions, and grants here -->
+{% endblock %}
+```
+
+**Acceptance Criteria:**
+
+- Fund header displays balance and total contributed
+- Contributions table shows all contributions ordered by date
+- Grants table shows all grants ordered by date
+- Empty states for both sections if no data
+- "Recommend a Grant" CTA prominent
+- Back navigation works
+- All monetary values formatted consistently
+
+---
+
+### 5.5 Create ContributionListView (Optional)
+
+**File:** `core/views.py`
+
+**View Class:**
+
+```python
+class ContributionListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model = Contribution
+    template_name = 'core/contribution_list.html'
+    context_object_name = 'contributions'
+
+    def test_func(self):
+        return self.request.user.is_donor
+
+    def get_queryset(self):
+        return Contribution.objects.filter(
+            fund__donor=self.request.user
+        ).select_related('fund', 'created_by').order_by('-date')
+```
+
+**Display:**
+
+- Table of all contributions across all funds
+- Date, Amount, Fund, Note, Added By
+- Order by date (newest first)
+
+**Acceptance Criteria:**
+
+- Shows only current donor's contributions
+- Ordered by newest first
+- Fund column shows fund name
+- Monetary values formatted
+
+---
+
+### 5.6 Create contribution_list.html Template
+
+**File:** `core/templates/core/contribution_list.html`
+
+**Layout:**
+- Page title: "Contributions"
+- Table displaying all contributions
+- Empty state if no contributions
+
+**Table Structure:**
+
+```html
+<table class="w-full">
+  <thead>
+    <tr class="bg-surface-container text-on-surface-variant text-xs uppercase tracking-wider font-semibold">
+      <th class="px-6 py-4">Date</th>
+      <th class="px-6 py-4">Amount</th>
+      <th class="px-6 py-4">Fund</th>
+      <th class="px-6 py-4">Note</th>
+      <th class="px-6 py-4">Added By</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y divide-outline-variant">
+    {% for contribution in contributions %}
+    <tr class="hover:bg-surface-container transition-colors">
+      <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">
+        {{ contribution.date|date:"m/d/Y" }}
+      </td>
+      <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">
+        ${{ contribution.amount|floatformat:2|intcomma }}
+      </td>
+      <td class="px-6 py-4 text-sm text-on-surface-variant">
+        <a href="{% url 'core:fund-detail' contribution.fund.pk %}" class="text-primary hover:text-primary-container">
+          {{ contribution.fund.name }}
+        </a>
+      </td>
+      <td class="px-6 py-4 text-sm text-on-surface-variant">
+        {{ contribution.note|default:"—" }}
+      </td>
+      <td class="px-6 py-4 text-sm text-on-surface-variant">
+        {{ contribution.created_by.get_full_name|default:contribution.created_by.username }}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+```
+
+**Template Extends:**
+
+```html
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}Contributions{% endblock %}
+
+{% block content %}
+<!-- Page header and table here -->
+{% endblock %}
+```
+
+**Acceptance Criteria:**
+
+- Table displays all donor's contributions across all funds
+- Fund name links to fund detail
+- Monetary values formatted consistently
+- Empty state if no contributions
 
 ---
 

@@ -37,9 +37,8 @@
           <a href="{% url 'core:dashboard' %}" class="text-2xl font-semibold text-primary mr-12">Steward</a>
           <nav class="hidden md:flex items-center h-full">
             <a class="{% if request.resolver_match.url_name == 'dashboard' %}text-primary border-b-2 border-primary font-semibold{% else %}text-on-surface-variant hover:text-primary{% endif %} transition-colors h-full flex items-center px-6" href="{% url 'core:dashboard' %}">Dashboard</a>
-            {# TODO: Uncomment when views are implemented #}
-            {# <a class="{% if 'fund' in request.resolver_match.url_name %}text-primary border-b-2 border-primary font-semibold{% else %}text-on-surface-variant hover:text-primary{% endif %} transition-colors h-full flex items-center px-6" href="{% url 'core:fund-list' %}">My Funds</a> #}
-            <a class="{% if 'grant' in request.resolver_match.url_name %}text-primary border-b-2 border-primary font-semibold{% else %}text-on-surface-variant hover:text-primary{% endif %} transition-colors h-full flex items-center px-6" href="{% url 'core:grant-create' %}">Grants</a>
+            <a class="{% if 'fund' in request.resolver_match.url_name %}text-primary border-b-2 border-primary font-semibold{% else %}text-on-surface-variant hover:text-primary{% endif %} transition-colors h-full flex items-center px-6" href="{% url 'core:fund-list' %}">My Funds</a>
+            <a class="{% if 'grant' in request.resolver_match.url_name %}text-primary border-b-2 border-primary font-semibold{% else %}text-on-surface-variant hover:text-primary{% endif %} transition-colors h-full flex items-center px-6" href="{% url 'core:grant-list' %}">Grants</a>
             {# <a class="text-on-surface-variant hover:text-primary transition-colors h-full flex items-center px-6" href="#">Impact</a> #}
           </nav>
         </div>

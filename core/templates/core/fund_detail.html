@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}{{ fund.name }} - Steward{% endblock %}
+
+{% block content %}
+<main class="max-w-[1400px] mx-auto py-8 px-6 min-h-[calc(100vh-64px)]">
+  <!-- Back Navigation -->
+  <div class="mb-4">
+    <a href="{% url 'core:fund-list' %}" class="inline-flex items-center gap-2 text-primary hover:text-primary-container font-medium text-sm transition-colors">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Back to My Funds
+    </a>
+  </div>
+
+  <!-- Fund Header Card -->
+  <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm mb-6">
+    <h1 class="text-3xl font-bold text-on-surface mb-4">{{ fund.name }}</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <p class="text-sm font-semibold text-on-surface-variant mb-1">Current Balance</p>
+        <p class="text-2xl font-mono font-semibold text-primary">${{ fund.balance|floatformat:2|intcomma }}</p>
+      </div>
+      <div>
+        <p class="text-sm font-semibold text-on-surface-variant mb-1">Total Contributed</p>
+        <p class="text-2xl font-mono font-semibold text-on-surface">${{ fund.total_contributed|floatformat:2|intcomma }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contributions Section -->
+  <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm mb-6">
+    <h2 class="text-xl font-semibold text-on-surface mb-4">Contributions</h2>
+    {% if contributions %}
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="bg-surface-container text-on-surface-variant text-xs uppercase tracking-wider font-semibold">
+            <th class="px-6 py-4">Date</th>
+            <th class="px-6 py-4">Amount</th>
+            <th class="px-6 py-4">Note</th>
+            <th class="px-6 py-4">Added By</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-outline-variant">
+          {% for contribution in contributions %}
+          <tr class="hover:bg-surface-container transition-colors">
+            <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">
+              {{ contribution.date|date:"m/d/Y" }}
+            </td>
+            <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">
+              ${{ contribution.amount|floatformat:2|intcomma }}
+            </td>
+            <td class="px-6 py-4 text-sm text-on-surface-variant">
+              {{ contribution.note|default:"—" }}
+            </td>
+            <td class="px-6 py-4 text-sm text-on-surface-variant">
+              {{ contribution.created_by.get_full_name|default:contribution.created_by.username }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="text-on-surface-variant">No contributions yet.</p>
+    {% endif %}
+  </div>
+
+  <!-- Grants Section -->
+  <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-semibold text-on-surface">Grant Recommendations</h2>
+      <a href="{% url 'core:grant-create' %}" class="bg-primary hover:bg-primary-container text-on-primary font-medium py-2 px-4 rounded-md shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+        Recommend a Grant
+      </a>
+    </div>
+    {% if grants %}
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="bg-surface-container text-on-surface-variant text-xs uppercase tracking-wider font-semibold">
+            <th class="px-6 py-4">Date</th>
+            <th class="px-6 py-4">Nonprofit</th>
+            <th class="px-6 py-4">Amount</th>
+            <th class="px-6 py-4">Status</th>
+            <th class="px-6 py-4 text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-outline-variant">
+          {% for grant in grants %}
+          <tr class="hover:bg-surface-container transition-colors">
+            <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">
+              {{ grant.created_at|date:"m/d/Y" }}
+            </td>
+            <td class="px-6 py-4">
+              <p class="text-sm font-semibold text-on-surface">{{ grant.nonprofit_name }}</p>
+            </td>
+            <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">
+              ${{ grant.amount|floatformat:2|intcomma }}
+            </td>
+            <td class="px-6 py-4">
+              {% if grant.status == 'pending' %}
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-tertiary-container text-on-tertiary-container">
+                Pending
+              </span>
+              {% elif grant.status == 'approved' %}
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary-container text-on-secondary-container">
+                Approved
+              </span>
+              {% elif grant.status == 'denied' %}
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-error-container text-on-error-container">
+                Denied
+              </span>
+              {% endif %}
+            </td>
+            <td class="px-6 py-4 text-right">
+              <a href="{% url 'core:grant-detail' grant.pk %}" class="text-primary hover:text-primary-container font-medium text-sm transition-colors">
+                View Details
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="text-on-surface-variant">No grant recommendations yet.</p>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView
 from django.db.models import Sum
 from django.utils import timezone
 from django.urls import reverse_lazy
@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from decimal import Decimal
 from .serializers import DashboardSerializer, RecentGrantSerializer
-from .models import GrantRecommendation
+from .models import GrantRecommendation, Fund
 from .forms import GrantRecommendationForm
 
 
@@ -216,6 +216,41 @@ class DashboardAPIView(APIView):
         return balance_data
 
 
+class GrantRecommendationListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    """
+    List all grant recommendations for the current donor.
+    Only accessible to donors.
+    """
+    model = GrantRecommendation
+    template_name = 'core/grant_list.html'
+    context_object_name = 'grants'
+
+    def test_func(self):
+        """Only donors can access this view."""
+        return self.request.user.is_donor
+
+    def get_queryset(self):
+        """Return grants for current donor's funds, ordered by newest first."""
+        return GrantRecommendation.objects.filter(
+            fund__donor=self.request.user
+        ).select_related('fund').order_by('-created_at')
+
+
+class GrantRecommendationDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    """
+    Detail view for a single grant recommendation.
+    Only accessible to the donor who owns the grant.
+    """
+    model = GrantRecommendation
+    template_name = 'core/grant_detail.html'
+    context_object_name = 'grant'
+
+    def test_func(self):
+        """Only the grant owner can access this view."""
+        grant = self.get_object()
+        return self.request.user.is_donor and grant.fund.donor == self.request.user
+
+
 class GrantRecommendationCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     """
     Create a new grant recommendation.
@@ -224,8 +259,7 @@ class GrantRecommendationCreateView(LoginRequiredMixin, UserPassesTestMixin, Cre
     model = GrantRecommendation
     form_class = GrantRecommendationForm
     template_name = 'core/grant_form.html'
-    # TODO: Change to 'core:grant-list' when Phase 4 is implemented
-    success_url = reverse_lazy('core:dashboard')
+    success_url = reverse_lazy('core:grant-list')
 
     def test_func(self):
         """Only donors can access this view."""
@@ -245,3 +279,62 @@ class GrantRecommendationCreateView(LoginRequiredMixin, UserPassesTestMixin, Cre
             f'Grant recommendation for {form.instance.nonprofit_name} submitted successfully.'
         )
         return super().form_valid(form)
+
+
+class FundListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    """
+    List all funds for the current donor.
+    Only accessible to donors.
+    """
+    model = Fund
+    template_name = 'core/fund_list.html'
+    context_object_name = 'funds'
+
+    def test_func(self):
+        """Only donors can access this view."""
+        return self.request.user.is_donor
+
+    def get_queryset(self):
+        """Return funds for current donor."""
+        return self.request.user.funds.all()
+
+    def get_context_data(self, **kwargs):
+        """Add total balance and total contributed across all funds."""
+        context = super().get_context_data(**kwargs)
+        funds = context['funds']
+
+        # Calculate total balance across all funds
+        total_balance = sum(fund.balance for fund in funds)
+        context['total_balance'] = total_balance
+
+        # Calculate total contributed across all funds
+        total_contributed = Decimal('0.00')
+        for fund in funds:
+            fund_contributions = fund.contributions.aggregate(Sum('amount'))['amount__sum']
+            if fund_contributions:
+                total_contributed += fund_contributions
+        context['total_contributed'] = total_contributed
+
+        return context
+
+
+class FundDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    """
+    Detail view for a single fund.
+    Only accessible to the donor who owns the fund.
+    """
+    model = Fund
+    template_name = 'core/fund_detail.html'
+    context_object_name = 'fund'
+
+    def test_func(self):
+        """Only the fund owner can access this view."""
+        fund = self.get_object()
+        return self.request.user.is_donor and fund.donor == self.request.user
+
+    def get_context_data(self, **kwargs):
+        """Add contributions and grants to context."""
+        context = super().get_context_data(**kwargs)
+        context['contributions'] = self.object.contributions.order_by('-date')
+        context['grants'] = self.object.grant_recommendations.order_by('-created_at')
+        return context
