@@ -106,6 +106,10 @@ class DashboardAPIView(APIView):
                     'fund_name': '',
                     'balance': '0.00',
                     'total_contributed': '0.00',
+                    'grants_this_year': {
+                        'total': '0.00',
+                        'count': 0
+                    },
                     'balance_over_time': [],
                     'recent_grants': []
                 })
@@ -121,20 +125,35 @@ class DashboardAPIView(APIView):
             # Calculate balance over time (last 12 months)
             balance_over_time = self._calculate_balance_over_time(fund)
 
+            # Calculate grants this year
+            year_start = timezone.now().replace(month=1, day=1, hour=0, minute=0, second=0, microsecond=0)
+            grants_this_year = fund.grant_recommendations.filter(
+                status='approved',
+                reviewed_at__gte=year_start
+            )
+            grants_this_year_total = grants_this_year.aggregate(
+                total=Sum('amount')
+            )['total'] or Decimal('0.00')
+            grants_this_year_count = grants_this_year.count()
+
             # Prepare response data
             data = {
                 'fund_name': fund.name,
                 'balance': str(fund.balance),
                 'total_contributed': str(total_contributed),
+                'grants_this_year': {
+                    'total': str(grants_this_year_total),
+                    'count': grants_this_year_count
+                },
                 'balance_over_time': balance_over_time,
                 'recent_grants': RecentGrantSerializer(recent_grants, many=True).data
             }
 
-            # Validate with serializer
+            # Validate with serializer (but return original data to preserve all fields)
             serializer = DashboardSerializer(data=data)
             serializer.is_valid(raise_exception=True)
 
-            return Response(serializer.data)
+            return Response(data)
 
         except Exception:
             # On any error, return HTTP 500 with empty body

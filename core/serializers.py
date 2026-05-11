@@ -7,7 +7,7 @@ class RecentGrantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GrantRecommendation
-        fields = ['id', 'nonprofit_name', 'amount', 'status', 'created_at']
+        fields = ['id', 'nonprofit_name', 'amount', 'status', 'created_at', 'staff_note']
 
 
 class BalanceOverTimeSerializer(serializers.Serializer):
