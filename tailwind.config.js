@@ -3,6 +3,7 @@ module.exports = {
   content: [
     './*/templates/**/*.html',
     './*/static/**/*.{js,jsx,tsx}',
+    './static/**/*.{js,jsx,tsx}',
     './src/**/*.{js,jsx,tsx}',
   ],
   theme: {
@@ -42,14 +43,14 @@ module.exports = {
         'on-secondary-fixed-variant': 'hsl(131, 28%, 24%)',
 
         // Tertiary colors
-        'tertiary': 'hsl(347, 49%, 40%)',
+        'tertiary': 'hsl(43, 85%, 35%)',
         'on-tertiary': 'hsl(0, 0%, 100%)',
-        'tertiary-container': 'hsl(348, 42%, 51%)',
-        'on-tertiary-container': 'hsl(0, 100%, 97%)',
-        'tertiary-fixed': 'hsl(354, 100%, 93%)',
-        'tertiary-fixed-dim': 'hsl(351, 100%, 85%)',
-        'on-tertiary-fixed': 'hsl(342, 100%, 13%)',
-        'on-tertiary-fixed-variant': 'hsl(345, 57%, 32%)',
+        'tertiary-container': 'hsl(43, 90%, 88%)',
+        'on-tertiary-container': 'hsl(43, 85%, 20%)',
+        'tertiary-fixed': 'hsl(43, 90%, 88%)',
+        'tertiary-fixed-dim': 'hsl(43, 85%, 75%)',
+        'on-tertiary-fixed': 'hsl(43, 100%, 10%)',
+        'on-tertiary-fixed-variant': 'hsl(43, 85%, 25%)',
 
         // Background colors
         'background': 'hsl(93, 53%, 97%)',
@@ -73,6 +74,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        serif: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace'],
       },
       fontSize: {
