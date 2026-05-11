@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}Grant Recommendations - Steward{% endblock %}
+
+{% block content %}
+<main class="max-w-[1400px] mx-auto py-8 px-6 min-h-[calc(100vh-64px)]">
+  <!-- Page Header -->
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h1 class="text-3xl font-bold text-on-surface">Grant Recommendations</h1>
+      <p class="text-base text-on-surface-variant mt-1">Track and manage your charitable giving.</p>
+    </div>
+    <a href="{% url 'core:grant-create' %}" class="bg-primary hover:bg-primary-container text-on-primary font-medium py-3 px-6 rounded-md shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+      Recommend a Grant
+    </a>
+  </div>
+
+  {% if grants %}
+  <!-- Grants Table -->
+  <div class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="bg-surface-container text-on-surface-variant text-xs uppercase tracking-wider font-semibold">
+            <th class="px-6 py-4">Date</th>
+            <th class="px-6 py-4">Nonprofit</th>
+            <th class="px-6 py-4">Amount</th>
+            <th class="px-6 py-4">Fund</th>
+            <th class="px-6 py-4">Status</th>
+            <th class="px-6 py-4 text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-outline-variant">
+          {% for grant in grants %}
+          <tr class="hover:bg-surface-container transition-colors">
+            <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">{{ grant.created_at|date:"m/d/Y" }}</td>
+            <td class="px-6 py-4">
+              <p class="text-sm font-semibold text-on-surface">{{ grant.nonprofit_name }}</p>
+            </td>
+            <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">${{ grant.amount|floatformat:2|intcomma }}</td>
+            <td class="px-6 py-4 text-sm text-on-surface-variant">{{ grant.fund.name }}</td>
+            <td class="px-6 py-4">
+              {% if grant.status == 'pending' %}
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-tertiary-container text-on-tertiary-container">
+                Pending
+              </span>
+              {% elif grant.status == 'approved' %}
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary-container text-on-secondary-container">
+                Approved
+              </span>
+              {% elif grant.status == 'denied' %}
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-error-container text-on-error-container">
+                Denied
+              </span>
+              {% endif %}
+            </td>
+            <td class="px-6 py-4 text-right">
+              <a href="{% url 'core:grant-detail' grant.pk %}" class="text-primary hover:text-primary-container font-medium text-sm transition-colors">
+                View Details
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% else %}
+  <!-- Empty State -->
+  <div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-12 text-center">
+    <svg class="w-16 h-16 text-on-surface-variant mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+    </svg>
+    <h2 class="text-xl font-semibold text-on-surface mb-2">No Grant Recommendations Yet</h2>
+    <p class="text-base text-on-surface-variant mb-6">You haven't recommended any grants yet. Start making an impact today!</p>
+    <a href="{% url 'core:grant-create' %}" class="inline-block bg-primary hover:bg-primary-container text-on-primary font-medium py-3 px-6 rounded-md shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+      Recommend Your First Grant
+    </a>
+  </div>
+  {% endif %}
+</main>
+{% endblock %}
