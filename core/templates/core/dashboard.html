@@ -4,122 +4,17 @@
 
 {% block content %}
 <main class="max-w-[1440px] mx-auto p-6 lg:p-4 space-y-6">
-    <!-- Metric Cards -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Card 1: Current Balance -->
-        <div class="bg-surface-container-lowest p-6 rounded-md border border-outline-variant shadow-sm hover:shadow-md transition-all">
-            <div class="flex justify-between items-start mb-2">
-                <p class="text-sm text-on-surface-variant font-medium">Current Balance</p>
-                <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
-            </div>
-            <h2 class="font-mono text-3xl text-on-surface tracking-tight font-semibold">${{ balance|default:"0.00" }}</h2>
-            <div class="mt-1 flex items-center gap-1">
-                <p class="text-sm text-on-surface-variant">Across {{ funds.count }} fund{{ funds.count|pluralize }}</p>
-            </div>
-        </div>
+    <!-- React Dashboard Component -->
+    {% if user.is_donor %}
+    <div id="donor-dashboard-root"></div>
+    {% endif %}
 
-        <!-- Card 2: Total Contributed -->
-        <div class="bg-surface-container-lowest p-6 rounded-md border border-outline-variant shadow-sm hover:shadow-md transition-all">
-            <div class="flex justify-between items-start mb-2">
-                <p class="text-sm text-on-surface-variant font-medium">Total Contributed</p>
-                <span class="material-symbols-outlined text-primary">volunteer_activism</span>
-            </div>
-            <h2 class="font-mono text-3xl text-on-surface tracking-tight font-semibold">${{ total_contributed|default:"0.00" }}</h2>
-            <div class="mt-1 flex items-center gap-1 text-primary">
-                <span class="material-symbols-outlined text-base">trending_up</span>
-                <p class="text-sm text-on-surface-variant">LIFETIME IMPACT</p>
-            </div>
-        </div>
-
-        <!-- Card 3: Grants This Year -->
-        <div class="bg-surface-container-lowest p-6 rounded-md border border-outline-variant shadow-sm hover:shadow-md transition-all">
-            <div class="flex justify-between items-start mb-2">
-                <p class="text-sm text-on-surface-variant font-medium">Grants This Year</p>
-                <span class="material-symbols-outlined text-primary">send_money</span>
-            </div>
-            <div class="flex items-baseline gap-1">
-                <h2 class="font-mono text-3xl text-on-surface tracking-tight font-semibold">${{ grants_this_year_total|default:"0" }}</h2>
-                <span class="text-sm text-on-surface-variant">/ {{ grants_this_year_count|default:"0" }} Grant{{ grants_this_year_count|pluralize }}</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bottom Section: Recent Grant Recommendations Table -->
-    <section class="bg-surface-container-lowest rounded-md border border-outline-variant shadow-sm overflow-hidden">
-        <div class="px-6 py-3 border-b border-outline-variant flex justify-between items-center bg-surface-container">
-            <h3 class="text-2xl font-semibold text-on-surface">Recent Grant Recommendations</h3>
-            {# TODO: Uncomment when grant create view is implemented
-            <a href="URL_HERE" class="bg-primary text-on-primary px-6 py-2 rounded-md text-sm font-medium flex items-center gap-1 hover:bg-primary-container transition-colors duration-200">
-                <span class="material-symbols-outlined text-xl">add</span>
-                New Recommendation
-            </a>
-            #}
-        </div>
-
-        {% if recent_grants %}
-        <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-                <thead>
-                    <tr class="bg-surface-container text-on-surface-variant text-xs uppercase tracking-wider font-semibold">
-                        <th class="px-6 py-3">Date</th>
-                        <th class="px-6 py-3">Nonprofit</th>
-                        <th class="px-6 py-3">Amount</th>
-                        <th class="px-6 py-3">Status</th>
-                        <th class="px-6 py-3">Staff Note</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-outline-variant">
-                    {% for grant in recent_grants %}
-                    <tr class="hover:bg-surface-container transition-colors">
-                        <td class="px-6 py-4 font-mono text-sm text-on-surface">{{ grant.created_at|date:"Y-m-d" }}</td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-2">
-                                <div class="h-8 w-8 rounded bg-surface-container flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-primary text-lg">volunteer_activism</span>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-semibold text-on-surface">{{ grant.nonprofit_name }}</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 font-mono text-sm text-on-surface">${{ grant.amount }}</td>
-                        <td class="px-6 py-4">
-                            {% if grant.status == 'approved' %}
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary-container text-on-secondary-container">Approved</span>
-                            {% elif grant.status == 'denied' %}
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-error-container text-on-error-container">Denied</span>
-                            {% else %}
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-tertiary-container text-on-tertiary-container">Pending Review</span>
-                            {% endif %}
-                        </td>
-                        <td class="px-6 py-4 text-sm text-on-surface-variant italic">
-                            {{ grant.staff_note|default:"—" }}
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {% else %}
-        <div class="px-6 py-8 text-center">
-            <span class="material-symbols-outlined text-6xl text-outline-variant mb-2">volunteer_activism</span>
-            <p class="text-on-surface-variant mb-4">No grant recommendations yet</p>
-            {# TODO: Uncomment when grant create view is implemented
-            <a href="URL_HERE" class="inline-flex items-center px-6 py-2 bg-primary text-on-primary rounded-md text-sm font-medium hover:bg-primary-container transition-colors duration-200">
-                <span class="material-symbols-outlined text-xl mr-1">add</span>
-                Create Your First Recommendation
-            </a>
-            #}
-        </div>
-        {% endif %}
-
-        {% if recent_grants %}
-        <div class="px-6 py-3 bg-surface-container flex justify-center">
-            {# TODO: Uncomment when grant list view is implemented
-            <a href="URL_HERE" class="text-primary text-sm font-semibold hover:underline transition-all">View All Recommendations</a>
-            #}
-        </div>
-        {% endif %}
-    </section>
 </main>
+{% endblock %}
+
+{% block extra_scripts %}
+{% if user.is_donor %}
+{% load static %}
+<script type="module" src="{% static 'js/donor-dashboard.js' %}"></script>
+{% endif %}
 {% endblock %}
