@@ -198,7 +198,9 @@ function RecentGrantsTable({ recentGrants }) {
             Recommend a Grant
           </a>
         </div>
-        <p className="text-on-surface-variant">No grant recommendations yet</p>
+        <p className="text-on-surface-varfontVariantNumericiant">
+          No grant recommendations yet
+        </p>
       </div>
     );
   }
