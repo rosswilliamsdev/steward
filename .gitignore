@@ -35,3 +35,4 @@ yarn-error.log*
 
 # Compiled CSS (generated from src/input.css)
 core/static/core/css/styles.css
+.coverage
