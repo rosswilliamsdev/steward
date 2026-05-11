@@ -27,6 +27,11 @@ class Fund(models.Model):
         ).aggregate(Sum('amount'))['amount__sum'] or Decimal('0.00')
         return contributed - granted
 
+    @property
+    def total_contributed(self):
+        """Total amount contributed to this fund."""
+        return self.contributions.aggregate(Sum('amount'))['amount__sum'] or Decimal('0.00')
+
     def __str__(self):
         return self.name
 
