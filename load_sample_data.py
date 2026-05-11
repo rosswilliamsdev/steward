@@ -72,11 +72,18 @@ def load_sample_data():
 
     # Create funds
     print("Creating funds...")
+    # Donor 1 (Sarah Chen) - Multiple funds
     fund1 = Fund.objects.create(
         name="Chen Family Foundation",
         donor=donor1
     )
 
+    fund1b = Fund.objects.create(
+        name="Sarah Chen Education Fund",
+        donor=donor1
+    )
+
+    # Donor 2 (Michael Rodriguez) - Single fund
     fund2 = Fund.objects.create(
         name="Rodriguez Community Fund",
         donor=donor2
@@ -98,6 +105,11 @@ def load_sample_data():
         (fund1, "5000.00", "2026-02-10"),
         (fund1, "5000.00", "2026-03-10"),
         (fund1, "5000.00", "2026-04-10"),
+
+        # Fund 1b - Sarah Chen Education Fund
+        (fund1b, "50000.00", "2025-07-01"),  # Initial contribution
+        (fund1b, "10000.00", "2025-12-20"),  # Year-end contribution
+        (fund1b, "5000.00", "2026-03-15"),
 
         # Fund 2 - Rodriguez Community Fund
         (fund2, "75000.00", "2025-06-20"),
@@ -189,6 +201,36 @@ def load_sample_data():
             'staff_note': 'Staff verifying 501(c)(3) status update.'
         },
 
+        # Fund 1b grants - Sarah Chen Education Fund
+        {
+            'fund': fund1b,
+            'nonprofit_name': 'Public School STEM Initiative',
+            'amount': '8000.00',
+            'status': 'approved',
+            'created_at': '2025-09-10T11:00:00Z',
+            'reviewed_by': staff,
+            'reviewed_at': '2025-09-11T10:00:00Z',
+            'staff_note': 'Approved for robotics lab equipment.'
+        },
+        {
+            'fund': fund1b,
+            'nonprofit_name': 'College Access Network',
+            'amount': '6000.00',
+            'status': 'approved',
+            'created_at': '2026-01-18T14:30:00Z',
+            'reviewed_by': staff,
+            'reviewed_at': '2026-01-19T09:00:00Z',
+            'staff_note': 'Scholarship program approved.'
+        },
+        {
+            'fund': fund1b,
+            'nonprofit_name': 'After School Tutoring Alliance',
+            'amount': '4500.00',
+            'status': 'pending',
+            'created_at': '2026-04-28T10:45:00Z',
+            'staff_note': 'Under review for summer program.'
+        },
+
         # Fund 2 grants
         {
             'fund': fund2,
@@ -248,11 +290,12 @@ def load_sample_data():
 
     print("\n✅ Sample data loaded successfully!")
     print("\nTest accounts:")
-    print("  Donor 1: username='donor1', password='Admin123!'")
-    print("  Donor 2: username='donor2', password='Admin123!'")
+    print("  Donor 1 (Sarah Chen): username='donor1', password='Admin123!' - Has 2 funds")
+    print("  Donor 2 (Michael Rodriguez): username='donor2', password='Admin123!' - Has 1 fund")
     print("  Staff:   username='staff', password='Admin123!'")
     print("\nFund balances:")
     print(f"  Chen Family Foundation: ${fund1.balance:,.2f}")
+    print(f"  Sarah Chen Education Fund: ${fund1b.balance:,.2f}")
     print(f"  Rodriguez Community Fund: ${fund2.balance:,.2f}")
 
 if __name__ == '__main__':
