@@ -20,7 +20,7 @@
   <!-- Grants Table -->
   <div class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm overflow-hidden">
     <div class="overflow-x-auto">
-      <table class="w-full">
+      <table class="w-full table-auto">
         <thead>
           <tr class="bg-surface-container text-on-surface-variant text-xs uppercase tracking-wider font-semibold">
             <th class="px-6 py-4">Date</th>
@@ -28,17 +28,17 @@
             <th class="px-6 py-4">Amount</th>
             <th class="px-6 py-4">Fund</th>
             <th class="px-6 py-4">Status</th>
-            <th class="px-6 py-4 text-right">Actions</th>
+            <th class="px-6 py-4 text-right min-w-[150px]">Actions</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-outline-variant">
           {% for grant in grants %}
           <tr class="hover:bg-surface-container transition-colors">
-            <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">{{ grant.created_at|date:"m/d/Y" }}</td>
+            <td class="px-6 py-4 text-sm text-on-surface tabular-nums">{{ grant.created_at|date:"m/d/Y" }}</td>
             <td class="px-6 py-4">
               <p class="text-sm font-semibold text-on-surface">{{ grant.nonprofit_name }}</p>
             </td>
-            <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">${{ grant.amount|floatformat:2|intcomma }}</td>
+            <td class="px-6 py-4 text-sm text-on-surface tabular-nums">${{ grant.amount|floatformat:2|intcomma }}</td>
             <td class="px-6 py-4 text-sm text-on-surface-variant">{{ grant.fund.name }}</td>
             <td class="px-6 py-4">
               {% if grant.status == 'pending' %}
@@ -55,9 +55,9 @@
               </span>
               {% endif %}
             </td>
-            <td class="px-6 py-4 text-right">
-              <a href="{% url 'core:grant-detail' grant.pk %}" class="text-primary hover:text-primary-container font-medium text-sm transition-colors">
-                View Details
+            <td class="px-6 py-6 text-right whitespace-nowrap">
+              <a href="{% url 'core:grant-detail' grant.pk %}" class="inline-block border border-primary text-primary px-4 py-2 rounded-md font-medium text-sm hover:bg-primary-container hover:text-on-primary-container transition-colors">
+                Details
               </a>
             </td>
           </tr>

@@ -28,7 +28,7 @@
             No funds available
             {% endif %}
           </p>
-          <p class="text-3xl font-bold text-on-surface-variant font-mono">$—</p>
+          <p class="text-3xl font-bold text-on-surface-variant font-mono tabular-nums">$—</p>
         </div>
 
         <!-- Balance display -->
@@ -36,7 +36,7 @@
           <p class="font-mono text-sm text-on-surface-variant" id="fund-name">
             {% if user.funds.first %}{{ user.funds.first.name }}{% else %}Select a fund{% endif %}
           </p>
-          <p class="text-3xl font-bold font-mono text-primary" id="fund-balance">
+          <p class="text-3xl font-bold font-mono text-primary tabular-nums" id="fund-balance">
             {% if user.funds.first %}${{ user.funds.first.balance|floatformat:2 }}{% else %}$0.00{% endif %}
           </p>
         </div>

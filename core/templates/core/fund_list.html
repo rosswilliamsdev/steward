@@ -19,19 +19,31 @@
   {% if funds %}
   <!-- Summary Stats (if multiple funds) -->
   {% if funds.count > 1 %}
-  <div class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-6 mb-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <p class="text-sm font-semibold text-on-surface-variant mb-1">Total Balance</p>
-        <p class="text-2xl font-mono font-semibold text-primary">
-          ${{ total_balance|floatformat:2|intcomma }}
-        </p>
+  <div class="grid grid-cols-2 gap-4 mb-6">
+    <!-- Total Balance Card -->
+    <div class="bg-surface-container-lowest p-6 rounded-md border-l-4 border-l-primary border-t border-r border-b border-outline-variant shadow-md hover:shadow-lg transition-all">
+      <div class="flex justify-between items-start mb-2">
+        <p class="text-sm text-on-surface-variant font-medium">Total Balance</p>
+        <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
       </div>
-      <div>
-        <p class="text-sm font-semibold text-on-surface-variant mb-1">Total Contributed</p>
-        <p class="text-2xl font-mono font-semibold text-on-surface">
-          ${{ total_contributed|floatformat:2|intcomma }}
-        </p>
+      <h2 class="text-4xl text-on-surface font-extrabold tabular-nums">
+        ${{ total_balance|floatformat:2|intcomma }}
+      </h2>
+      <p class="mt-1 text-sm text-on-surface-variant">Across {{ funds.count }} fund{{ funds.count|pluralize }}</p>
+    </div>
+
+    <!-- Total Contributed Card -->
+    <div class="bg-surface-container-lowest p-6 rounded-md border border-outline-variant shadow-sm hover:shadow-md transition-all">
+      <div class="flex justify-between items-start mb-2">
+        <p class="text-sm text-on-surface-variant font-medium">Total Contributed</p>
+        <span class="material-symbols-outlined text-primary">volunteer_activism</span>
+      </div>
+      <h2 class="text-3xl text-on-surface font-extrabold tabular-nums">
+        ${{ total_contributed|floatformat:2|intcomma }}
+      </h2>
+      <div class="mt-1 flex items-center gap-1">
+        <span class="material-symbols-outlined text-base text-primary">trending_up</span>
+        <p class="text-sm text-on-surface-variant">Lifetime impact</p>
       </div>
     </div>
   </div>
@@ -56,17 +68,17 @@
             <td class="px-6 py-4">
               <p class="text-base font-semibold text-on-surface">{{ fund.name }}</p>
             </td>
-            <td class="px-6 py-4 text-sm text-on-surface" style="font-variant-numeric: tabular-nums;">
+            <td class="px-6 py-4 text-sm text-on-surface tabular-nums">
               ${{ fund.balance|floatformat:2|intcomma }}
             </td>
-            <td class="px-6 py-4 text-sm text-on-surface-variant" style="font-variant-numeric: tabular-nums;">
+            <td class="px-6 py-4 text-sm text-on-surface-variant tabular-nums">
               ${{ fund.total_contributed|floatformat:2|intcomma }}
             </td>
             <td class="px-6 py-4 text-sm text-on-surface-variant">
               {{ fund.grant_recommendations.count }} grant{{ fund.grant_recommendations.count|pluralize }}
             </td>
-            <td class="px-6 py-4 text-right">
-              <a href="{% url 'core:fund-detail' fund.pk %}" class="text-primary hover:text-primary-container font-medium text-sm transition-colors">
+            <td class="px-6 py-6 text-right">
+              <a href="{% url 'core:fund-detail' fund.pk %}" class="inline-block border border-primary text-primary px-4 py-2 rounded-md font-medium text-sm hover:bg-primary-container hover:text-on-primary-container transition-colors whitespace-nowrap">
                 View Details
               </a>
             </td>
