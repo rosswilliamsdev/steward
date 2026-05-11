@@ -82,14 +82,28 @@ def load_sample_data():
         donor=donor2
     )
 
-    # Create contributions
+    # Create contributions spread over 12 months for balance chart
+    # Using dates from June 2025 - May 2026 to match current date
     print("Creating contributions...")
     contributions_data = [
-        (fund1, "100000.00", "2024-01-15"),
-        (fund1, "50000.00", "2024-07-10"),
-        (fund1, "25000.00", "2024-12-15"),
-        (fund2, "75000.00", "2024-02-20"),
-        (fund2, "30000.00", "2024-09-05"),
+        # Fund 1 - Chen Family Foundation (initial large contribution + monthly additions)
+        (fund1, "100000.00", "2025-06-15"),  # Initial large contribution
+        (fund1, "5000.00", "2025-07-10"),
+        (fund1, "5000.00", "2025-08-15"),
+        (fund1, "10000.00", "2025-09-20"),
+        (fund1, "5000.00", "2025-10-10"),
+        (fund1, "5000.00", "2025-11-15"),
+        (fund1, "25000.00", "2025-12-15"),   # Year-end contribution
+        (fund1, "5000.00", "2026-01-10"),
+        (fund1, "5000.00", "2026-02-10"),
+        (fund1, "5000.00", "2026-03-10"),
+        (fund1, "5000.00", "2026-04-10"),
+
+        # Fund 2 - Rodriguez Community Fund
+        (fund2, "75000.00", "2025-06-20"),
+        (fund2, "10000.00", "2025-09-05"),
+        (fund2, "20000.00", "2025-12-10"),
+        (fund2, "5000.00", "2026-02-15"),
     ]
 
     for fund, amount, date_str in contributions_data:
@@ -100,96 +114,119 @@ def load_sample_data():
             created_by=staff
         )
 
-    # Create grant recommendations
+    # Create grant recommendations spread over time
+    # Using dates from June 2025 - May 2026 to match current date
+    # Reduced grant amounts to show upward balance trend
     print("Creating grant recommendations...")
     grants_data = [
-        # Fund 1 grants
-        {
-            'fund': fund1,
-            'nonprofit_name': 'Green Valley Land Trust',
-            'amount': '25000.00',
-            'status': 'approved',
-            'created_at': '2024-10-24T10:00:00Z',
-            'reviewed_by': staff,
-            'reviewed_at': '2024-10-25T14:30:00Z',
-            'staff_note': 'Scheduled for release on Nov 1.'
-        },
-        {
-            'fund': fund1,
-            'nonprofit_name': 'Westside Academy Arts',
-            'amount': '12000.00',
-            'status': 'pending',
-            'created_at': '2024-10-21T09:15:00Z',
-            'staff_note': 'Staff verifying 501(c)(3) status update.'
-        },
-        {
-            'fund': fund1,
-            'nonprofit_name': 'Community Health Clinic',
-            'amount': '50000.00',
-            'status': 'approved',
-            'created_at': '2024-10-18T11:30:00Z',
-            'reviewed_by': staff,
-            'reviewed_at': '2024-10-19T10:00:00Z',
-            'staff_note': 'Acknowledgement letter received.'
-        },
-        {
-            'fund': fund1,
-            'nonprofit_name': 'Local Food Pantry Network',
-            'amount': '8500.00',
-            'status': 'approved',
-            'created_at': '2024-09-12T14:45:00Z',
-            'reviewed_by': staff,
-            'reviewed_at': '2024-09-13T09:20:00Z',
-            'staff_note': 'Grant distributed via check on 9/20.'
-        },
+        # Fund 1 grants - smaller amounts spread across the year
         {
             'fund': fund1,
             'nonprofit_name': 'Youth Literacy Foundation',
-            'amount': '15000.00',
+            'amount': '3000.00',
             'status': 'approved',
-            'created_at': '2024-08-05T10:20:00Z',
+            'created_at': '2025-07-05T10:20:00Z',
             'reviewed_by': staff,
-            'reviewed_at': '2024-08-06T15:00:00Z',
+            'reviewed_at': '2025-07-06T15:00:00Z',
             'staff_note': 'Impact report expected in December.'
         },
         {
             'fund': fund1,
             'nonprofit_name': 'Senior Center Renovation Fund',
-            'amount': '20000.00',
-            'status': 'denied',
-            'created_at': '2024-07-22T13:10:00Z',
+            'amount': '2000.00',
+            'status': 'approved',
+            'created_at': '2025-08-22T13:10:00Z',
             'reviewed_by': staff,
-            'reviewed_at': '2024-07-25T11:30:00Z',
-            'staff_note': 'Project budget needs clarification. Donor may resubmit with revised proposal.'
+            'reviewed_at': '2025-08-25T11:30:00Z',
+            'staff_note': 'Approved for facility improvements.'
         },
+        {
+            'fund': fund1,
+            'nonprofit_name': 'Local Food Pantry Network',
+            'amount': '2500.00',
+            'status': 'approved',
+            'created_at': '2025-09-12T14:45:00Z',
+            'reviewed_by': staff,
+            'reviewed_at': '2025-09-13T09:20:00Z',
+            'staff_note': 'Grant distributed via check on 9/20.'
+        },
+        {
+            'fund': fund1,
+            'nonprofit_name': 'Community Health Clinic',
+            'amount': '4000.00',
+            'status': 'approved',
+            'created_at': '2025-11-18T11:30:00Z',
+            'reviewed_by': staff,
+            'reviewed_at': '2025-11-19T10:00:00Z',
+            'staff_note': 'Acknowledgement letter received.'
+        },
+        {
+            'fund': fund1,
+            'nonprofit_name': 'Environmental Education Center',
+            'amount': '3000.00',
+            'status': 'approved',
+            'created_at': '2026-02-15T09:15:00Z',
+            'reviewed_by': staff,
+            'reviewed_at': '2026-02-16T11:00:00Z',
+            'staff_note': 'Approved for spring programs.'
+        },
+        {
+            'fund': fund1,
+            'nonprofit_name': 'Community Theater Project',
+            'amount': '3500.00',
+            'status': 'approved',
+            'created_at': '2026-03-28T14:20:00Z',
+            'reviewed_by': staff,
+            'reviewed_at': '2026-03-29T10:00:00Z',
+            'staff_note': 'Approved for summer season programming.'
+        },
+        {
+            'fund': fund1,
+            'nonprofit_name': 'Westside Academy Arts',
+            'amount': '5000.00',
+            'status': 'pending',
+            'created_at': '2026-04-21T09:15:00Z',
+            'staff_note': 'Staff verifying 501(c)(3) status update.'
+        },
+
         # Fund 2 grants
         {
             'fund': fund2,
-            'nonprofit_name': 'Neighborhood Parks Alliance',
-            'amount': '18000.00',
+            'nonprofit_name': "Women's Business Incubator",
+            'amount': '8000.00',
             'status': 'approved',
-            'created_at': '2024-10-15T08:45:00Z',
+            'created_at': '2025-09-28T15:30:00Z',
             'reviewed_by': staff,
-            'reviewed_at': '2024-10-16T13:15:00Z',
+            'reviewed_at': '2025-09-30T10:45:00Z',
+            'staff_note': 'Approved. Quarterly impact reports requested.'
+        },
+        {
+            'fund': fund2,
+            'nonprofit_name': 'Neighborhood Parks Alliance',
+            'amount': '5000.00',
+            'status': 'approved',
+            'created_at': '2025-11-15T08:45:00Z',
+            'reviewed_by': staff,
+            'reviewed_at': '2025-11-16T13:15:00Z',
             'staff_note': 'Grant approved. Check prepared for November disbursement.'
         },
         {
             'fund': fund2,
             'nonprofit_name': 'Immigrant Resource Center',
-            'amount': '22000.00',
-            'status': 'pending',
-            'created_at': '2024-10-20T12:00:00Z',
-            'staff_note': 'Under review. Additional documentation requested from nonprofit.'
+            'amount': '4000.00',
+            'status': 'approved',
+            'created_at': '2026-01-20T12:00:00Z',
+            'reviewed_by': staff,
+            'reviewed_at': '2026-01-22T14:30:00Z',
+            'staff_note': 'Approved for language services program.'
         },
         {
             'fund': fund2,
-            'nonprofit_name': "Women's Business Incubator",
-            'amount': '30000.00',
-            'status': 'approved',
-            'created_at': '2024-09-28T15:30:00Z',
-            'reviewed_by': staff,
-            'reviewed_at': '2024-09-30T10:45:00Z',
-            'staff_note': 'Approved. Quarterly impact reports requested.'
+            'nonprofit_name': 'Youth Sports Foundation',
+            'amount': '6000.00',
+            'status': 'pending',
+            'created_at': '2026-04-05T10:00:00Z',
+            'staff_note': 'Under review. Additional documentation requested from nonprofit.'
         },
     ]
 
@@ -200,11 +237,14 @@ def load_sample_data():
         if reviewed_at_str:
             reviewed_at = timezone.datetime.fromisoformat(reviewed_at_str.replace('Z', '+00:00'))
 
-        GrantRecommendation.objects.create(
+        # Create the grant first (auto_now_add will set created_at to now)
+        grant = GrantRecommendation.objects.create(
             **grant_data,
-            created_at=created_at,
             reviewed_at=reviewed_at
         )
+
+        # Update created_at using update() to bypass auto_now_add
+        GrantRecommendation.objects.filter(pk=grant.pk).update(created_at=created_at)
 
     print("\n✅ Sample data loaded successfully!")
     print("\nTest accounts:")
