@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% block title %}Recommend a Grant - Steward{% endblock %}
 
@@ -17,21 +18,34 @@
           <span class="material-symbols-outlined text-primary text-lg">account_balance_wallet</span>
           <h2 class="text-sm font-semibold text-primary">Available Balance</h2>
         </div>
-        <div class="space-y-2">
-          <p class="font-mono text-sm text-on-surface-variant">
-            {% if user.funds.first %}{{ user.funds.first.name }} #4402{% else %}Select a fund{% endif %}
+
+        <!-- Empty state: no fund selected -->
+        <div id="balance-empty-state" class="space-y-2 {% if user.funds.count == 1 %}hidden{% endif %}">
+          <p class="text-sm text-on-surface-variant">
+            {% if user.funds.count > 1 %}
+            Select a fund above to see available balance
+            {% else %}
+            No funds available
+            {% endif %}
           </p>
-          <p class="text-3xl font-bold text-primary font-mono">
+          <p class="text-3xl font-bold text-on-surface-variant font-mono">$—</p>
+        </div>
+
+        <!-- Balance display -->
+        <div id="balance-display" class="space-y-2 {% if user.funds.count != 1 %}hidden{% endif %}">
+          <p class="font-mono text-sm text-on-surface-variant" id="fund-name">
+            {% if user.funds.first %}{{ user.funds.first.name }}{% else %}Select a fund{% endif %}
+          </p>
+          <p class="text-3xl font-bold font-mono text-primary" id="fund-balance">
             {% if user.funds.first %}${{ user.funds.first.balance|floatformat:2 }}{% else %}$0.00{% endif %}
           </p>
         </div>
-        <div class="mt-6 pt-6 border-t border-outline-variant">
-          <div class="flex justify-between items-center mb-2">
-            <span class="text-sm text-on-surface-variant">Annual Distribution Goal</span>
-            <span class="text-sm font-semibold text-primary">85% Complete</span>
-          </div>
-          <div class="w-full bg-surface-container-highest rounded-full h-2">
-            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+
+        <!-- Zero balance warning -->
+        <div id="zero-balance-warning" class="mt-4 p-3 bg-error-container border border-error rounded-lg hidden">
+          <div class="flex gap-2">
+            <span class="material-symbols-outlined text-on-error-container text-sm">warning</span>
+            <p class="text-sm text-on-error-container">This fund has no available balance for new grants.</p>
           </div>
         </div>
       </div>
@@ -150,8 +164,66 @@
 </main>
 
 <script>
-// Character counter
 document.addEventListener('DOMContentLoaded', function() {
+  // Fund balance data from Django
+  const fundsData = {{ funds_data_json|safe }};
+
+  // Get DOM elements
+  const fundSelect = document.querySelector('select[name="fund"]');
+  const balanceDisplay = document.getElementById('balance-display');
+  const balanceEmptyState = document.getElementById('balance-empty-state');
+  const fundNameEl = document.getElementById('fund-name');
+  const fundBalanceEl = document.getElementById('fund-balance');
+  const zeroBalanceWarning = document.getElementById('zero-balance-warning');
+
+  // Update balance when fund is selected
+  function updateBalance(fundId) {
+    if (!fundId || !fundsData[fundId]) {
+      // Show empty state
+      balanceDisplay.classList.add('hidden');
+      balanceEmptyState.classList.remove('hidden');
+      zeroBalanceWarning.classList.add('hidden');
+      return;
+    }
+
+    const fund = fundsData[fundId];
+
+    // Show balance display
+    balanceDisplay.classList.remove('hidden');
+    balanceEmptyState.classList.add('hidden');
+
+    // Update fund name and balance
+    fundNameEl.textContent = fund.name;
+    fundBalanceEl.textContent = '$' + fund.balance.toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+    // Show/hide zero balance warning
+    if (fund.balance <= 0) {
+      zeroBalanceWarning.classList.remove('hidden');
+      fundBalanceEl.classList.remove('text-primary');
+      fundBalanceEl.classList.add('text-on-surface-variant');
+    } else {
+      zeroBalanceWarning.classList.add('hidden');
+      fundBalanceEl.classList.remove('text-on-surface-variant');
+      fundBalanceEl.classList.add('text-primary');
+    }
+  }
+
+  // Listen for fund selection changes
+  if (fundSelect) {
+    fundSelect.addEventListener('change', function() {
+      updateBalance(this.value);
+    });
+
+    // Initialize on page load if fund is already selected
+    if (fundSelect.value) {
+      updateBalance(fundSelect.value);
+    }
+  }
+
+  // Character counter for memo field
   const memoField = document.getElementById('{{ form.memo.id_for_label }}');
   const charCount = document.getElementById('char-count');
 

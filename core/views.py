@@ -271,6 +271,22 @@ class GrantRecommendationCreateView(LoginRequiredMixin, UserPassesTestMixin, Cre
         kwargs['user'] = self.request.user
         return kwargs
 
+    def get_context_data(self, **kwargs):
+        """Add fund balances as JSON for JavaScript."""
+        import json
+        context = super().get_context_data(**kwargs)
+
+        # Create fund data dictionary for JavaScript
+        funds_data = {}
+        for fund in self.request.user.funds.all():
+            funds_data[str(fund.id)] = {
+                'name': fund.name,
+                'balance': float(fund.balance),
+            }
+
+        context['funds_data_json'] = json.dumps(funds_data)
+        return context
+
     def form_valid(self, form):
         """Set status to pending on creation."""
         form.instance.status = 'pending'
