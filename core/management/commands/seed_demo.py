@@ -1,8 +1,9 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 from core.models import Fund, Contribution, GrantRecommendation
 from decimal import Decimal
-from datetime import date
+from datetime import date, datetime
 
 User = get_user_model()
 
@@ -133,6 +134,7 @@ class Command(BaseCommand):
             memo="Monthly meal program support",
             status='approved',
             reviewed_by=staff,
+            reviewed_at=timezone.make_aware(datetime(2026, 2, 15, 10, 30)),
             staff_note="Approved - established nonprofit with strong track record"
         )
 
@@ -150,7 +152,8 @@ class Command(BaseCommand):
             amount=Decimal('2500.00'),
             memo="Art supplies for underserved schools",
             status='approved',
-            reviewed_by=staff
+            reviewed_by=staff,
+            reviewed_at=timezone.make_aware(datetime(2026, 3, 20, 14, 15))
         )
 
         # Seed grant recommendations for fund2
@@ -160,7 +163,8 @@ class Command(BaseCommand):
             amount=Decimal('25000.00'),
             memo="Engineering scholarships for first-gen students",
             status='approved',
-            reviewed_by=staff
+            reviewed_by=staff,
+            reviewed_at=timezone.make_aware(datetime(2026, 1, 10, 9, 0))
         )
 
         GrantRecommendation.objects.create(
