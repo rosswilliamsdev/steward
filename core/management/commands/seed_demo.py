@@ -65,37 +65,61 @@ class Command(BaseCommand):
 
         self.stdout.write('Creating contributions...')
 
-        # Seed contributions for fund1
+        # Seed contributions for fund1 - spread over 12 months
         Contribution.objects.create(
             fund=fund1,
             amount=Decimal('50000.00'),
-            date=date(2024, 1, 15),
+            date=date(2025, 5, 15),
             created_by=staff
         )
         Contribution.objects.create(
             fund=fund1,
-            amount=Decimal('25000.00'),
-            date=date(2024, 6, 10),
+            amount=Decimal('15000.00'),
+            date=date(2025, 7, 20),
             created_by=staff
         )
         Contribution.objects.create(
             fund=fund1,
             amount=Decimal('10000.00'),
-            date=date(2024, 11, 5),
+            date=date(2025, 10, 5),
+            created_by=staff
+        )
+        Contribution.objects.create(
+            fund=fund1,
+            amount=Decimal('20000.00'),
+            date=date(2026, 1, 12),
+            created_by=staff
+        )
+        Contribution.objects.create(
+            fund=fund1,
+            amount=Decimal('5000.00'),
+            date=date(2026, 3, 8),
             created_by=staff
         )
 
-        # Seed contributions for fund2
+        # Seed contributions for fund2 - spread over 12 months
         Contribution.objects.create(
             fund=fund2,
             amount=Decimal('100000.00'),
-            date=date(2024, 3, 1),
+            date=date(2025, 6, 1),
             created_by=staff
         )
         Contribution.objects.create(
             fund=fund2,
-            amount=Decimal('50000.00'),
-            date=date(2024, 9, 15),
+            amount=Decimal('25000.00'),
+            date=date(2025, 9, 15),
+            created_by=staff
+        )
+        Contribution.objects.create(
+            fund=fund2,
+            amount=Decimal('30000.00'),
+            date=date(2025, 12, 20),
+            created_by=staff
+        )
+        Contribution.objects.create(
+            fund=fund2,
+            amount=Decimal('15000.00'),
+            date=date(2026, 2, 10),
             created_by=staff
         )
 
