@@ -236,9 +236,6 @@ class DashboardAPIView(APIView):
         # Start from 12 months ago
         start_month = (today - relativedelta(months=11)).replace(day=1)
 
-        # Initialize running balance at zero
-        running_balance = Decimal('0.00')
-
         # Get all contributions and approved grants across all donor's funds
         from .models import Contribution
         contributions = Contribution.objects.filter(
@@ -248,7 +245,22 @@ class DashboardAPIView(APIView):
         approved_grants = GrantRecommendation.objects.filter(
             fund__donor=user,
             status='approved'
-        ).order_by('created_at')
+        ).order_by('reviewed_at')
+
+        # Calculate starting balance (everything before the chart period)
+        start_month_dt = timezone.make_aware(
+            datetime.combine(start_month, datetime.min.time())
+        )
+
+        starting_contributions = contributions.filter(
+            date__lt=start_month
+        ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+
+        starting_grants = approved_grants.filter(
+            reviewed_at__lt=start_month_dt
+        ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+
+        running_balance = starting_contributions - starting_grants
 
         # Process each of the last 12 months
         for i in range(12):
