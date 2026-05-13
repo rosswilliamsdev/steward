@@ -51,8 +51,7 @@
             class="text-3xl font-bold tabular-nums text-primary"
             id="fund-balance"
           >
-            {% if user.funds.first %}${{ user.funds.first.balance|floatformat:2
-            }}{% else %}$0.00{% endif %}
+            {% if user.funds.first %}${{ user.funds.first.balance|floatformat:2 }}{% else %}$0.00{% endif %}
           </p>
         </div>
 
