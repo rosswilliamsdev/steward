@@ -106,7 +106,7 @@ class Command(BaseCommand):
             fund=fund1,
             nonprofit_name="Local Food Bank",
             amount=Decimal('5000.00'),
-            purpose="Monthly meal program support",
+            memo="Monthly meal program support",
             status='approved',
             reviewed_by=staff,
             staff_note="Approved - established nonprofit with strong track record"
@@ -116,7 +116,7 @@ class Command(BaseCommand):
             fund=fund1,
             nonprofit_name="Youth Literacy Program",
             amount=Decimal('3000.00'),
-            purpose="After-school reading initiative",
+            memo="After-school reading initiative",
             status='pending'
         )
 
@@ -124,7 +124,7 @@ class Command(BaseCommand):
             fund=fund1,
             nonprofit_name="Community Arts Center",
             amount=Decimal('2500.00'),
-            purpose="Art supplies for underserved schools",
+            memo="Art supplies for underserved schools",
             status='approved',
             reviewed_by=staff
         )
@@ -134,7 +134,7 @@ class Command(BaseCommand):
             fund=fund2,
             nonprofit_name="State University Scholarship Fund",
             amount=Decimal('25000.00'),
-            purpose="Engineering scholarships for first-gen students",
+            memo="Engineering scholarships for first-gen students",
             status='approved',
             reviewed_by=staff
         )
@@ -143,7 +143,7 @@ class Command(BaseCommand):
             fund=fund2,
             nonprofit_name="STEM Education Coalition",
             amount=Decimal('15000.00'),
-            purpose="K-12 robotics program equipment",
+            memo="K-12 robotics program equipment",
             status='pending'
         )
 
