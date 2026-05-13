@@ -124,7 +124,7 @@ STATIC_URL = 'static/'
 import os
 
 if os.environ.get('RENDER'):
-    DEBUG = False
+    DEBUG = config('DEBUG', default=False, cast=bool)
     ALLOWED_HOSTS = ['.onrender.com']
 
     # Database (Render provides DATABASE_URL)
