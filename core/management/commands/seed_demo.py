@@ -21,7 +21,7 @@ class Command(BaseCommand):
 
         self.stdout.write('Creating demo users...')
 
-        # Create staff user
+        # Create staff user with superuser privileges for Django admin
         staff = User.objects.create_user(
             username='staff',
             password='demo123',
@@ -29,7 +29,8 @@ class Command(BaseCommand):
             first_name='Admin',
             last_name='User',
             is_staff=True,
-            is_admin=True
+            is_admin=True,
+            is_superuser=True
         )
 
         # Create donor users
