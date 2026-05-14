@@ -22,35 +22,47 @@ class Command(BaseCommand):
         self.stdout.write('Creating demo users...')
 
         # Create staff user with superuser privileges for Django admin
-        staff = User.objects.create_user(
+        staff, created = User.objects.get_or_create(
             username='staff',
-            password='demo123',
-            email='staff@steward.demo',
-            first_name='Admin',
-            last_name='User',
-            is_staff=True,
-            is_admin=True,
-            is_superuser=True
+            defaults={
+                'email': 'staff@steward.demo',
+                'first_name': 'Admin',
+                'last_name': 'User',
+                'is_staff': True,
+                'is_admin': True,
+                'is_superuser': True
+            }
         )
+        if created:
+            staff.set_password('demo123')
+            staff.save()
 
         # Create donor users
-        donor1 = User.objects.create_user(
+        donor1, created = User.objects.get_or_create(
             username='donor',
-            password='demo123',
-            email='donor@steward.demo',
-            first_name='Jane',
-            last_name='Smith',
-            is_donor=True
+            defaults={
+                'email': 'donor@steward.demo',
+                'first_name': 'Jane',
+                'last_name': 'Smith',
+                'is_donor': True
+            }
         )
+        if created:
+            donor1.set_password('demo123')
+            donor1.save()
 
-        donor2 = User.objects.create_user(
+        donor2, created = User.objects.get_or_create(
             username='donor2',
-            password='demo123',
-            email='donor2@steward.demo',
-            first_name='Robert',
-            last_name='Johnson',
-            is_donor=True
+            defaults={
+                'email': 'donor2@steward.demo',
+                'first_name': 'Robert',
+                'last_name': 'Johnson',
+                'is_donor': True
+            }
         )
+        if created:
+            donor2.set_password('demo123')
+            donor2.save()
 
         self.stdout.write('Creating funds...')
 
