@@ -32,7 +32,7 @@ def load_sample_data():
 
     # Create users
     print("Creating users...")
-    donor1, _ = User.objects.get_or_create(
+    donor1, created = User.objects.get_or_create(
         username='donor1',
         defaults={
             'email': 'sarah.chen@example.com',
@@ -41,10 +41,11 @@ def load_sample_data():
             'is_donor': True
         }
     )
-    donor1.set_password('Admin123!')
-    donor1.save()
+    if created:
+        donor1.set_password('Admin123!')
+        donor1.save()
 
-    donor2, _ = User.objects.get_or_create(
+    donor2, created = User.objects.get_or_create(
         username='donor2',
         defaults={
             'email': 'michael.r@example.com',
@@ -53,10 +54,11 @@ def load_sample_data():
             'is_donor': True
         }
     )
-    donor2.set_password('Admin123!')
-    donor2.save()
+    if created:
+        donor2.set_password('Admin123!')
+        donor2.save()
 
-    staff, _ = User.objects.get_or_create(
+    staff, created = User.objects.get_or_create(
         username='staff',
         defaults={
             'email': 'admin@steward.org',
@@ -67,8 +69,9 @@ def load_sample_data():
             'is_superuser': True
         }
     )
-    staff.set_password('Admin123!')
-    staff.save()
+    if created:
+        staff.set_password('Admin123!')
+        staff.save()
 
     # Create funds
     print("Creating funds...")
