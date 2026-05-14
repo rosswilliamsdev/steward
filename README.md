@@ -10,6 +10,10 @@ Steward demonstrates production-level backend engineering for a real-world domai
 
 **Built in one week as a portfolio project** to showcase Django expertise for Web Application Developer roles at nonprofit community foundations.
 
+**Live Demo:** https://steward-goax.onrender.com/
+**GitHub:** https://github.com/rosswilliamsdev/steward
+**Demo Credentials:** donor/demo123 or staff/demo123
+
 ### Key Features
 
 - **Donor Portal**: View fund balances, contribution history, grant recommendations with interactive charts
@@ -329,4 +333,3 @@ This is a portfolio project. Feel free to reference the code for learning purpos
 **Ross Williams**
 
 - GitHub: [@rosswilliamsdev](https://github.com/rosswilliamsdev)
-- Portfolio: [rosswilliams.dev](https://rosswilliams.dev)
